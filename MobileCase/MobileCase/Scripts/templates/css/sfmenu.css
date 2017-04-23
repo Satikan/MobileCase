@@ -1,0 +1,116 @@
+.sf-menu, .sf-menu * {
+	margin:0;
+	padding:0;
+	list-style:none
+}
+.sf-menu {
+	z-index:10;
+	clear:both;
+	list-style-type:none;
+	position:relative
+}
+.sf-menu li {
+	position:relative
+}
+.sf-menu ul {
+	position:absolute;
+	display:none;
+	top:100%;
+	left:0;
+	z-index:99
+}
+.sf-menu li.sfHover>ul, .sf-menu li:hover>ul {
+	display:block
+}
+.sf-menu a {
+	display:block;
+	position:relative
+}
+.sf-menu ul ul {
+	top:0;
+	left:100%
+}
+.sf-menu>li {
+	display:block;
+	position:relative;
+}
+
+.sf-menu>li>a {
+	border-bottom: 0 solid #000;
+    display: block;
+    font-size: 1.25em;
+    height: 38px;
+    padding: 4px 15px 16px;
+    position: relative;
+    text-transform: uppercase;
+}
+.sf-menu>li>a:hover {
+	border-bottom:5px solid #000;
+	text-decoration:none;
+}
+.sf-menu ul {
+	text-align:left;
+	min-width:12em;
+	background:#fff;
+	box-shadow:0 1px 3px rgba(5, 5, 5, .1)
+}
+.sf-menu ul ul {
+	margin-top:-1px
+}
+.sf-menu ul li a {
+	display:block;
+	border-bottom:1px solid #f7f7f7;
+	padding:8px 20px;
+	font:1.077em Mavenpro-medium, Arial, Helvetica, sans-serif;
+	text-transform:uppercase;
+	color:#2b2b2b;
+	text-decoration:none
+}
+
+.sf-menu ul ul li a {
+	text-transform:none
+}
+.sf-menu ul li a:hover {
+	background:#f7f7f7
+}
+.sf-menu ul .sf-arrows .sf-with-ul {
+	padding-right:2.5em;
+*padding-right:1em
+}
+.sf-arrows ul .sf-with-ul:after {
+	content:'\e042';
+	position:absolute;
+	top:47%;
+	right:20px;
+	height:0;
+	width:0;
+	font-family: "Flaticon";
+	font-size:10px
+}
+.sf-arrows>.sfHover>.sf-with-ul:after, .sf-arrows>li:hover>.sf-with-ul:after, .sf-arrows>li>.sf-with-ul:focus:after {
+	border-top-color:#fff
+}
+.sf-arrows ul .sf-with-ul:after {
+	margin-top:-5px;
+	margin-right:-3px;
+	border-color:transparent;
+	border-left-color:#dFeEFF;
+	border-left-color:rgba(255, 255, 255, .5)
+}
+.sf-arrows ul .sfHover>.sf-with-ul:after, .sf-arrows ul li:hover>.sf-with-ul:after, .sf-arrows ul li>.sf-with-ul:focus:after {
+	border-left-color:#fff
+}
+.navbar-main-menu .sf-menu {
+	padding:0;
+	margin:0
+}
+.navbar-compact .navbar-main-menu .sf-menu ul {
+	margin: 6px 0 0;
+}
+.navbar-compact .navbar-main-menu .sf-menu>li {
+	height:32px;
+	margin-bottom:10px
+}
+.navbar-main-menu dt:first-child .sf-menu>li>a:before {
+	display:none
+}

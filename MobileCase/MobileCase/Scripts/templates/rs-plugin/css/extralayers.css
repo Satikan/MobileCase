@@ -1,0 +1,88 @@
+/*********************************************
+	-	SETTINGS FOR BANNER CONTAINERS	-
+**********************************************/
+
+.tp-banner-container {
+	width:100%;
+	position:relative;
+	padding:0;
+}
+.tp-banner {
+	width:100%;
+	position:relative;
+	visibility:hidden;
+}
+
+.tp-banner-fullscreen-container {
+	width:100%;
+	position:relative;
+	padding:0;
+}
+
+.tp-leftarrow.default {
+	z-index:100;
+	cursor:pointer;
+	position:relative;
+	background: none;
+	width:15%;
+	height:90%;
+	top: 5%;
+	left:0 !important;
+}
+.tp-rightarrow.default {
+	z-index:100;
+	cursor:pointer;
+	position:relative;
+	background: none;
+	width:15%;
+	height:90%;
+	top: 5%;
+	right:0 !important;
+}
+.tp-leftarrow.default:before, .tp-rightarrow.default:before {
+	display: none
+}
+.tp-rightarrow.default:hover {
+	cursor: url(../images/cursor-arrow-right.png) 27 27, url(../images/cursor-arrow-right.cur), pointer;
+}
+.tp-leftarrow.default:hover {
+	cursor: url(../images/cursor-arrow-left.png) 27 27, url(../images/cursor-arrow-left.cur), pointer;
+}
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+.tp-rightarrow.default:hover {
+	background: url(../images/cursor-arrow-right.png) no-repeat center center;
+}
+.tp-leftarrow.default:hover {
+	background: url(../images/cursor-arrow-left.png) no-repeat center center;
+}
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+.tp-leftarrow.default, .tp-rightarrow.default {
+	top: 8%;
+	height:84%;
+}
+}
+@media (max-width: 991px) {
+.tp-leftarrow.default, .tp-rightarrow.default {
+	top: 10%;
+	height:80%;
+}
+}
+.text1 {
+	font: normal 48px/1em  'Poiret One', cursive;
+	color:#000;
+	text-transform:uppercase;
+}
+.text2 {
+	font: normal 18px/1em  'Cantarell', sans-serif;
+	color:#000;
+	text-transform:uppercase;
+}
+.text3 {
+	font: normal 12px/1em  "Myriad Pro", sans-serif
+}
+.text0 {
+	color:#c69c6d;
+	font: normal 70px/1em Georgia, "Times New Roman", Times, serif
+}

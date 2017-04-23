@@ -1,0 +1,84 @@
+/*********************************************
+	-	SETTINGS FOR BANNER CONTAINERS	-
+**********************************************/
+
+.tp-banner-container {
+	width:100%;
+	position:relative;
+	padding:0;
+}
+.tp-banner {
+	width:100%;
+	position:relative;
+	visibility:hidden;
+}
+
+.tp-banner-fullscreen-container {
+	width:100%;
+	position:relative;
+	padding:0;
+}
+
+.tp-leftarrow.default, .tp-rightarrow.default {
+	border: none;
+    color: #fff;
+	background: #000;
+	height:54px;
+	width:54px;
+}
+.tp-rightarrow.default {
+}
+.tp-leftarrow.default:hover, .tp-rightarrow.default:hover  {
+	outline: none;
+	background: #fff;
+	color: #000;
+}
+.tp-leftarrow.default:hover:before, .tp-rightarrow.default:hover:before {
+	opacity: 1;
+}
+.tp-leftarrow.default:before, .tp-rightarrow.default:before {
+	display:block;
+	position:absolute;
+	width:100%;
+	text-align:center;
+	left:0;
+	top:0;
+	font-family: "Flaticon";
+	font-size: 16px;
+	line-height: 52px;
+	opacity: 1;
+	text-indent:0;
+	color:#fff;
+}
+.tp-leftarrow.default:before {
+	content: '\e02d';
+}
+.tp-rightarrow.default:before {
+	content: '\e042';
+}
+.tp-leftarrow.default:hover:before, .tp-rightarrow.default:hover:before {
+	color:#000;
+}
+.tp-leftarrow.default:before {
+	margin: 0 0 0 -1px
+}
+.tp-rightarrow.default:before {
+	margin: 0 0 0 1px
+}
+.text1 {
+	font: normal 60px/1em 'Bevan', cursive;
+	color:#fff;
+	text-shadow: 3px 3px 0 #000;
+}
+.text2 {
+	font: normal 20px/1em 'Bevan', cursive;
+	color:#000;
+	text-transform: uppercase;
+}
+
+.tp-banner .btn-cool, .tp-banner .btn-cool:hover {
+	background-color: #000;
+	border: 1px solid #000;
+	color: #fff !important;
+	font-family: 'Bevan', cursive;
+}

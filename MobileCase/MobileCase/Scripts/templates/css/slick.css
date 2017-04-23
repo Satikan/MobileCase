@@ -1,0 +1,321 @@
+/* Slider */
+.slick-slider {
+	position: relative;
+	display: block;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	-ms-touch-action: pan-y;
+	touch-action: pan-y;
+	-webkit-tap-highlight-color: transparent;
+}
+.slick-list {
+	position: relative;
+	overflow: hidden;
+	display: block;
+	margin: 0;
+	padding: 0;
+}
+.slick-list:focus {
+	outline: none;
+}
+.slick-loading .slick-list {
+/*	background: white url("./ajax-loader.gif") center center no-repeat;
+*/}
+.slick-list.dragging {
+	cursor: pointer;
+	cursor: hand;
+}
+.slick-slider .slick-list, .slick-track, .slick-slide, .slick-slide img {
+/*	-webkit-transform: translate3d(0, 0, 0);
+	-moz-transform: translate3d(0, 0, 0);
+	-ms-transform: translate3d(0, 0, 0);
+	-o-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+*/}
+.slick-track {
+	position: relative;
+	left: 0;
+	top: 0;
+	display: block;
+	zoom: 1;
+}
+.slick-track:before, .slick-track:after {
+	content: "";
+	display: table;
+}
+.slick-track:after {
+	clear: both;
+}
+.slick-loading .slick-track {
+	visibility: hidden;
+}
+.slick-slide {
+	float: left;
+	height: 100%;
+	min-height: 1px;
+	display: none;
+}
+.slick-slide img {
+	display: block;
+	width:100%;
+}
+.slick-slide.slick-loading img {
+	display: none;
+}
+.slick-slide.dragging img {
+	pointer-events: none;
+}
+.slick-initialized .slick-slide {
+	display: block;
+}
+.slick-loading .slick-slide {
+	visibility: hidden;
+}
+.slick-vertical .slick-slide {
+	display: block;
+	height: auto;
+}
+/* Arrows */
+.slick-prev, .slick-next {
+	position: absolute;
+	display: block;
+	height: 29px;
+	width: 29px;
+	line-height: 0;
+	font-size: 0;
+	cursor: pointer;
+	background: transparent;
+	color: transparent;
+	top: -50px;
+	padding: 0;
+	border: 1px solid #cccccc;
+	outline: none;
+	color: #c69c6d;
+	text-indent:-99999px;
+}
+.slick-prev:hover, .slick-next:hover {
+	outline: none;
+	background: #242424;
+	border-color: #242424;
+}
+.slick-prev:hover:before, .slick-prev:focus:before, .slick-next:hover:before, .slick-next:focus:before {
+	opacity: 1;
+}
+.slick-prev.slick-disabled:before, .slick-next.slick-disabled:before {
+	opacity: 0.25;
+}
+.slick-prev:before, .slick-next:before {
+	display:block;
+	position:absolute;
+	width:100%;
+	text-align:center;
+	left:0;
+	top:0;
+	font-family: "Flaticon";
+	font-size: 11px;
+	line-height: 28px;
+	opacity: 1;
+	text-indent:0;
+}
+.slick-prev {
+	right: 34px;
+}
+.slick-prev:before {
+	content: '\e02d';
+}
+.slick-next {
+	right: 0px;
+}
+.slick-next:before {
+	content: '\e042';
+}
+
+.slick-prev:before {
+	margin: 0 0 0 -1px
+}
+.slick-next:before {
+	margin: 0 0 0 1px
+}
+
+/* [dir="rtl"] .slick-next {
+	right: auto;
+	left: -25px;
+}
+[dir="rtl"] .slick-next:before {
+}
+[dir="rtl"] .slick-prev {
+	right: -25px;
+	left: auto;
+}
+[dir="rtl"] .slick-prev:before {
+}
+[dir="rtl"] .slick-slide {
+	float: right;
+} */
+/*CUSTOM STYLE */
+
+/*arrows left and right small*/
+
+.slick-style1 .slick-prev, .slick-style1 .slick-next {
+	top: -6px;
+	margin-top: 0;
+	border: none;
+}
+.slick-style1 .slick-prev {
+	left: -35px;
+}
+.slick-style1 .slick-next {
+	right: -35px;
+}
+.slick-style1 .slick-prev:before {
+	margin: 0 0 0 -1px
+}
+.slick-style1 .slick-next:before {
+	margin: 0 0 0 1px
+}
+
+
+/*arrows bottom*/
+
+.slick-style2 .slick-prev, .slick-style2 .slick-next {
+	top: auto;
+	bottom: -30px;
+}
+.carousel_outer .vertical .slick-style2 .slick-prev, .carousel_outer .vertical .slick-style2 .slick-next {
+	bottom: 0;
+}
+ @media (max-width: 480px) {
+ .carousel_outer .vertical .slick-style2 .slick-next { right: auto; left: 35px}
+ .carousel_outer .vertical .slick-style2 .slick-prev { right:auto; left:0;}
+
+}
+ 
+.header-product-carousel.slick-style2 .slick-prev, .header-product-carousel.slick-style2 .slick-next {
+	bottom: 10px;
+}
+
+/*arrows bottom left */
+
+.slick-style5 .slick-prev, .slick-style5 .slick-next {
+	top: auto;
+	bottom: 10px;
+}
+.slick-style5 .slick-prev {
+	left: 15px;
+}
+.slick-style5 .slick-next {
+	left: 50px;
+}
+/*arrows left and right big */
+
+.slick-style3 .slick-prev, .slick-style3 .slick-next {
+	top: 50%;
+	margin-top: -27px;
+	border: none;
+	height: 54px;
+	width: 54px;
+	cursor: pointer;
+	background: rgba(0,0,0,0.01);
+	color: transparent;
+	text-align:center;
+	border: 2px solid #3a3a3a;
+	outline: none;
+}
+.slick-style3 .slick-prev:before, .slick-style3 .slick-next:before {
+	font-size:14px !important;
+	line-height:50px !important;
+	color: #3a3a3a;
+	margin: 0 0 0 -2px
+}
+.slick-style3 .slick-next:before {
+	margin: 0 0 0 2px
+}
+.slick-style3 .slick-prev {
+	left: -61px;
+}
+.slick-style3 .slick-next {
+	right: -61px;
+}
+
+.slick-style3 .slick-prev.slick-disabled, .slick-style3 .slick-next.slick-disabled {
+	opacity: 0.25;
+}
+ @media (max-width:991px) {
+.slick-style3 .slick-prev, .slick-style3 .slick-next {
+ margin-top: -18px;
+ height: 36px;
+ width: 36px;
+}
+.slick-style3 .slick-prev:before, .slick-style3 .slick-next:before {
+ font-size: 18px;
+ line-height: 32px !important;
+}
+.slick-style3 .slick-prev {
+ left: -46px;
+}
+.slick-style3 .slick-next {
+ right: -46px;
+}
+}
+.boxed .slick-style3 .slick-prev {
+	left: -45px;
+}
+.boxed .slick-style3 .slick-next {
+	right: -45px;
+}
+/*arrow for product page slider */
+
+.slick-style4 .slick-prev, .slick-style4 .slick-next {
+	top: 50%;
+	margin-top: -27px;
+	border: none;
+	height: 33px;
+	width: 33px;
+	cursor: pointer;
+	background: #242424;
+	z-index: 1001;
+}
+.slick-style4 .slick-prev:before, .slick-style4 .slick-next:before {
+	font-size: 18px;
+	line-height: 33px;
+	margin: 0 0 0 -1px
+}
+.slick-style4 .slick-next:before {
+	margin: 0 0 0 1px
+}
+.slick-style4 .slick-prev {
+	left: 0;
+	margin-left: -33px;
+}
+.slick-style4 .slick-next {
+	right: 75%;
+	margin-right: -33px;
+}
+
+
+@media (max-width:1199px) {
+.slick-style4 .slick-next {
+	margin-right: 0;
+}
+.slick-style4 .slick-prev {
+	margin-left: 0;
+}
+}
+@media (max-width:480px) {.slick-style4 .slick-prev {
+	left: 0;
+}
+.slick-style4 .slick-next {
+	right: 0;
+}
+
+
+}
+.slick-arrows {
+	position: relative;
+}

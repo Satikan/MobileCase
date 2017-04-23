@@ -1,0 +1,172 @@
+/*!
+ * bootstrap-select v1.3.1
+ * http://silviomoreto.github.io/bootstrap-select/
+ *
+ * Copyright 2013 bootstrap-select
+ * Licensed under the MIT license
+ */
+
+.bootstrap-select.btn-group, .bootstrap-select.btn-group[class*="span"] {
+ float: none;
+ display: inline-block !important;
+ margin-bottom: 0;
+ margin-left: 0;
+}
+.form-search .bootstrap-select.btn-group, .form-inline .bootstrap-select.btn-group, .form-horizontal .bootstrap-select.btn-group {
+	margin-bottom: 0;
+}
+ .bootstrap-select.btn-group.pull-right, .bootstrap-select.btn-group[class*="span"].pull-right, .row-fluid .bootstrap-select.btn-group[class*="span"].pull-right {
+ float: right;
+}
+.input-append .bootstrap-select.btn-group {
+	margin-left: -1px;
+}
+.input-prepend .bootstrap-select.btn-group {
+	margin-right: -1px;
+}
+ .bootstrap-select:not([class*="span"]) {
+ width: 220px;
+}
+.bootstrap-select {
+	/*width: 220px\9; IE8 and below*/
+    width: 220px\0; /*IE9 and below*/
+}
+.bootstrap-select > .btn.btn-default, .bootstrap-select.open > .btn.btn-default, .bootstrap-select > .btn.btn-default:hover, .bootstrap-select > .btn.btn-default:focus, .bootstrap-select > .btn.btn-default:active {
+	width: 100%;
+	border: 1px solid #ccc;
+	background:#fff;
+	border-radius: 0;
+	color:#000;
+	text-transform:none;
+	font-size:0.9167em;
+	margin-bottom:0;
+	text-transform:uppercase;
+}
+.bootstrap-select .dropdown-menu > li > a {
+	padding-left:15px;
+	padding-right:30px;
+	text-align:left;
+	text-decoration:none;
+}
+.dropdown-menu {
+	z-index: 10000;
+}
+.bootstrap-select.show-menu-arrow.open > .btn {
+	z-index: 10051;
+}
+.bootstrap-select .btn:focus {
+	outline: none;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+}
+.bootstrap-select.btn-group .btn .filter-option {
+	overflow: hidden;
+	position: absolute;
+	left: 12px;
+	right: 25px;
+	text-align: left;
+}
+.bootstrap-select.btn-group .btn .caret {
+	position: absolute;
+	top: 50%;
+	right: 12px;
+	margin-top: -2px;
+	vertical-align: middle;
+}
+.bootstrap-select.btn-group > .disabled, .bootstrap-select.btn-group .dropdown-menu li.disabled > a {
+	cursor: not-allowed;
+}
+.bootstrap-select.btn-group > .disabled:focus {
+	outline: none !important;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+}
+ .bootstrap-select.btn-group[class*="span"] .btn {
+ width: 100%;
+}
+.bootstrap-select.btn-group .dropdown-menu {
+	min-width: 100%;
+	max-width: 100%;
+	margin-top: -1px;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	padding:0;
+	border: 1px solid #e5e5e5;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.bootstrap-select.btn-group .dropdown-menu.inner {
+	position: static;
+	border: 0;
+	padding: 0;
+	margin: 0;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+}
+.bootstrap-select.btn-group .dropdown-menu dt {
+	display: block;
+	padding: 3px 20px;
+	cursor: default;
+}
+.bootstrap-select.btn-group .div-contain {
+	overflow: hidden;
+}
+.bootstrap-select.btn-group .dropdown-menu li {
+	position: relative;
+	border-top: 1px solid #e5e5e5;
+	margin:0;
+	padding:0;
+}
+.bootstrap-select.btn-group .dropdown-menu li:first-child {
+	border: none;
+}
+.bootstrap-select.btn-group .dropdown-menu li > a.opt {
+	padding-left: 35px;
+}
+.bootstrap-select.btn-group .dropdown-menu li > a {
+	cursor: pointer;
+	white-space: normal;
+}
+.bootstrap-select.btn-group .dropdown-menu li > dt small {
+	font-weight: normal;
+}
+.bootstrap-select.btn-group.show-tick .dropdown-menu li.selected a i.check-mark {
+	display: inline-block;
+	position: absolute;
+	right: 15px;
+	margin-top: 2.5px;
+}
+.bootstrap-select.btn-group .dropdown-menu li a i.check-mark {
+	display: none;
+}
+.bootstrap-select.btn-group.show-tick .dropdown-menu li a span.text {
+	margin-right: 34px;
+}
+.bootstrap-select.btn-group .dropdown-menu li small {
+	padding-left: 0.5em;
+}
+ .bootstrap-select.btn-group .dropdown-menu li:not(.disabled) > a:hover small, .bootstrap-select.btn-group .dropdown-menu li:not(.disabled) > a:focus small {
+ color: #64b1d8;
+ color: rgba(255, 255, 255, 0.4);
+}
+.bootstrap-select.btn-group .dropdown-menu li > dt small {
+	font-weight: normal;
+}
+.bootstrap-select.fit-width {
+	width: auto !important;
+}
+.bootstrap-select.btn-group.fit-width .btn .filter-option {
+	position: static;
+}
+.bootstrap-select.btn-group.fit-width .btn .caret {
+	position: static;
+	top: auto;
+	margin-top: -1px;
+}

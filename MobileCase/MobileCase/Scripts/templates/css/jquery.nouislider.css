@@ -1,0 +1,101 @@
+/*! noUiSlider - 7.0.9 - 2014-10-08 16:49:45 */
+
+
+.noUi-target, .noUi-target * {
+	-webkit-touch-callout:none;
+	-webkit-user-select:none;
+	-ms-touch-action:none;
+	-ms-user-select:none;
+	-moz-user-select:none;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box
+}
+.noUi-target {
+	position:relative
+}
+.noUi-base {
+	width:100%;
+	height:100%;
+	position:relative;
+	margin-top:10px;
+}
+.noUi-origin {
+	position:absolute;
+	right:0;
+	top:0;
+	left:0;
+	bottom:0
+}
+.noUi-handle {
+	position:relative;
+	z-index:1
+}
+.noUi-stacking .noUi-handle {
+	z-index:10
+}
+.noUi-state-tap .noUi-origin {
+-webkit-transition:left .3s, top .3s;
+transition:left .3s, top .3s
+}
+.noUi-state-drag * {
+	cursor:inherit!important
+}
+.noUi-base {
+	-webkit-transform:translate3d(0, 0, 0);
+	transform:translate3d(0, 0, 0)
+}
+.noUi-horizontal {
+	height:4px
+}
+.noUi-horizontal .noUi-handle {
+	width:20px;
+	height:17px;
+	left: 0;
+	top:-6px;
+	cursor: pointer;
+}
+.noUi-horizontal .noUi-handle.noUi-handle-upper {
+	left:-20px;
+}
+.noUi-background {
+	background:#f1f1f1;
+}
+.noUi-connect {
+	background:#c69c6d;
+	-webkit-transition:background 450ms;
+	transition:background 450ms
+}
+.noUi-dragable {
+	cursor:w-resize
+}
+.noUi-vertical .noUi-dragable {
+	cursor:n-resize
+}
+.noUi-handle {
+	border:1px solid #e8e8e8;
+	border-radius:2px;
+	background:#fff;
+	cursor:default;
+}
+.noUi-handle:after, .noUi-handle:before {
+	content:"";
+	display:block;
+	position:absolute;
+	height:4px;
+	width:6px;
+	border-top: 1px solid #e8e8e8;
+	border-bottom: 1px solid #e8e8e8;
+	left:6px;
+	top:4px
+}
+.noUi-handle:after {
+	top:10px;
+	border-bottom: none;
+}
+
+[disabled] .noUi-connect, [disabled].noUi-connect {
+	background:#B8B8B8
+}
+[disabled] .noUi-handle {
+	cursor:not-allowed
+}

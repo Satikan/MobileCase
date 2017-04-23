@@ -1,0 +1,79 @@
+/*********************************************
+	-	SETTINGS FOR BANNER CONTAINERS	-
+**********************************************/
+
+.tp-banner-container {
+	width:100%;
+	position:relative;
+	padding:0;
+}
+.tp-banner {
+	width:100%;
+	position:relative;
+	visibility:hidden;
+}
+
+.tp-banner-fullscreen-container {
+	width:100%;
+	position:relative;
+	padding:0;
+}
+
+.tp-leftarrow.default, .tp-rightarrow.default {
+	border: 2px solid #fff;
+    color: #fff !important;
+	background: #ffd442;
+	height:54px;
+	width:54px;
+}
+.tp-leftarrow.default:hover, .tp-rightarrow.default:hover  {
+	border-color: #242424;
+	outline: none;
+	background: #fff;
+}
+.tp-leftarrow.default:hover:before, .tp-rightarrow.default:hover:before {
+	opacity: 1;
+}
+.tp-leftarrow.default:before, .tp-rightarrow.default:before {
+	display:block;
+	position:absolute;
+	width:100%;
+	text-align:center;
+	left:0;
+	top:0;
+	font-family: "Flaticon";
+	font-size: 16px;
+	line-height: 52px;
+	opacity: 1;
+	text-indent:0;
+	color:#fff;
+}
+.tp-leftarrow.default:before {
+	content: '\e02d';
+}
+.tp-rightarrow.default:before {
+	content: '\e042';
+}
+.tp-leftarrow.default:hover:before, .tp-rightarrow.default:hover:before {
+	color: #242424 !important;
+}
+.tp-leftarrow.default:before {
+	margin: 0 0 0 -1px
+}
+.tp-rightarrow.default:before {
+	margin: 0 0 0 1px
+}
+.text1 {
+	font: bold 70px/1em 'Paytone One', sans-serif;
+	color:#000;
+}
+.text2 {
+	font: normal 20px/1em "Sintony", sans-serif;
+	color:#000;
+	text-transform: uppercase;
+}
+.text3 {
+	font: bold 16px/1.3em 'Paytone One', sans-serif;
+	color:#56b4ef;
+	text-transform: uppercase;
+}

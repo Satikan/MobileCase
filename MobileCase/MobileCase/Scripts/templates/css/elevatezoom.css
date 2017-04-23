@@ -1,0 +1,35 @@
+/*ElevateZoom custom style*/
+.zoomContainer { 
+	height: 0 !important;
+}
+.zoomContainer:hover { 
+	z-index: 10000;
+	height: inherit !important;
+}
+@media (min-width: 480px) {
+/* CSS for zoom window. */
+.zoomWindow { 
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;
+	border-radius:3px;
+	background-color:#fff;
+	-webkit-box-shadow:0 0 4px rgba(0, 0, 0, .27);
+	-moz-box-shadow:0 0 4px rgba(0, 0, 0, .27);
+	box-shadow:0 0 4px rgba(0, 0, 0, .27);
+	overflow:hidden;
+	margin:0 0 0 15px;
+	padding:0;
+	border:5px solid #fff !important;
+	z-index: 10000;
+}
+/* CSS for lens */
+.zoomLens {
+	border:2px solid #888;
+	background-color:#fff;
+	width:100px;
+	height:100px;
+	box-shadow:0 0 10px rgba(0, 0, 0, .4);
+	cursor:crosshair;
+	z-index: 10000;
+}
+}
