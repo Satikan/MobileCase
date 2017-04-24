@@ -9,6 +9,16 @@ namespace MobileCase.Controllers
     public class MobileCaseController : Controller
     {
         // GET: MobileCase
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        public ActionResult Register()
+        {
+            return View();
+        }
+
         public ActionResult Index()
         {
             return View();
@@ -19,7 +29,17 @@ namespace MobileCase.Controllers
             return View();
         }
 
-        public ActionResult product()
+        public ActionResult Product()
+        {
+            return View();
+        }
+
+        public ActionResult Member()
+        {
+            return View();
+        }
+
+        public ActionResult Contact()
         {
             return View();
         }

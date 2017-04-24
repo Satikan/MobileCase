@@ -202,28 +202,28 @@ p {
 
 h1 {
 	margin: 0;
-	padding: 0 0 0.7em;
+	padding: 0 0 0.5em;
 	font: 2.46em "Sintony", sans-serif;
 	text-transform: uppercase;
 	color: #000
 }
 h2 {
 	margin: 0;
-	padding: 0 0 1em;
+	padding: 0 0 0.5em;
 	font: 1.833em/1em "Sintony", sans-serif;
 	text-transform: uppercase;
 	color: #000
 }
 h3 {
 	margin: 0;
-	padding: 0 0 0.95em;
+	padding: 0 0 0.5em;
 	font: 1.5em "Sintony", sans-serif;
 	text-transform: uppercase;
 	color: #000
 }
 h4 {
 	margin: 0;
-	padding: 0 0 .8em;
+	padding: 0 0 .5em;
 	font: 1.4em "Sintony", sans-serif;
 	text-transform: uppercase;
 	color: #000
@@ -237,7 +237,7 @@ h5 {
 }
 h6 {
 	margin: 0;
-	padding: 0 0 .8em;
+	padding: 0 0 .1em;
 	font: 1.077em "Sintony", sans-serif;
 	text-transform: uppercase;
 	color: #2b2b2b
@@ -1260,7 +1260,7 @@ ul.sitemap.styled-list.circle ul ul li:before {
 }
 .navbar-secondary-menu .btn-group {
 	position: relative;
-	width: 46px;
+	/*width: 46px;*/
 	margin: 0;
 	padding: 0;
 	border: 0
@@ -1786,7 +1786,7 @@ ul.row-list li {
 .navbar-compact .navbar-main-menu {
 	clear: none;
 	padding-top: 25px;
-	padding-left: 225px;
+	padding-left: 300px;
 	margin-right: 25px;
 	text-align: left
 }

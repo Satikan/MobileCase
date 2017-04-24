@@ -106,6 +106,18 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="ImageProduct\product1.jpg" />
+    <Content Include="ImageProduct\product10.jpg" />
+    <Content Include="ImageProduct\product11.jpg" />
+    <Content Include="ImageProduct\product12.jpg" />
+    <Content Include="ImageProduct\product2.jpg" />
+    <Content Include="ImageProduct\product3.jpg" />
+    <Content Include="ImageProduct\product4.jpg" />
+    <Content Include="ImageProduct\product5.jpg" />
+    <Content Include="ImageProduct\product6.jpg" />
+    <Content Include="ImageProduct\product7.jpg" />
+    <Content Include="ImageProduct\product8.jpg" />
+    <Content Include="ImageProduct\product9.jpg" />
     <Content Include="Scripts\angular-lib\angular-animate.min.js" />
     <Content Include="Scripts\angular-lib\angular-message-format.min.js" />
     <Content Include="Scripts\angular-lib\angular-messages.min.js" />
@@ -807,7 +819,7 @@
     <Content Include="Scripts\templates\rs-plugin\assets\bullets.psd" />
     <Content Include="Scripts\templates\rs-plugin\assets\small_arrows.psd" />
     <Content Include="Scripts\templates\rs-plugin\Top Theme Studio.url" />
-    <Content Include="Views\MobileCase\product.cshtml" />
+    <Content Include="Views\MobileCase\Product.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -828,6 +840,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\MobileCase\Login.cshtml" />
+    <Content Include="Views\MobileCase\Register.cshtml" />
+    <Content Include="Views\MobileCase\Member.cshtml" />
+    <Content Include="Views\MobileCase\Contact.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

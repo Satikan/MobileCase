@@ -11,7 +11,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $qProvider, $locationPr
         })
         .state('/product', {
             url: '/product',
-            templateUrl: '/MobileCase/product',
+            templateUrl: '/MobileCase/Product',
             //controller: 'DetailController'
         })
 });
