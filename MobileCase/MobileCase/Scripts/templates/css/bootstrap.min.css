@@ -503,10 +503,10 @@ pre code {
 	overflow-y:scroll
 }
 .container {
-	padding-right:15px;
-	padding-left:15px;
-	margin-right:auto;
-	margin-left:auto
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto
 }
 .container:after, .container:before {
 	display:table;
@@ -1540,7 +1540,7 @@ margin-left:0
 }
 }
 .form-horizontal .checkbox, .form-horizontal .checkbox-inline, .form-horizontal .control-label, .form-horizontal .radio, .form-horizontal .radio-inline {
-	padding-top:7px;
+	padding-top:11px;
 	margin-top:0;
 	margin-bottom:0
 }
@@ -1562,9 +1562,10 @@ margin-left:0
 	padding-top:7px
 }
 @media(min-width:768px) {
-.form-horizontal .control-label {
-text-align:right
-}
+    .form-horizontal .control-label {
+        text-align: right;
+        font-size: 14px;
+    }
 }
 .btn {
 	display:inline-block;

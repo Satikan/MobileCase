@@ -1,7 +1,32 @@
-﻿
-@{
-    ViewBag.Title = "Member";
-}
-
-<h2>Member</h2>
-
+﻿<!--Page Content-->
+<section class="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="subtitle">
+                    <div><span style="line-height:26px;">ข้อมูลสมาชิก</span></div>
+                </div>
+                <table class="table table-bordered">
+                    <tr>
+                        <th scope="col" width="80px" class="center">ลำดับที่</th>
+                        <th scope="col" class="center">ชื่อ-นามสกุล</th>
+                        <th scope="col" class="center">อีเมลล์</th>
+                        <th scope="col" class="center">มือถือ</th>
+                        <th scope="col" class="center">ที่อยู่</th>
+                        <th scope="col" width="80px" class="center">แก้ไข</th>
+                        <th scope="col" width="80px" class="center">ลบ</th>
+                    </tr>
+                    <tr>
+                        <td class="center">1</td>
+                        <td>สาธิกรรณ หนูทอง</td>
+                        <td>satikan_bav@hotmail.com</td>
+                        <td>999-999-9999</td>
+                        <td>65 ม.5 ต.โมคลาน อ.ท่าศาลา จ.นครศรีธรรมราช 80160</td>
+                        <td class="center"><button type="button" class="btn btn-warning btn-xs" onclick="parent.location='#/editmember'"><span class="icon flaticon-pencil43"></span></button></td>
+                        <td class="center"><button type="button" class="btn btn-danger btn-xs"><span class="icon flaticon-recycle59"></span></button></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

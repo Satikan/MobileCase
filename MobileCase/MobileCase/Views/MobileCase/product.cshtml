@@ -1,31 +1,37 @@
-﻿<!-- Breadcrumbs-->
-<section class="breadcrumbs">
-    <div class="container"><a href="index.html">home</a><span class="divider">&nbsp;</span><a href="#">women</a><span class="divider">&nbsp;</span>Hilfiger Denim Martina Bomber Jacket</div>
-</section>
-<!-- //end Breadcrumbs --><!-- Product view -->
-<div class="container">
-    <div class="product-view row">
-        <div class="col-sm-6 col-md-6 col-lg-6">
-            <center><img src="~/Scripts/templates/images/products/product31.jpg" height="450" width="380" alt="" /></center>
-        </div>
-        <div class="clearfix visible-xs"></div>
-        <div class="col-sm-6 col-md-6 col-lg-6"><br />
-            <h2><strong>สตาวอ tpu 4/4s</strong></h2>
-            @*<span class="price">ราคา : 110 บาท</span>*@
-            <h3><strong>ราคา :</strong> 110 บาท</h3>
-            <p><span><strong>รหัสสินค้า : </strong></span> <span>084s133</span></p>
-            <p><span><strong>ใช้งานกับรุ่น : </strong></span> <span>iphone 4/4s</span></p>
-            <p><span><strong>จำนวนคงเหลือ : </strong></span> <span>0 ชิ้น</span></p>
-            <div class="divider divider-sm"></div>
-            <div class="line-divider"></div>
-            <div class="divider divider-md"></div>
-            <form action="#">
-                <div class="form-inputs">
-                    <label>Qty:</label>
-                    <input type="text" class="form-control input-quantity" value="1">
-                    <button class="btn btn-cool btn-lg" type="submit"><i class="icon flaticon-shopping66"></i>ADD TO CART</button>
+﻿<!--Page Content-->
+<section class="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="subtitle">
+                    <div><span>ข้อมูลสินค้า</span></div>
                 </div>
-            </form>
+                <button type="button" class="btn btn-primary pull-right" onclick="parent.location='#/addproduct'">
+                    <span class="icon flaticon-write13"></span>
+                    เพิ่มสินค้า
+                </button>
+                <div class="divider divider-sm"></div>
+                <table class="table table-bordered">
+                    <tr>
+                        <th scope="col" width="80px" class="center">ลำดับที่</th>
+                        <th scope="col" class="center">รหัสสินค้า</th>
+                        <th scope="col" width="500px" class="center">ชื่อสินค้า</th>
+                        <th scope="col" class="center">จำนวนสินค้า</th>
+                        <th scope="col" class="center">ราคาสินค้า</th>
+                        <th scope="col" width="80px" class="center">แก้ไข</th>
+                        <th scope="col" width="80px" class="center">ลบ</th>
+                    </tr>
+                    <tr>
+                        <td class="center">1</td>
+                        <td>1001</td>
+                        <td>ไบคินแมน</td>
+                        <td class="center">3</td>
+                        <td class="center">50</td>
+                        <td class="center"><button type="button" class="btn btn-warning btn-xs" onclick="parent.location='#/editproduct'"><span class="icon flaticon-pencil43"></span></button></td>
+                        <td class="center"><button type="button" class="btn btn-danger btn-xs"><span class="icon flaticon-recycle59"></span></button></td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
-</div>
+</section>

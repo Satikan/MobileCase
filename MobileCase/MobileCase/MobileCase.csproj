@@ -47,6 +47,10 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Programs\MySQL5\MySql.Data.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -128,13 +132,59 @@
     <Content Include="Scripts\angular-lib\angular.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\src\src\login.js" />
+    <Content Include="Scripts\src\src\main.js" />
+    <Content Include="Scripts\src\src\member.js" />
+    <Content Include="Scripts\src\src\order.js" />
+    <Content Include="Scripts\src\src\product.js" />
+    <Content Include="Scripts\src\src\register.js" />
+    <Content Include="Scripts\templates\fonts\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Scripts\templates\fonts\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Scripts\templates\fonts\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Scripts\templates\fonts\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Scripts\templates\fonts\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="Scripts\templates\fonts\font-awesome\less\animated.less" />
+    <Content Include="Scripts\templates\fonts\font-awesome\less\bordered-pulled.less" />
+    <Content Include="Scripts\templates\fonts\font-awesome\less\core.less" />
+    <Content Include="Scripts\templates\fonts\font-awesome\less\fixed-width.less" />
+    <Content Include="Scripts\templates\fonts\font-awesome\less\font-awesome.less" />
+    <Content Include="Scripts\templates\fonts\font-awesome\less\icons.less" />
+    <Content Include="Scripts\templates\fonts\font-awesome\less\larger.less" />
+    <Content Include="Scripts\templates\fonts\font-awesome\less\list.less" />
+    <Content Include="Scripts\templates\fonts\font-awesome\less\mixins.less" />
+    <Content Include="Scripts\templates\fonts\font-awesome\less\path.less" />
+    <Content Include="Scripts\templates\fonts\font-awesome\less\rotated-flipped.less" />
+    <Content Include="Scripts\templates\fonts\font-awesome\less\screen-reader.less" />
+    <Content Include="Scripts\templates\fonts\font-awesome\less\stacked.less" />
+    <Content Include="Scripts\templates\fonts\font-awesome\less\variables.less" />
+    <Content Include="Scripts\templates\fonts\font-awesome\scss\font-awesome.scss" />
+    <Content Include="Scripts\templates\fonts\font-awesome\scss\_animated.scss" />
+    <Content Include="Scripts\templates\fonts\font-awesome\scss\_bordered-pulled.scss" />
+    <Content Include="Scripts\templates\fonts\font-awesome\scss\_core.scss" />
+    <Content Include="Scripts\templates\fonts\font-awesome\scss\_fixed-width.scss" />
+    <Content Include="Scripts\templates\fonts\font-awesome\scss\_icons.scss" />
+    <Content Include="Scripts\templates\fonts\font-awesome\scss\_larger.scss" />
+    <Content Include="Scripts\templates\fonts\font-awesome\scss\_list.scss" />
+    <Content Include="Scripts\templates\fonts\font-awesome\scss\_mixins.scss" />
+    <Content Include="Scripts\templates\fonts\font-awesome\scss\_path.scss" />
+    <Content Include="Scripts\templates\fonts\font-awesome\scss\_rotated-flipped.scss" />
+    <Content Include="Scripts\templates\fonts\font-awesome\scss\_screen-reader.scss" />
+    <Content Include="Scripts\templates\fonts\font-awesome\scss\_stacked.scss" />
+    <Content Include="Scripts\templates\fonts\font-awesome\scss\_variables.scss" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\templates\fonts\font-awesome\css\font-awesome.css" />
+    <Content Include="Scripts\templates\fonts\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Scripts\templates\fonts\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Scripts\templates\fonts\font-awesome\HELP-US-OUT.txt" />
+    <Content Include="Scripts\component\ng-file-upload\ng-file-upload-shim.min.js" />
+    <Content Include="Scripts\component\ng-file-upload\ng-file-upload.min.js" />
     <Content Include="Scripts\component\ui-route\ui-router.js" />
     <Content Include="Scripts\component\ui-route\ui-router.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\src\app.js" />
+    <Content Include="Scripts\src\src\contact.js" />
     <Content Include="Scripts\templates\css\ajax-loader.gif" />
     <Content Include="Scripts\templates\css\bootstrap-select.css" />
     <Content Include="Scripts\templates\css\bootstrap-xl.css" />
@@ -819,15 +869,20 @@
     <Content Include="Scripts\templates\rs-plugin\assets\bullets.psd" />
     <Content Include="Scripts\templates\rs-plugin\assets\small_arrows.psd" />
     <Content Include="Scripts\templates\rs-plugin\Top Theme Studio.url" />
-    <Content Include="Views\MobileCase\Product.cshtml" />
+    <Content Include="Views\MobileCase\DetailProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\Api\Members\Members.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MobileCaseController.cs" />
+    <Compile Include="DBHelper\DBHelper.cs" />
+    <Compile Include="DBHelper\MemberData.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Members.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -835,7 +890,6 @@
     <Content Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\MobileCase\Index.cshtml" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
@@ -844,6 +898,17 @@
     <Content Include="Views\MobileCase\Register.cshtml" />
     <Content Include="Views\MobileCase\Member.cshtml" />
     <Content Include="Views\MobileCase\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\MobileCase\ProductGroup.cshtml" />
+    <Content Include="Views\MobileCase\Product.cshtml" />
+    <Content Include="Views\MobileCase\AddProductGroup.cshtml" />
+    <Content Include="Views\MobileCase\AddProduct.cshtml" />
+    <Content Include="Views\MobileCase\EditProductGroup.cshtml" />
+    <Content Include="Views\MobileCase\EditProduct.cshtml" />
+    <Content Include="Views\MobileCase\OrderList.cshtml" />
+    <Content Include="Views\MobileCase\Order.cshtml" />
+    <Content Include="Views\MobileCase\DetailOrder.cshtml" />
+    <Content Include="Views\MobileCase\EditMember.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -853,7 +918,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -870,7 +934,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>12342</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:12342/</IISUrl>
+          <IISUrl>http://localhost:12345/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

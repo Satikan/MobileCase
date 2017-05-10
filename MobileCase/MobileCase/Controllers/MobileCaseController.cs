@@ -19,12 +19,32 @@ namespace MobileCase.Controllers
             return View();
         }
 
-        public ActionResult Index()
+        public ActionResult Home()
         {
             return View();
         }
 
-        public ActionResult Home()
+        public ActionResult AddProductGroup()
+        {
+            return View();
+        }
+
+        public ActionResult EditProductGroup()
+        {
+            return View();
+        }
+
+        public ActionResult ProductGroup()
+        {
+            return View();
+        }
+
+        public ActionResult AddProduct()
+        {
+            return View();
+        }
+
+        public ActionResult EditProduct()
         {
             return View();
         }
@@ -34,7 +54,32 @@ namespace MobileCase.Controllers
             return View();
         }
 
+        public ActionResult DetailProduct()
+        {
+            return View();
+        }
+
         public ActionResult Member()
+        {
+            return View();
+        }
+
+        public ActionResult EditMember()
+        {
+            return View();
+        }
+
+        public ActionResult OrderList()
+        {
+            return View();
+        }
+
+        public ActionResult Order()
+        {
+            return View();
+        }
+
+        public ActionResult DetailOrder()
         {
             return View();
         }

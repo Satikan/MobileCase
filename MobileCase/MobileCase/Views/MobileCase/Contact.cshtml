@@ -1,7 +1,23 @@
-﻿
-@{
-    ViewBag.Title = "Contact";
-}
-
-<h2>Contact</h2>
-
+﻿<!--Page Content-->
+<section class="container content">
+    <div class="subtitle">
+        <div><span>ติดต่อเรา</span></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-md-4 col-lg-4"></div>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <div class="col-md-2"></div>
+            <div class="col-md-10">
+                <ul class="menu menu-icon">
+                    <li><span class="icon flaticon-cellphone5"></span> : &nbsp;{{line}}</li>
+                    <li><span class="icon flaticon-facebook12"></span><a ng-href="https://{{facebook}}"> : &nbsp;{{facebook}}</a></li>
+                    <li><span class="icon flaticon-instagram"></span> : &nbsp;{{instagram}}</li>
+                    <li><span class="icon flaticon-phone16"></span> : &nbsp;{{mobile}}</li>
+                </ul>
+            </div>
+            @*<div class="col-md-1"></div>*@
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4"></div>
+    </div>
+</section>
+<!-- //end Page Content --> 
