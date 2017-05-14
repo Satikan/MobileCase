@@ -13,8 +13,8 @@
                         <th scope="col" class="center">อีเมลล์</th>
                         <th scope="col" class="center">มือถือ</th>
                         <th scope="col" class="center">ที่อยู่</th>
-                        <th scope="col" width="80px" class="center">แก้ไข</th>
-                        <th scope="col" width="80px" class="center">ลบ</th>
+                        <th ng-show="permission == 1" scope="col" width="80px" class="center">แก้ไข</th>
+                        <th ng-show="permission == 1" scope="col" width="80px" class="center">ลบ</th>
                     </tr>
                     <tr>
                         <td class="center">1</td>
@@ -22,8 +22,8 @@
                         <td>satikan_bav@hotmail.com</td>
                         <td>999-999-9999</td>
                         <td>65 ม.5 ต.โมคลาน อ.ท่าศาลา จ.นครศรีธรรมราช 80160</td>
-                        <td class="center"><button type="button" class="btn btn-warning btn-xs" onclick="parent.location='#/editmember'"><span class="icon flaticon-pencil43"></span></button></td>
-                        <td class="center"><button type="button" class="btn btn-danger btn-xs"><span class="icon flaticon-recycle59"></span></button></td>
+                        <td ng-show="permission == 1" class="center"><button type="button" class="btn btn-warning btn-xs" onclick="parent.location='#/editmember'"><span class="icon flaticon-pencil43"></span></button></td>
+                        <td ng-show="permission == 1" class="center"><button type="button" class="btn btn-danger btn-xs"><span class="icon flaticon-recycle59"></span></button></td>
                     </tr>
                 </table>
             </div>

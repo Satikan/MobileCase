@@ -1,4 +1,4 @@
-﻿var app = angular.module('mobilecase', ['ngAnimate', 'ngResource', 'ngSanitize', 'ngTouch', 'ui.router']);
+﻿var app = angular.module('mobilecase', ['ngAnimate', 'ngResource', 'ngSanitize', 'ngTouch', 'ui.router', 'ngFileUpload']);
 
 app.config(function ($stateProvider, $urlRouterProvider, $qProvider, $locationProvider) {
     $urlRouterProvider.otherwise("/");
@@ -23,17 +23,17 @@ app.config(function ($stateProvider, $urlRouterProvider, $qProvider, $locationPr
         .state('/productgroup', {
             url: '/productgroup',
             templateUrl: '/MobileCase/ProductGroup',
-            controller: 'ProductController'
+            controller: 'ProductGroupController'
         })
         .state('/addproductgroup', {
             url: '/addproductgroup',
             templateUrl: '/MobileCase/AddProductGroup',
-            controller: 'ProductController'
+            controller: 'ProductGroupController'
         })
-        .state('/editproductgroup', {
-            url: '/editproductgroup',
+        .state('/editproductgroup/:id', {
+            url: '/editproductgroup/:id',
             templateUrl: '/MobileCase/EditProductGroup',
-            controller: 'ProductController'
+            controller: 'ProductGroupController'
         })
         .state('/product', {
             url: '/product',
@@ -45,13 +45,13 @@ app.config(function ($stateProvider, $urlRouterProvider, $qProvider, $locationPr
             templateUrl: '/MobileCase/AddProduct',
             controller: 'ProductController'
         })
-        .state('/editproduct', {
-            url: '/editproduct',
+        .state('/editproduct/:id', {
+            url: '/editproduct/:id',
             templateUrl: '/MobileCase/EditProduct',
             controller: 'ProductController'
         })
-        .state('/detailproduct', {
-            url: '/detailproduct',
+        .state('/detailproduct/:id', {
+            url: '/detailproduct/:id',
             templateUrl: '/MobileCase/DetailProduct',
             controller: 'ProductController'
         })
@@ -93,3 +93,27 @@ app.run(function ($rootScope, $state, $document, $stateParams) {
         $document[0].body.scrollTop = $document[0].documentElement.scrollTop = 0;
     });
 })
+
+app.directive('passwordConfirm', ['$parse', function ($parse) {
+    return {
+        restrict: 'A',
+        scope: {
+            matchTarget: '=',
+        },
+        require: 'ngModel',
+        link: function link(scope, elem, attrs, ctrl) {
+            var validator = function (value) {
+                ctrl.$setValidity('match', value === scope.matchTarget);
+                return value;
+            }
+
+            ctrl.$parsers.unshift(validator);
+            ctrl.$formatters.push(validator);
+
+            // This is to force validator when the original password gets changed
+            scope.$watch('matchTarget', function (newval, oldval) {
+                validator(ctrl.$viewValue);
+            });
+        }
+    };
+}]);

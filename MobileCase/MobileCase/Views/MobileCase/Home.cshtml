@@ -2,159 +2,30 @@
 <img src="~/Scripts/templates/images/sliders/MobileCase.jpg" style="width:100%;" alt="">
 
 <!--Gallery-->
-<div class="container">
+<div class="container" ng-init="GetProduct()">
     <section class="content">
         <div class="subtitle">
             <div><span>Product</span></div>
         </div>
-        <!-- Filtered Products -->
-        <section class="filters-by-category clearfix">
-            <div class="container">
-                <div class="row">
-                    <div class="text-center">
-                        <ul class="option-set" data-option-key="filter">
-                            <li><a href="#filter" data-option-value="*" class="selected">iPhone 4/4s</a></li>
-                            <li><a href="#filter" data-option-value=".category1" class="">iPhone 5/5s</a></li>
-                            <li><a href="#filter" data-option-value=".category2" class="">iPhone 5c</a></li>
-                            <li><a href="#filter" data-option-value=".category3" class="">iPhone 6/6s</a></li>
-                            <li><a href="#filter" data-option-value=".category4" class="">iPhone 6 plus</a></li>
-                            <li><a href="#filter" data-option-value=".category5" class="">iPhone 7 plus</a></li>
-                        </ul>
-                    </div>
+        <div class="container">
+            <div class="row">
+                <div class="text-center">
+                    <button class="button btn-default" style="margin-right: 5px;" ng-repeat="ProductGroups in ProductGroup" ng-click="selectProductGroup(ProductGroups.ProductGroupID)">
+                        {{ProductGroups.ProductGroupName}}
+                    </button>
                 </div>
             </div>
-        </section>
+        </div>
         <!-- //end Filters -->
         <div class="blog-posts">
-            <div class="blog-post category1">
-                <a href="#/detailproduct">
-                    <img src="~/ImageProduct/product2.jpg" width="250" height="200" alt=""> 
+            <div class="blog-post category1" ng-repeat="Products in Product | filter:{ ProductGroupID: filterByProductGroupID }">
+                <a href="#/detailproduct/{{Products.ProductID}}">
+                    <img ng-src="~/{{Products.ProductPicture}}" width="250" height="200" alt=""> 
                     <center>
-                        <h4>ไบคินแมน</h4>
-                        <h6>iphone 4/4s</h6>
-                        <h6>จำนวนคงเหลือ : 3 ชิ้น</h6>
-                        <h6>ราคา : 50 บาท</h6>
-                    </center>
-                </a>
-            </div>
-            <div class="blog-post category2">
-                <a href="#/detailproduct">
-                    <img src="~/ImageProduct/product3.jpg" width="250" height="200" alt="">
-                    <center>
-                        <h4>Kuma</h4>
-                        <h6>iphone 5/5s/se/6/6s/7/7+</h6>
-                        <h6>จำนวนคงเหลือ : 3 ชิ้น</h6>
-                        <h6>ราคา : 170 บาท</h6>
-                    </center>
-                </a>
-            </div>
-            <div class="blog-post category3">
-                <a href="#/detailproduct">
-                    <img src="~/ImageProduct/product6.jpg" width="250" height="200" alt="">
-                    <center>
-                        <h4>กระจกเซล่ามูน</h4>
-                        <h6>iphone 6/6s/6+/6s+/7/7+</h6>
-                        <h6>จำนวนคงเหลือ : 8 ชิ้น</h6>
-                        <h6>ราคา : 200 บาท</h6>
-                    </center>
-                </a>
-            </div>
-            <div class="blog-post category4">
-                <a href="#/detailproduct">
-                    <img src="~/ImageProduct/product5.jpg" width="250" height="200" alt="">
-                    <center>
-                        <h4>เคสขอบยางนิ่มคลุมรอบ</h4>
-                        <h6>iphone 5/5s/se/6/6s/6+/6s+</h6>
-                        <h6>จำนวนคงเหลือ : 3 ชิ้น</h6>
-                        <h6>ราคา : 50 บาท</h6>
-                    </center>
-                </a>
-            </div>
-            <div class="blog-post category2">
-                <a href="#/detailproduct">
-                    <img src="~/ImageProduct/product8.jpg" width="250" height="200" alt="">
-                    <center>
-                        <h4>ดอกเดซี่ติดเพชร</h4>
-                        <h6>iphone 7/7+</h6>
-                        <h6>จำนวนคงเหลือ : 3 ชิ้น</h6>
-                        <h6>ราคา : 150 บาท</h6>
-                    </center>
-                </a>
-            </div>
-            <div class="blog-post category4">
-                <a href="#/detailproduct">
-                    <img src="~/ImageProduct/product9.jpg" width="250" height="200" alt="">
-                    <center>
-                        <h4>เคสลายหมี</h4>
-                        <h6>iphone 5/5s/se/6/6s/6+/6s+</h6>
-                        <h6>จำนวนคงเหลือ : 3 ชิ้น</h6>
-                        <h6>ราคา : 50 บาท</h6>
-                    </center>
-                </a>
-            </div>
-            <div class="blog-post category3 category1">
-                <a href="#/detailproduct">
-                    <img src="~/ImageProduct/product7.jpg" width="250" height="200" alt="">
-                    <center>
-                        <h4>Sweet</h4>
-                        <h6>iphone 5/5s/se/6/6s/6+/6s+</h6>
-                        <h6>จำนวนคงเหลือ : 3 ชิ้น</h6>
-                        <h6>ราคา : 50 บาท</h6>
-                    </center>
-                </a>
-            </div>
-            <div class="blog-post category1">
-                <a href="#/detailproduct">
-                    <img src="~/ImageProduct/product11.jpg" width="250" height="200" alt="">
-                    <center>
-                        <h4>เรซิ่น</h4>
-                        <h6>iphone 5/5s/se/6/6s/6+/6s+</h6>
-                        <h6>จำนวนคงเหลือ : 3 ชิ้น</h6>
-                        <h6>ราคา : 50 บาท</h6>
-                    </center>
-                </a>
-            </div>
-            <div class="blog-post category2 category3">
-                <a href="#/detailproduct">
-                    <img src="~/ImageProduct/product10.jpg" width="250" height="200" alt="">
-                    <center>
-                        <h4>ไบคินแมน</h4>
-                        <h6>iphone 5/5s/se/6/6s/6+/6s+</h6>
-                        <h6>จำนวนคงเหลือ : 3 ชิ้น</h6>
-                        <h6>ราคา : 50 บาท</h6>
-                    </center>
-                </a>
-            </div>
-            <div class="blog-post category4 category1">
-                <a href="#/detailproduct">
-                    <img src="~/ImageProduct/product4.jpg" width="250" height="200" alt="">
-                    <center>
-                        <h4>ไบคินแมน</h4>
-                        <h6>iphone 5/5s/se/6/6s/6+/6s+</h6>
-                        <h6>จำนวนคงเหลือ : 3 ชิ้น</h6>
-                        <h6>ราคา : 50 บาท</h6>
-                    </center>
-                </a>
-            </div>
-            <div class="blog-post category3">
-                <a href="#/detailproduct">
-                    <img src="~/ImageProduct/product1.jpg" width="250" height="200" alt="">
-                    <center>
-                        <h4>ไบคินแมน</h4>
-                        <h6>iphone 5/5s/se/6/6s/6+/6s+</h6>
-                        <h6>จำนวนคงเหลือ : 3 ชิ้น</h6>
-                        <h6>ราคา : 50 บาท</h6>
-                    </center>
-                </a>
-            </div>
-            <div class="blog-post category1">
-                <a href="#/detailproduct">
-                    <img src="~/ImageProduct/product12.jpg" width="250" height="200" alt="">
-                    <center>
-                        <h4>ไบคินแมน</h4>
-                        <h6>iphone 5/5s/se/6/6s/6+/6s+</h6>
-                        <h6>จำนวนคงเหลือ : 3 ชิ้น</h6>
-                        <h6>ราคา : 50 บาท</h6>
+                        <h4>{{Products.ProductName}}</h4>
+                        <h6>{{Products.ProductGroupName}}</h6>
+                        <h6>จำนวนคงเหลือ : {{Products.ProductQuantity}} ชิ้น</h6>
+                        <h6>ราคา : {{Products.ProductPrice}} บาท</h6>
                     </center>
                 </a>
             </div>

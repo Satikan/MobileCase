@@ -1,5 +1,5 @@
 ﻿<!--Page Content-->
-<section class="content">
+<section class="content" ng-init="GetDetailProduct()">
     <div class="container">
         <div class="row">
             <div class="col-sm-2 col-md-2 col-lg-2"></div>
@@ -7,29 +7,37 @@
                 <div class="rect-nohover rect-equal-height">
                     <center><h2>แก้ไขสินค้า</h2></center>
                     <div class="divider-sm"></div>
-                    <form class="form-horizontal">
-                        <div class="form-group">
-                            <label for="username" class="col-sm-3 control-label">รหัสสินค้า</label>
+                    <form class="form-horizontal" name="FormEditProduct" ng-submit="EditProduct()">
+                        <div class="form-group" ng-class="{'has-error': FormEditProduct.ProductGroup.$invalid}">
+                            <label for="ProductGroup" class="col-sm-3 control-label">ประเภทสินค้า</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="username" placeholder="รหัสสินค้า">
+                                <select class="form-control" id="ProductGroup" name="ProductGroup" ng-model="ProductByID.ProductGroupID" ng-options="options.ProductGroupID as options.ProductGroupName for options in ProductGroup" required>
+                                    <option value="">-- เลือก --</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error': FormEditProduct.ProductCode.$invalid}">
+                            <label for="ProductCode" class="col-sm-3 control-label">รหัสสินค้า</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="ProductCode" name="ProductCode" ng-model="ProductByID.ProductCode" placeholder="รหัสสินค้า" required>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error': FormEditProduct.ProductName.$invalid}">
+                            <label for="ProductName" class="col-sm-3 control-label">ชื่อสินค้า</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="ProductName" name="ProductName" ng-model="ProductByID.ProductName" placeholder="ชื่อสินค้า" required>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-3 control-label">ชื่อสินค้า</label>
+                            <label for="ProductQuantity" class="col-sm-3 control-label">จำนวนสินค้า</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="inputPassword3" placeholder="ชื่อสินค้า">
+                                <input type="text" class="form-control" id="ProductQuantity" name="ProductQuantity" ng-model="ProductByID.ProductQuantity" placeholder="จำนวนสินค้า">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-3 control-label">จำนวนสินค้า</label>
+                            <label for="ProductPrice" class="col-sm-3 control-label">ราคาสินค้า</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="inputPassword3" placeholder="จำนวนสินค้า">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-3 control-label">ราคาสินค้า</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" id="inputPassword3" placeholder="ราคาสินค้า">
+                                <input type="text" class="form-control" id="ProductPrice" name="ProductPrice" ng-model="ProductByID.ProductPrice" placeholder="ราคาสินค้า">
                             </div>
                         </div>
                         <div class="form-group">
@@ -39,10 +47,16 @@
                                        accept="image/*" ngf-max-size="2MB" ngf-model-invalid="errorFile" />
                             </div>
                         </div>
+                        <div class="form-group" ng-show="picFile">
+                            <label for="inputPassword3" class="col-sm-3 control-label"></label>
+                            <div class="col-sm-8">
+                                <img ngf-src="picFile" class="thumb" width="250" height="200">
+                            </div>
+                        </div>
                         <div class="form-group">
                             <div class="col-sm-offset-3 col-sm-9">
-                                <button type="submit" class="btn btn-success" style="height:35px;">บันทึก</button>
-                                <button type="submit" class="btn btn-danger" style="height:35px;" onclick="parent.location='#/product'">ยกเลิก</button>
+                                <button type="submit" class="btn btn-success" style="height:35px;" ng-disabled="FormEditProduct.$invalid">บันทึก</button>
+                                <button type="button" class="btn btn-danger" style="height:35px;" onclick="parent.location='#/product'">ยกเลิก</button>
                             </div>
                         </div>
                     </form>

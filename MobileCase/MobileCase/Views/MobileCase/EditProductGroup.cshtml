@@ -1,5 +1,5 @@
 ﻿<!--Page Content-->
-<section class="content">
+<section class="content" ng-init="GetEditProductGroup()">
     <div class="container">
         <div class="row">
             <div class="col-sm-2 col-md-2 col-lg-2"></div>
@@ -7,23 +7,23 @@
                 <div class="rect-nohover rect-equal-height">
                     <center><h2>แก้ไขประเภทสินค้า</h2></center>
                     <div class="divider-sm"></div>
-                    <form class="form-horizontal">
-                        <div class="form-group">
+                    <form class="form-horizontal" name="FormEditProductGroup" ng-submit="EditProductGroup()">
+                        <div class="form-group" ng-class="{'has-error': FormEditProductGroup.ProductGroupCode.$invalid}">
                             <label for="ProductGroupCode" class="col-sm-3 control-label">รหัสประเภทสินค้า</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="ProductGroupCode" placeholder="รหัสประเภทสินค้า">
+                                <input type="text" class="form-control" id="ProductGroupCode" name="ProductGroupCode" ng-model="ProductGroupByID.ProductGroupCode" placeholder="รหัสประเภทสินค้า" required>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" ng-class="{'has-error': FormEditProductGroup.ProductGroupName.$invalid}">
                             <label for="ProductGroupName" class="col-sm-3 control-label">ชื่อประเภทสินค้า</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="ProductGroupName" placeholder="ชื่อประเภทสินค้า">
+                                <input type="text" class="form-control" id="ProductGroupName" name="ProductGroupName" ng-model="ProductGroupByID.ProductGroupName" placeholder="ชื่อประเภทสินค้า" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-3 col-sm-9">
-                                <button type="submit" class="btn btn-success" style="height:35px;">บันทึก</button>
-                                <button type="submit" class="btn btn-danger" style="height:35px;" onclick="parent.location='#/productgroup'">ยกเลิก</button>
+                                <button type="submit" class="btn btn-success" style="height:35px;" ng-disabled="FormEditProductGroup.$invalid">บันทึก</button>
+                                <button type="button" class="btn btn-danger" style="height:35px;" onclick="parent.location='#/productgroup'">ยกเลิก</button>
                             </div>
                         </div>
                     </form>

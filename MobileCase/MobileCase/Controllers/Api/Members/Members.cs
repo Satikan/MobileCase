@@ -21,5 +21,26 @@ namespace MobileCase.Controllers
         {
             return repository.ListMembers();
         }
+
+        [HttpPost]
+        [ActionName("login")]
+        public DataTable PostLogin(Members item)
+        {
+            return repository.Login(item.UserName, item.Password);
+        }
+
+        [HttpPost]
+        [ActionName("Register")]
+        public string PostRegister(Members item)
+        {
+            return repository.Register(item);
+        }
+
+        [HttpGet]
+        [ActionName("Province")]
+        public DataSet GetProvince()
+        {
+            return repository.Province();
+        }
     }
 }

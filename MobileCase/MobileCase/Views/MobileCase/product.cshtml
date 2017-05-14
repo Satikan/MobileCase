@@ -1,5 +1,5 @@
 ﻿<!--Page Content-->
-<section class="content">
+<section class="content" ng-init="GetProduct()">
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-12">
@@ -15,20 +15,22 @@
                     <tr>
                         <th scope="col" width="80px" class="center">ลำดับที่</th>
                         <th scope="col" class="center">รหัสสินค้า</th>
-                        <th scope="col" width="500px" class="center">ชื่อสินค้า</th>
+                        <th scope="col" class="center">ประเภทสินค้า</th>
+                        <th scope="col" width="400px" class="center">ชื่อสินค้า</th>
                         <th scope="col" class="center">จำนวนสินค้า</th>
                         <th scope="col" class="center">ราคาสินค้า</th>
                         <th scope="col" width="80px" class="center">แก้ไข</th>
                         <th scope="col" width="80px" class="center">ลบ</th>
                     </tr>
-                    <tr>
-                        <td class="center">1</td>
-                        <td>1001</td>
-                        <td>ไบคินแมน</td>
-                        <td class="center">3</td>
-                        <td class="center">50</td>
-                        <td class="center"><button type="button" class="btn btn-warning btn-xs" onclick="parent.location='#/editproduct'"><span class="icon flaticon-pencil43"></span></button></td>
-                        <td class="center"><button type="button" class="btn btn-danger btn-xs"><span class="icon flaticon-recycle59"></span></button></td>
+                    <tr ng-repeat="Products in Product">
+                        <td class="center">{{$index + 1}}</td>
+                        <td>{{Products.ProductCode}}</td>
+                        <td>{{Products.ProductGroupName}}</td>
+                        <td>{{Products.ProductName}}</td>
+                        <td class="center">{{Products.ProductQuantity}}</td>
+                        <td class="center">{{Products.ProductPrice}}</td>
+                        <td class="center"><button type="button" class="btn btn-warning btn-xs" ng-click="PageEditProduct(Products.ProductID)"><span class="icon flaticon-pencil43"></span></button></td>
+                        <td class="center"><button type="button" class="btn btn-danger btn-xs" ng-click="DeleteProduct(Products.ProductID)"><span class="icon flaticon-recycle59"></span></button></td>
                     </tr>
                 </table>
             </div>

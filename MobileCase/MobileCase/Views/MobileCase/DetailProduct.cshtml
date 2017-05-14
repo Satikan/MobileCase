@@ -1,33 +1,32 @@
-﻿<section class="content">
+﻿<section class="content" ng-init="GetDetailProduct()">
     <div class="container">
         <div class="product-view row">
             <div class="col-sm-6 col-md-6 col-lg-6">
-                <center><img src="~/Scripts/templates/images/products/product31.jpg" height="450" width="380" alt="" /></center>
+                <center><img src="~/{{ProductByID.ProductPicture}}" height="450" width="380" alt="" /></center>
             </div>
             <div class="clearfix visible-xs"></div>
             <div class="col-sm-6 col-md-6 col-lg-6">
                 <br />
-                <h2><strong>สตาวอ tpu 4/4s</strong></h2>
-                @*<span class="price">ราคา : 110 บาท</span>*@
-                <h3><strong>ราคา :</strong> 110 บาท</h3>
-                <p><span><strong>รหัสสินค้า : </strong></span> <span>084s133</span></p>
-                <p><span><strong>ใช้งานกับรุ่น : </strong></span> <span>iphone 4/4s</span></p>
-                <p><span><strong>จำนวนคงเหลือ : </strong></span> <span>0 ชิ้น</span></p>
+                <h2><strong>{{ProductByID.ProductName}}</strong></h2>
+                <h3><strong>ราคา :</strong> {{ProductByID.ProductPrice}} บาท</h3>
+                <p><span><strong>รหัสสินค้า : </strong></span> <span>{{ProductByID.ProductCode}}</span></p>
+                <p><span><strong>ใช้งานกับรุ่น : </strong></span> <span>{{ProductByID.ProductGroupName}}</span></p>
+                <p><span><strong>จำนวนคงเหลือ : </strong></span> <span>{{ProductByID.ProductQuantity}} ชิ้น</span></p>
                 <div class="divider divider-sm"></div>
                 <div class="line-divider"></div>
                 <div class="divider divider-sm"></div>
-                <form action="#" ng-show="permissionpersonal == 1">
+                <form ng-show="permission == 1 || permission == 3" name="FormSaveOrder" ng-submit="SaveOrder()">
                     <div class="form-inputs">
                         <label><strong>จำนวน : </strong></label>&nbsp;&nbsp;
-                        <button type="button" class="btn btn-danger btn-xs">
+                        <button type="button" class="btn btn-danger btn-xs" ng-click="quantity = quantity - 1" ng-disabled="quantity == 1">
                             <i class="fa fa-minus" aria-hidden="true"></i>
                         </button>
-                        <input type="text" class="form-control input-quantity" value="1">
-                        <button type="button" class="btn btn-success btn-xs">
+                        <input type="number" class="form-control input-quantity" min="1" max="{{ProductByID.ProductQuantity}}" ng-model="quantity">
+                        <button type="button" class="btn btn-success btn-xs" ng-click="quantity = quantity + 1" ng-disabled="quantity == ProductByID.ProductQuantity">
                             <i class="fa fa-plus" aria-hidden="true"></i>
                         </button>
                         <div class="divider divider-sm"></div>
-                        <button class="btn btn-cool btn-lg" type="submit" style="width:150px;"><i class="icon flaticon-shopping66"></i>  สั่งซื้อ</button>
+                        <button class="btn btn-cool btn-lg" type="submit" style="width:150px;" ng-disabled="ProductByID.ProductQuantity == 0 || FormSaveOrder.$invalid"><i class="icon flaticon-shopping66"></i>  สั่งซื้อ</button>
                     </div>
                 </form>
             </div>

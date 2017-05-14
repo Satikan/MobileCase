@@ -5126,7 +5126,7 @@ footer #footer-collapsed.no-popup .footer-navbar .arrow {
 	margin: 10px 0 0 0
 }
 .product-view .form-inputs input.input-quantity {
-	width: 40px;
+	width: 50px;
 	padding: 5px 3px;
 	margin: 0 5px 0 5px;
 	height: 28px;
@@ -6739,4 +6739,9 @@ top:-24px
 	-webkit-transform: scale(1.2, 1.2);
 	-ms-transform: scale(1.2, 1.2);
 	transform: scale(1.2, 1.2)
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }

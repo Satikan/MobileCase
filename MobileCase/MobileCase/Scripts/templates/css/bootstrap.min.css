@@ -1472,10 +1472,10 @@ textarea.input-lg {
 	border-color:#8a6d3b
 }
 .has-error .checkbox, .has-error .checkbox-inline, .has-error .control-label, .has-error .help-block, .has-error .radio, .has-error .radio-inline {
-	color:#a94442
+	color:red
 }
 .has-error .form-control {
-	border-color:#a94442;
+	border-color:red;
 	-webkit-box-shadow:inset 0 1px 1px rgba(0, 0, 0, .075);
 	box-shadow:inset 0 1px 1px rgba(0, 0, 0, .075)
 }

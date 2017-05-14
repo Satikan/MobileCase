@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="~/Scripts/templates/css/jquery.nouislider.css">
     <!-- Custom styles for this template -->
     <link href="~/Scripts/templates/css/coolbaby.css" rel="stylesheet">
+    <link href="~/Scripts/component/sweetAlert/sweetalert2.css" rel="stylesheet" />
     <!-- SLIDER REVOLUTION 4.x CSS SETTINGS -->
     <link rel="stylesheet" type="text/css" href="~/Scripts/templates/rs-plugin/css/settings.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="~/Scripts/templates/rs-plugin/css/extralayers.css" media="screen" />
@@ -54,21 +55,20 @@
                 <div id="newsLine">
                     <div class="container">
                         <div class="row">
-                            <div class="col-sm-3 col-md-2 hidden-xs">
-                                <div class="title upper"><i class="icon flaticon-news"></i>ข่าวสาร</div>
+                            <div class="col-sm-2 col-md-2 hidden-xs">
+                                @*<div class="title upper"><i class="icon flaticon-news"></i>ข่าวสาร</div>*@
                             </div>
-                            <div class="col-xs-5 col-sm-6 col-md-7 col-xs-push-1 col-sm-push-0">
+                            <div class="col-xs-8 col-sm-8 col-md-8 col-xs-push-1 col-sm-push-0">
                                 <div id="newsCarousel" class="slick-style1">
                                     <div class="item upper">
                                         <div class="marquee">
-                                            <span class="date">10.10.2014.</span> Fusce eu dui. Integer vel nibh sit
-                                            amet turpis vulputate aliquet. Phasellus id nisi vitae odio pretium aliquam.
+                                            <span class="date" ng-bind="newdate"></span> CASE IPHONE CHEAP <strong>ยินดีต้อนรับ</strong>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xs-5 col-sm-3 col-md-2 top-link pull-right" ng-show="permissionpersonal == 1">
-                                <div class="btn-outer btn-shopping-cart">
+                            <div class="col-xs-2 col-sm-2 col-md-2 top-link pull-right" ng-show="$root.permission == 1 || $root.permission == 3">
+                                @*<div class="btn-outer btn-shopping-cart">
                                     <a href="#drop-shopcart" class="btn btn-xs btn-default open-cart"
                                        data-toggle="dropdown">
                                         <span class="icon icon-md flaticon-shopping66"></span><span class="badge">3</span>
@@ -119,7 +119,7 @@
                                             <div class="view-link"><a href="shopping-cart.html">View shopping cart </a></div>
                                         </div>
                                     </div>
-                                </div>
+                                </div>*@
                             </div>
                         </div>
                     </div>
@@ -153,18 +153,18 @@
                                         <!-- //end Logo -->
                                         <div class="clearfix visible-xs"></div>
                                         <!-- Secondary menu -->
-                                        <div class="top-link pull-right compact-visible">
-                                            <div class="btn-outer btn-shopping-cart" ng-show="permissionpersonal == 1">
+                                        @*<div class="top-link pull-right compact-visible">
+                                            <div class="btn-outer btn-shopping-cart" ng-show="permission == 1 || permission == 3">
                                                 <a href="#drop-shopcart" class="btn btn-xs btn-default open-cart"
                                                    data-toggle="dropdown">
                                                     <span class="icon icon-md flaticon-shopping66"></span><span class="badge">2</span>
                                                 </a>
                                             </div>
-                                        </div>
+                                        </div>*@
                                     </div>
                                 </div>
                                 <div class="navbar-secondary-menu col-sm-7 col-md-4 compact-hidden">
-                                    <div class="btn-group">
+                                    <div class="btn-group" ng-hide="permission == 1 || permission == 2 || permission == 3">
                                         <a href="#/login" class="btn btn-default">
                                             <h6 style="margin-top: 4px;" class="underline">เข้าสู่ระบบ</h6>
                                         </a>
@@ -172,16 +172,16 @@
                                             <h6 style="margin-top: 4px;" class="underline">สมัครสมาชิก</h6>
                                         </a>
                                     </div>
-                                    <div class="btn-group" ng-show="permissionpersonal == 1">
+                                    <div class="btn-group" ng-show="permission == 1 || permission == 2 || permission == 3">
                                         <a href="#" class="btn btn-default dropdown-toggle"
                                            data-toggle="dropdown">
-                                            <h6 style="margin-top: 4px;" class="underline">ยินดีต้อนรับ สาธิกรรณ</h6>
+                                            <h6 style="margin-top: 4px;" class="underline">ยินดีต้อนรับ {{firstname}} {{lastname}}</h6>
                                         </a>
                                         <ul class="dropdown-menu">
                                             <li><a href="#">แก้ไขข้อมูลส่วนตัว</a></li>
-                                            <li><a href="#">รายการสั่งซื้อของฉัน</a></li>
+                                            <li ng-show="permission == 1 || permission == 3"><a href="#">รายการสั่งซื้อของฉัน</a></li>
                                             <li class="divider"></li>
-                                            <li><a href="page-logination.html">ออกจากระบบ</a></li>
+                                            <li><a href="" ng-click="logout()">ออกจากระบบ</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -193,9 +193,9 @@
                                 <dl class="navbar-main-menu">
                                     <dt class="item"><a href="#/" class="btn-main"><span class="icon icon-xl flaticon-home113">หน้าหลัก</span></a></dt>
                                     <dd></dd>
-                                    <dt class="item" ng-show="permissionpersonal == 1"> <a href="#/orderlist" class="btn-main">รายการสั่งซื้อ</a> </dt>
+                                    <dt class="item" ng-show="permission == 1 || permission == 3"> <a href="#/orderlist" class="btn-main">รายการสั่งซื้อ</a> </dt>
                                     <dd></dd>
-                                    <dt class="item" ng-show="permissionpersonal == 1"> <a href="" class="btn-main">ข้อมูลสินค้า</a> </dt>
+                                    <dt class="item" ng-show="permission == 1 || permission == 2"> <a href="" class="btn-main">ข้อมูลสินค้า</a> </dt>
                                     <dd class="item-content content-small">
                                         <div class="megamenuClose"></div>
                                         <ul class="row-list">
@@ -203,9 +203,9 @@
                                             <li><a href="#/product">ข้อมูลสินค้า</a></li>
                                         </ul>
                                     </dd>
-                                    <dt class="item" ng-show="permissionpersonal == 1"> <a href="#/order" class="btn-main">ข้อมูลการสั่งซื้อ</a> </dt>
+                                    <dt class="item" ng-show="permission == 1 || permission == 2"> <a href="#/order" class="btn-main">ข้อมูลการสั่งซื้อ</a> </dt>
                                     <dd></dd>
-                                    <dt class="item" ng-show="permissionpersonal == 1"> <a href="#/member" class="btn-main">ข้อมูลสมาชิก</a> </dt>
+                                    <dt class="item" ng-show="permission == 1 || permission == 2"> <a href="#/member" class="btn-main">ข้อมูลสมาชิก</a> </dt>
                                     <dd></dd>
                                     <dt class="item"> <a href="#/contact" class="btn-main">ติดต่อเรา</a> </dt>
                                     <dd></dd>
@@ -280,6 +280,9 @@
     <script src="~/Scripts/templates/js/jquery.plugin.min.js"></script>
     <script src="~/Scripts/templates/js/jquery.countdown.min.js"></script>
     <script src="~/Scripts/templates/js/coolbaby.js"></script>
+    <script src="~/Scripts/component/sha1/sha1.js"></script>
+    <script src="~/Scripts/component/sweetAlert/sweetalert2.min.js"></script>
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>*@
     <!-- SLIDER REVOLUTION 4.x SCRIPTS  -->
     <script type="text/javascript" src="~/Scripts/templates/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
     <script type="text/javascript" src="~/Scripts/templates/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
@@ -290,6 +293,7 @@
     <script src="~/Scripts/src/src/login.js"></script>
     <script src="~/Scripts/src/src/member.js"></script>
     <script src="~/Scripts/src/src/order.js"></script>
+    <script src="~/Scripts/src/src/productgroup.js"></script>
     <script src="~/Scripts/src/src/product.js"></script>
     <script src="~/Scripts/src/src/register.js"></script>
     <script src="~/Scripts/src/src/contact.js"></script>
