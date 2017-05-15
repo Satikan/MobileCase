@@ -23,6 +23,7 @@ namespace MobileCase.DBHelper
         string InsertOrder(Orders item);
         DataSet ListOrder();
         string DeletedOrder(Orders item);
+        DataSet OrderFromMember();
     }
 
     public class OrderData : IOrderData
@@ -111,6 +112,24 @@ namespace MobileCase.DBHelper
             }
             objConn.Close();
             return errMsg;
+        }
+
+        public DataSet OrderFromMember()
+        {
+
+            MySqlConnection objConn = DBHelper.ConnectDb(ref errMsg);
+            DataSet ds = new DataSet();
+            string strSQL = "\r\n SELECT op.MemberID, CONCAT(m.FirstName, ' ', m.LastName) AS FullName, m.Mobile, m.Address, m.District, m.City, p.ProvinceName, m.ZipCode FROM orderproduct  op "
+                + "\r\n INNER JOIN member m ON op.MemberID = m.MemberID "
+                + "\r\n INNER JOIN provinces p ON m.Province = p.ProvinceID "
+                + "\r\n WHERE op.StatusID = 1 AND op.Deleted = 0 AND p.LangID = 2 "
+                + "\r\n GROUP BY op.MemberID ";
+            DataTable dt = DBHelper.List(strSQL, objConn);
+            dt.TableName = "OrderFromMember";
+            ds.Tables.Add(dt);
+            objConn.Close();
+
+            return ds;
         }
     }
 }

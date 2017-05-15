@@ -3,7 +3,6 @@
         $http.get("api/Orders/ListOrder").then(function (data) {
             $scope.ListOrder = data.data.ListOrder;
             $scope.StatusOrder = data.data.ListOrder[0].StatusName;
-            console.log(data);
         });
     }
 
@@ -46,6 +45,16 @@
                 })
             });
         })
+    }
+
+    $scope.GetOrderFromMember = function () {
+        $http.get("api/Orders/OrderFromMember").then(function (data) {
+            $scope.OrderFromMember = data.data.OrderFromMember;
+            //if ($scope.OrderFromMember.Address == null){
+            //    $scope.OrderFromMember.Address = "";
+            //}
+            console.log(data.data);
+        });
     }
 }
 ])

@@ -35,5 +35,12 @@ namespace MobileCase.Controllers
         {
             return repository.DeletedOrder(item);
         }
+
+        [HttpGet]
+        [ActionName("OrderFromMember")]
+        public DataSet GetOrderFromMember()
+        {
+            return repository.OrderFromMember();
+        }
     }
 }
