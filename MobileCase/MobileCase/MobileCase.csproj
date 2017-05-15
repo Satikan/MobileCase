@@ -881,11 +881,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\Api\Members\Members.cs" />
+    <Compile Include="Controllers\Api\Orders\Orders.cs" />
     <Compile Include="Controllers\Api\Products\Products.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MobileCaseController.cs" />
     <Compile Include="DBHelper\DBHelper.cs" />
     <Compile Include="DBHelper\MemberData.cs" />
+    <Compile Include="DBHelper\OrderData.cs" />
     <Compile Include="DBHelper\ProductData.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

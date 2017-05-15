@@ -84,19 +84,5 @@ namespace MobileCase.Controllers
         {
             return repository.DeletedProduct(id);
         }
-
-        [HttpPost]
-        [ActionName("InsertOrder")]
-        public string PostInsertOrder(Orders item)
-        {
-            return repository.InsertOrder(item);
-        }
-
-        [HttpGet]
-        [ActionName("ListOrder")]
-        public DataSet GetListOrder()
-        {
-            return repository.ListOrder();
-        }
     }
 }

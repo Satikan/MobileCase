@@ -19,7 +19,7 @@
                         <th scope="col" width="80px" class="center">ลบ</th>
                     </tr>
                     <tr ng-repeat="ListOrders in ListOrder">
-                        <td class="center">{{index + 1}}</td>
+                        <td class="center">{{$index + 1}}</td>
                         <td>{{ListOrders.ProductCode}}</td>
                         <td>{{ListOrders.ProductName}}</td>
                         <td class="center">
@@ -34,7 +34,7 @@
                         </td>
                         <td align="right">{{ListOrders.ProductPrice}}</td>
                         <td align="right">{{ListOrders.Amount * ListOrders.ProductPrice}}</td>
-                        <td class="center"><button type="button" class="btn btn-danger btn-xs"><span class="icon flaticon-recycle59"></span></button></td>
+                        <td class="center"><button type="button" class="btn btn-danger btn-xs" ng-click="DeleteOrder(ListOrders.OrderID, ListOrders.ProductID, ListOrders.Amount)"><span class="icon flaticon-recycle59"></span></button></td>
                     </tr>
                     <tr>
                         <td align="right" colspan="5"><b>รวมทั้งหมด</b></td>

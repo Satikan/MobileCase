@@ -14,6 +14,7 @@
     $scope.GetDetailProduct = function () {
         $http.get("api/Products/ViewProduct/" + $stateParams.id).then(function (data) {
             $scope.ProductByID = data.data.ProductByID[0];
+            console.log($scope.ProductByID);
         });
     }
 
@@ -121,7 +122,7 @@
             "StatusID": 1
         }
         console.log(saveorder);
-        $http.post("api/Products/InsertOrder", saveorder).then(function (data) {
+        $http.post("api/Orders/InsertOrder", saveorder).then(function (data) {
             swal({
                 title: 'ดําเนินการเรียบร้อย',
                 text: "ข้อมูลของคุณได้ทำการบันทึกเรียบร้อยแล้ว",

@@ -30,8 +30,6 @@ namespace MobileCase.DBHelper
         DataSet ViewProduct(int id);
         string UpdateProduct();
         string DeletedProduct(int id);
-        string InsertOrder(Orders item);
-        DataSet ListOrder();
     }
 
     public class ProductData : IProductData
@@ -108,7 +106,7 @@ namespace MobileCase.DBHelper
             {
                 errMsg = e.Message;
             }
-            
+
             objConn.Close();
             return errMsg;
         }
@@ -130,7 +128,7 @@ namespace MobileCase.DBHelper
             {
                 errMsg = e.Message;
             }
-            
+
             objConn.Close();
             return errMsg;
         }
@@ -215,10 +213,12 @@ namespace MobileCase.DBHelper
         {
             MySqlConnection objConn = DBHelper.ConnectDb(ref errMsg);
             DataSet ds = new DataSet();
-            string strSQL = "\r\n SELECT * FROM product WHERE Deleted = 0 ";
+            string strSQL = "\r\n SELECT p.ProductID,p.ProductGroupID,p.ProductCode,p.ProductName,p.ProductPrice,p.ProductPicture,p.ProductQuantity,pg.ProductGroupName FROM product p ";
+            strSQL += "INNER JOIN productgroup pg ON p.ProductGroupID = pg.ProductGroupID ";
+            strSQL += "WHERE p.Deleted = 0 ";
             if (id > 0)
             {
-                strSQL += "\r\n AND ProductID = " + id;
+                strSQL += "\r\n AND p.ProductID = " + id;
             }
             DataTable dt = DBHelper.List(strSQL, objConn);
             dt.TableName = "ProductByID";
@@ -311,49 +311,6 @@ namespace MobileCase.DBHelper
 
             objConn.Close();
             return errMsg;
-        }
-
-        public string InsertOrder(Orders item)
-        {
-            MySqlConnection objConn = DBHelper.ConnectDb(ref errMsg);
-            string strSQL = "";
-
-            try
-            {
-                DataTable dt = DBHelper.List("\r\n SELECT CASE WHEN MAX(OrderID) IS NULL THEN 1 ELSE MAX(OrderID)+1 END AS MaxID FROM orderproduct ", objConn);
-                int MaxID = Convert.ToInt32(dt.Rows[0]["MaxID"].ToString());
-                strSQL = "\r\n INSERT INTO orderproduct(orderID, ProductID, ProductGroupID, MemberID, Amount, StatusID)";
-                strSQL += "\r\n value(" + MaxID + "," + item.ProductID + "," + item.ProductGroupID + "," + item.MemberID + "," + item.Amount + "," + item.StatusID + ");";
-                DBHelper.Execute(strSQL, objConn);
-                strSQL = "\r\n UPDATE product SET ProductQuantity=" + item.ProductQuantity + " WHERE ProductID=" + item.ProductID + ";";
-                DBHelper.Execute(strSQL, objConn);
-                errMsg = "Success!!";
-            }
-            catch (Exception e)
-            {
-                errMsg = e.Message;
-            }
-            objConn.Close();
-            return errMsg;
-        }
-
-        public DataSet ListOrder()
-        {
-
-            MySqlConnection objConn = DBHelper.ConnectDb(ref errMsg);
-            DataSet ds = new DataSet();
-            string strSQL = "\r\n SELECT op.OrderID, p.ProductID, p.ProductCode, p.ProductName, p.ProductPrice, op.Amount, s.StatusName FROM orderproduct op "
-                + "\r\n INNER JOIN member m ON op.MemberID = m.MemberID "
-                + "\r\n INNER JOIN product p ON op.ProductID = p.ProductID "
-                + "\r\n INNER JOIN productgroup pg ON op.ProductGroupID = pg.ProductGroupID "
-                + "\r\n INNER JOIN status s ON op.StatusID = s.StatusID "
-                + "\r\n WHERE op.Deleted = 0 AND op.StatusID = 1;";
-            DataTable dt = DBHelper.List(strSQL, objConn);
-            dt.TableName = "ListOrder";
-            ds.Tables.Add(dt);
-            objConn.Close();
-
-            return ds;
         }
     }
 }
