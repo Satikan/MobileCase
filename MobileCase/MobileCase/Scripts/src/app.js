@@ -65,8 +65,8 @@ app.config(function ($stateProvider, $urlRouterProvider, $qProvider, $locationPr
             templateUrl: '/MobileCase/Order',
             controller: 'OrderController'
         })
-        .state('/detailorder', {
-            url: '/detailorder',
+        .state('/detailorder/:id', {
+            url: '/detailorder/:id',
             templateUrl: '/MobileCase/DetailOrder',
             controller: 'OrderController'
         })
@@ -75,9 +75,19 @@ app.config(function ($stateProvider, $urlRouterProvider, $qProvider, $locationPr
             templateUrl: '/MobileCase/Member',
             controller: 'MemberController'
         })
-        .state('/editmember', {
-            url: '/editmember',
+        .state('/editmember/:id', {
+            url: '/editmember/:id',
             templateUrl: '/MobileCase/EditMember',
+            controller: 'MemberController'
+        })
+        .state('/editprofile', {
+            url: '/editprofile',
+            templateUrl: '/MobileCase/EditProfile',
+            controller: 'MemberController'
+        })
+        .state('/editpassword', {
+            url: '/editpassword',
+            templateUrl: '/MobileCase/ChangePassword',
             controller: 'MemberController'
         })
         .state('/contact', {

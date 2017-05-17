@@ -24,9 +24,9 @@ namespace MobileCase.Controllers
 
         [HttpGet]
         [ActionName("ListOrder")]
-        public DataSet GetListOrder()
+        public DataSet GetListOrder(int id)
         {
-            return repository.ListOrder();
+            return repository.ListOrder(id);
         }
 
         [HttpPost]
@@ -41,6 +41,13 @@ namespace MobileCase.Controllers
         public DataSet GetOrderFromMember()
         {
             return repository.OrderFromMember();
+        }
+
+        [HttpGet]
+        [ActionName("SentProduct")]
+        public string GetSentProduct(int id)
+        {
+            return repository.SentProduct(id);
         }
     }
 }

@@ -21,8 +21,12 @@ namespace MobileCase.DBHelper
     public interface IMemberData
     {
         DataSet ListMembers();
+        DataSet ViewMembers(int id);
         DataTable Login(string username, string password);
         string Register(Members item);
+        string UpdateMember(Members item);
+        string UpdatePassword(Members item);
+        string DeletedMember(int id);
         DataSet Province();
     }
 
@@ -35,11 +39,30 @@ namespace MobileCase.DBHelper
 
             MySqlConnection objConn = DBHelper.ConnectDb(ref errMsg);
             DataSet ds = new DataSet();
-            string strSQL = "\r\n SELECT m.*,r.RoleName FROM  member m "
+            string strSQL = "\r\n SELECT m.*, r.RoleName, p.ProvinceName FROM  member m "
                 + "\r\n LEFT JOIN role r ON m.RoleID=r.RoleID "
-                + "\r\n WHERE m.Deleted=0 AND r.Deleted=0;";
+                + "\r\n INNER JOIN provinces p ON p.ProvinceID = m.Province "
+                + "\r\n WHERE m.Deleted=0 AND r.Deleted=0 AND p.LangID = 2 "
+                + "\r\n ORDER BY m.FirstName AND m.LastName;";
             DataTable dt = DBHelper.List(strSQL, objConn);
             dt.TableName = "Member";
+            ds.Tables.Add(dt);
+            objConn.Close();
+
+            return ds;
+        }
+
+        public DataSet ViewMembers(int id)
+        {
+            MySqlConnection objConn = DBHelper.ConnectDb(ref errMsg);
+            DataSet ds = new DataSet();
+            string strSQL = "\r\n SELECT * FROM member WHERE Deleted = 0 ";
+            if (id > 0)
+            {
+                strSQL += "\r\n AND MemberID = " + id;
+            }
+            DataTable dt = DBHelper.List(strSQL, objConn);
+            dt.TableName = "MemberByID";
             ds.Tables.Add(dt);
             objConn.Close();
 
@@ -104,6 +127,82 @@ namespace MobileCase.DBHelper
             }
             objConn.Close();
 
+            return errMsg;
+        }
+
+        public string UpdateMember(Members item)
+        {
+            MySqlConnection objConn = DBHelper.ConnectDb(ref errMsg);
+
+            try
+            {
+                string strSQL = "\r\n UPDATE member SET " +
+                    "\r\n FirstName='" + item.FirstName + "'" +
+                    "\r\n ,LastName='" + item.LastName + "'" +
+                    "\r\n ,Email='" + item.Email + "'" +
+                    "\r\n ,Mobile='" + item.Mobile + "'" +
+                    "\r\n ,Address='" + item.Address + "'" +
+                    "\r\n ,District='" + item.District + "'" +
+                    "\r\n ,City='" + item.City + "'" +
+                    "\r\n ,Province=" + item.Province +
+                    "\r\n ,ZipCode='" + item.ZipCode + "'" +
+                    "\r\n WHERE MemberID=" + item.MemberID + ";";
+
+                DBHelper.Execute(strSQL, objConn);
+                errMsg = "Success!!";
+            }
+            catch (Exception e)
+            {
+                errMsg = e.Message;
+            }
+
+            objConn.Close();
+            return errMsg;
+        }
+
+        public string DeletedMember(int id)
+        {
+            MySqlConnection objConn = DBHelper.ConnectDb(ref errMsg);
+
+            try
+            {
+                string strSQL = "\r\n UPDATE member SET " +
+                    "\r\n Deleted=1 " +
+                    "\r\n WHERE MemberID=" + id + ";";
+
+                DBHelper.Execute(strSQL, objConn);
+                errMsg = "Success!!";
+            }
+            catch (Exception e)
+            {
+                errMsg = e.Message;
+            }
+
+            objConn.Close();
+            return errMsg;
+        }
+
+        public string UpdatePassword(Members item)
+        {
+            MySqlConnection objConn = DBHelper.ConnectDb(ref errMsg);
+
+            try
+            {
+                string Password = Utilitys.Utilitys.HashPassword(item.Password);
+                string strSQL = "\r\n UPDATE member SET " +
+                    "\r\n UserName='" + item.UserName + "'" +
+                    "\r\n ,Password='" + Password + "'" +
+                    "\r\n WHERE MemberID=" + item.MemberID + ";";
+
+                DBHelper.Execute(strSQL, objConn);
+                errMsg = "Success!!";
+            }
+            catch (Exception e)
+            {
+                errMsg = e.Message;
+            }
+
+            objConn.Close();
             return errMsg;
         }
     }

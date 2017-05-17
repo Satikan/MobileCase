@@ -1,5 +1,5 @@
 ﻿<!--Page Content-->
-<section class="content">
+<section class="content" ng-init="GetListMember()">
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-12">
@@ -16,14 +16,14 @@
                         <th ng-show="permission == 1" scope="col" width="80px" class="center">แก้ไข</th>
                         <th ng-show="permission == 1" scope="col" width="80px" class="center">ลบ</th>
                     </tr>
-                    <tr>
-                        <td class="center">1</td>
-                        <td>สาธิกรรณ หนูทอง</td>
-                        <td>satikan_bav@hotmail.com</td>
-                        <td>999-999-9999</td>
-                        <td>65 ม.5 ต.โมคลาน อ.ท่าศาลา จ.นครศรีธรรมราช 80160</td>
-                        <td ng-show="permission == 1" class="center"><button type="button" class="btn btn-warning btn-xs" onclick="parent.location='#/editmember'"><span class="icon flaticon-pencil43"></span></button></td>
-                        <td ng-show="permission == 1" class="center"><button type="button" class="btn btn-danger btn-xs"><span class="icon flaticon-recycle59"></span></button></td>
+                    <tr ng-repeat="ListMembers in ListMember">
+                        <td class="center">{{$index + 1}}</td>
+                        <td>{{ListMembers.FirstName}} {{ListMembers.LastName}}</td>
+                        <td>{{ListMembers.Email}}</td>
+                        <td>{{ListMembers.Mobile}}</td>
+                        <td>{{ListMembers.Address}} ตำบล/แขวง{{ListMembers.District}} อำเภอ/เขต{{ListMembers.City}} จังหวัด{{ListMembers.ProvinceName}} {{ListMembers.Zipcode}}</td>
+                        <td ng-show="permission == 1" class="center"><button type="button" class="btn btn-warning btn-xs" ng-click="PageEditMember(ListMembers.MemberID)"><span class="icon flaticon-pencil43"></span></button></td>
+                        <td ng-show="permission == 1" class="center"><button type="button" class="btn btn-danger btn-xs" ng-click="DeleteMember(ListMembers.MemberID)"><span class="icon flaticon-recycle59"></span></button></td>
                     </tr>
                 </table>
             </div>

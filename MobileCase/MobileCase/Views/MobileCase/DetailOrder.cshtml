@@ -1,5 +1,5 @@
 ﻿<!--Page Content-->
-<section class="content">
+<section class="content" ng-init="GetOrderByMember()">
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-12">
@@ -13,7 +13,7 @@
                     </button>
                 </div>
                 <div class="col-sm-6 col-md-6 col-lg-6">
-                    <h6 class="right" style="margin-top: 15px;">ชื่อลูกค้า : สาธิกรรณ หนูทอง</h6>
+                    <h6 class="right" style="margin-top: 15px;">ชื่อลูกค้า : {{FullName}}</h6>
                 </div>
                 <div class="divider-sm"></div>
                 <div class="col-sm-12 col-md-12 col-lg-12">
@@ -22,23 +22,27 @@
                             <th scope="col" width="70px" class="center">ลำดับที่</th>
                             <th scope="col" class="center">รหัสสินค้า</th>
                             <th scope="col" width="400px" class="center">ชื่อสินค้า</th>
-                            <th scope="col" class="right">ราคาสินค้า</th>
                             <th scope="col" class="center">จำนวนสินค้า</th>
+                            <th scope="col" class="right">ราคาสินค้า</th>
                             <th scope="col" width="150px" class="right">รวม</th>
                         </tr>
-                        <tr>
-                            <td class="center">1</td>
-                            <td>1001</td>
-                            <td>ไบคินแมน</td>
-                            <td align="right">600</td>
-                            <td class="center">1</td>
-                            <td align="right">600</td>
+                        <tr ng-repeat="ListOrderByMembers in ListOrderByMember">
+                            <td class="center">{{$index + 1}}</td>
+                            <td>{{ListOrderByMembers.ProductCode}}</td>
+                            <td>{{ListOrderByMembers.ProductName}}</td>
+                            <td class="center">{{ListOrderByMembers.Amount}}</td>
+                            <td align="right">{{ListOrderByMembers.ProductPrice}}</td>
+                            <td align="right">{{ListOrderByMembers.Amount * ListOrderByMembers.ProductPrice}}</td>
                         </tr>
                         <tr>
                             <td align="right" colspan="5"><b>รวมทั้งหมด</b></td>
-                            <td align="right">600</td>
+                            <td align="right">{{ getTotalOrderByMember() }} บาท</td>
                         </tr>
                     </table>
+                    <button class="btn btn-success pull-right" style="height:35px;" ng-click="SentProduct()">
+                        <i class="fa fa-truck" aria-hidden="true"></i>
+                        ดำเนินการจัดส่งสินค้า
+                    </button>
                 </div>
             </div>
         </div>

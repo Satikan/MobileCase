@@ -137,6 +137,9 @@
     <Content Include="Scripts\component\sweetAlert\sweetalert2.js" />
     <Content Include="Scripts\component\sweetAlert\sweetalert2.min.css" />
     <Content Include="Scripts\component\sweetAlert\sweetalert2.min.js" />
+    <Content Include="Scripts\component\thbank-font\css\thbanklogos-colors.css" />
+    <Content Include="Scripts\component\thbank-font\css\thbanklogos.css" />
+    <Content Include="Scripts\component\thbank-font\css\thbanklogos.min.css" />
     <Content Include="Scripts\src\src\login.js" />
     <Content Include="Scripts\src\src\main.js" />
     <Content Include="Scripts\src\src\member.js" />
@@ -177,6 +180,9 @@
     <Content Include="Scripts\templates\fonts\font-awesome\scss\_screen-reader.scss" />
     <Content Include="Scripts\templates\fonts\font-awesome\scss\_stacked.scss" />
     <Content Include="Scripts\templates\fonts\font-awesome\scss\_variables.scss" />
+    <Content Include="Scripts\component\thbank-font\fonts\thbanks.eot" />
+    <Content Include="Scripts\component\thbank-font\fonts\thbanks.ttf" />
+    <Content Include="Scripts\component\thbank-font\fonts\thbanks.woff" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\templates\fonts\font-awesome\css\font-awesome.css" />
     <Content Include="Scripts\templates\fonts\font-awesome\css\font-awesome.min.css" />
@@ -921,6 +927,8 @@
     <Content Include="Views\MobileCase\Order.cshtml" />
     <Content Include="Views\MobileCase\DetailOrder.cshtml" />
     <Content Include="Views\MobileCase\EditMember.cshtml" />
+    <Content Include="Views\MobileCase\EditProfile.cshtml" />
+    <Content Include="Views\MobileCase\ChangePassword.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

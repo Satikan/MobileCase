@@ -14,6 +14,7 @@
     <link href="~/Scripts/templates/css/bootstrap.min.css" rel="stylesheet">
     <!-- CSS modules -->
     <link href="~/Scripts/templates/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Scripts/component/thbank-font/css/thbanklogos.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/Scripts/templates/fonts/flaticon/flaticon.css">
     <link rel="stylesheet" href="~/Scripts/templates/css/slick.css" />
     <link rel="stylesheet" href="~/Scripts/templates/css/liMarquee.css">
@@ -178,8 +179,9 @@
                                             <h6 style="margin-top: 4px;" class="underline">ยินดีต้อนรับ {{firstname}} {{lastname}}</h6>
                                         </a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="#">แก้ไขข้อมูลส่วนตัว</a></li>
-                                            <li ng-show="permission == 1 || permission == 3"><a href="#/orderlist">รายการสั่งซื้อของฉัน</a></li>
+                                            <li><a href="" onclick="parent.location='#/editprofile'">แก้ไขข้อมูลส่วนตัว</a></li>
+                                            <li><a href="" onclick="parent.location='#/editpassword'">แก้ไขรหัสผ่าน</a></li>
+                                            @*<li ng-show="permission == 1 || permission == 3"><a href="#/orderlist">รายการสั่งซื้อของฉัน</a></li>*@
                                             <li class="divider"></li>
                                             <li><a href="" ng-click="logout()">ออกจากระบบ</a></li>
                                         </ul>
@@ -207,7 +209,7 @@
                                     <dd></dd>
                                     <dt class="item" ng-show="permission == 1 || permission == 2"> <a href="#/member" class="btn-main">ข้อมูลสมาชิก</a> </dt>
                                     <dd></dd>
-                                    <dt class="item"> <a href="#/contact" class="btn-main">ติดต่อเรา</a> </dt>
+                                    <dt class="item"> <a href="#/contact" class="btn-main">รายละเอียดการชำระเงิน</a> </dt>
                                     <dd></dd>
                                 </dl>
                             </div>
@@ -226,19 +228,21 @@
             <ui-view autoscroll="false"></ui-view>
 
             <!-- Footer -->
-            <footer>
-                <div class="footer-navbar">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-8 copyright">© 2014 <a href="#">Coolbaby</a>. All Rights Reserved.</div>
-                            <div class="col-md-4">
-                                <ul class="payment-list pull-right">
-                                    <li><img src="~/Scripts/templates/images/icon-payment-01.png" width="36" height="22" alt=""></li>
-                                    <li><img src="~/Scripts/templates/images/icon-payment-02.png" width="36" height="22" alt=""></li>
-                                    <li><img src="~/Scripts/templates/images/icon-payment-03.png" width="36" height="22" alt=""></li>
-                                    <li><img src="~/Scripts/templates/images/icon-payment-04.png" width="36" height="22" alt=""></li>
-                                    <li><img src="~/Scripts/templates/images/icon-payment-05.png" width="36" height="22" alt=""></li>
-                                </ul>
+            <footer style="padding-top:0px;">
+                <div id="footer-collapsed">
+                    <div class="footer-navbar">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-8 copyright">© 2014 <a href="#">Coolbaby</a>. All Rights Reserved.</div>
+                                <div class="col-md-4">
+                                    <ul class="payment-list pull-right">
+                                        <li><img src="~/Scripts/templates/images/icon-payment-01.png" width="36" height="22" alt=""></li>
+                                        <li><img src="~/Scripts/templates/images/icon-payment-02.png" width="36" height="22" alt=""></li>
+                                        <li><img src="~/Scripts/templates/images/icon-payment-03.png" width="36" height="22" alt=""></li>
+                                        <li><img src="~/Scripts/templates/images/icon-payment-04.png" width="36" height="22" alt=""></li>
+                                        <li><img src="~/Scripts/templates/images/icon-payment-05.png" width="36" height="22" alt=""></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>

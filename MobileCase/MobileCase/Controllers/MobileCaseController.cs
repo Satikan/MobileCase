@@ -69,6 +69,16 @@ namespace MobileCase.Controllers
             return View();
         }
 
+        public ActionResult EditProfile()
+        {
+            return View();
+        }
+
+        public ActionResult ChangePassword()
+        {
+            return View();
+        }
+
         public ActionResult OrderList()
         {
             return View();

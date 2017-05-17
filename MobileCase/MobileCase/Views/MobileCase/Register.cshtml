@@ -11,13 +11,13 @@
                         <div class="form-group" ng-class="{'has-error': FormRegister.firstname.$invalid}">
                             <label for="firstname" class="col-sm-3 control-label">ชื่อ</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="firstname" name="firstname" ng-model="firstname" placeholder="ชื่อ" required>
+                                <input type="text" class="form-control" id="firstname" name="firstname" ng-model="firstnames" placeholder="ชื่อ" required>
                             </div>
                         </div>
                         <div class="form-group" ng-class="{'has-error': FormRegister.lastname.$invalid}">
                             <label for="lastname" class="col-sm-3 control-label">นามสกุล</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="lastname" name="lastname" ng-model="lastname" placeholder="นามสกุล" required>
+                                <input type="text" class="form-control" id="lastname" name="lastname" ng-model="lastnames" placeholder="นามสกุล" required>
                             </div>
                         </div>
                         <div class="form-group" ng-class="{'has-error': FormRegister.email.$invalid}">
@@ -33,28 +33,28 @@
                             </div>
                         </div>
                         <h3>ที่อยู่</h3>
-                        <div class="form-group">
+                        <div class="form-group" ng-class="{'has-error': FormRegister.address.$invalid}">
                             <label for="address" class="col-sm-3 control-label">ที่อยู่</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="address" name="address" ng-model="address" placeholder="ที่อยู่">
+                                <input type="text" class="form-control" id="address" name="address" ng-model="address" placeholder="ที่อยู่" required>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" ng-class="{'has-error': FormRegister.district.$invalid}">
                             <label for="district" class="col-sm-3 control-label">ตำบล/แขวง</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="district" name="district" ng-model="district" placeholder="ตำบล/แขวง">
+                                <input type="text" class="form-control" id="district" name="district" ng-model="district" placeholder="ตำบล/แขวง" required>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" ng-class="{'has-error': FormRegister.city.$invalid}">
                             <label for="city" class="col-sm-3 control-label">อำเภอ/เขต</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="city" name="city" ng-model="city" placeholder="อำเภอ/เขต">
+                                <input type="text" class="form-control" id="city" name="city" ng-model="city" placeholder="อำเภอ/เขต" required>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" ng-class="{'has-error': FormRegister.province.$invalid}">
                             <label for="province" class="col-sm-3 control-label">จังหวัด</label>
                             <div class="col-sm-8">
-                                <select class="form-control" id="province" name="province" ng-model="province" ng-options="options.ProvinceID as options.ProvinceName for options in Province">
+                                <select class="form-control" id="province" name="province" ng-model="province" ng-options="options.ProvinceID as options.ProvinceName for options in Province" required>
                                     <option value="">-- เลือก --</option>
                                 </select>
                             </div>
@@ -62,7 +62,7 @@
                         <div class="form-group" ng-class="{'has-error': FormRegister.zipcode.$invalid}">
                             <label for="zipcode" class="col-sm-3 control-label">รหัสไปรษณีย์</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="zipcode" name="zipcode" ng-model="zipcode" maxlength="5" pattern="[\d-]*" placeholder="รหัสไปรษณีย์">
+                                <input type="text" class="form-control" id="zipcode" name="zipcode" ng-model="zipcode" maxlength="5" pattern="[\d-]*" placeholder="รหัสไปรษณีย์" required>
                             </div>
                         </div>
                         <h3>ชื่อผู้ใช้งานและรหัสผ่าน</h3>

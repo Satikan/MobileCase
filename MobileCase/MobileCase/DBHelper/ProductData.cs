@@ -94,7 +94,7 @@ namespace MobileCase.DBHelper
 
             try
             {
-                string strSQL = "\r\n UPDATE  productgroup SET " +
+                string strSQL = "\r\n UPDATE productgroup SET " +
                     "\r\n ProductGroupCode='" + item.ProductGroupCode + "'" +
                     "\r\n ,ProductGroupName='" + item.ProductGroupName + "'" +
                     "\r\n WHERE ProductGroupID=" + item.ProductGroupID + ";";
@@ -117,7 +117,7 @@ namespace MobileCase.DBHelper
 
             try
             {
-                string strSQL = "\r\n UPDATE  productgroup SET " +
+                string strSQL = "\r\n UPDATE productgroup SET " +
                     "\r\n Deleted=1 " +
                     "\r\n WHERE ProductGroupID=" + id + ";";
 
@@ -297,7 +297,7 @@ namespace MobileCase.DBHelper
 
             try
             {
-                string strSQL = "\r\n UPDATE  product SET " +
+                string strSQL = "\r\n UPDATE product SET " +
                     "\r\n Deleted=1 " +
                     "\r\n WHERE ProductID=" + id + ";";
 

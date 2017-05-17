@@ -1,8 +1,16 @@
-﻿app.controller('OrderController', ['$scope', '$http', function ($scope, $http) {
+﻿app.controller('OrderController', ['$scope', '$http', '$stateParams', function ($scope, $http, $stateParams) {
     $scope.GetListOrder = function () {
-        $http.get("api/Orders/ListOrder").then(function (data) {
+        $http.get("api/Orders/ListOrder/" + Number(localStorage.getItem('MemberID'))).then(function (data) {
             $scope.ListOrder = data.data.ListOrder;
             $scope.StatusOrder = data.data.ListOrder[0].StatusName;
+        });
+    }
+
+    $scope.GetOrderByMember = function () {
+        $http.get("api/Orders/ListOrder/" + Number($stateParams.id)).then(function (data) {
+            $scope.ListOrderByMember = data.data.ListOrder;
+            $scope.FullName = data.data.ListOrder[0].FullName;
+            console.log(data);
         });
     }
 
@@ -12,7 +20,17 @@
             var ListOrders = $scope.ListOrder[i];
             total += (ListOrders.Amount * ListOrders.ProductPrice);
         }
-        return total;
+        return total.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");;
+    }
+
+    $scope.getTotalOrderByMember = function () {
+        var total = 0;
+        for (var i = 0; i < $scope.ListOrderByMember.length; i++) {
+            var ListOrderByMembers = $scope.ListOrderByMember[i];
+            total += (ListOrderByMembers.Amount * ListOrderByMembers.ProductPrice);
+            //total.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+        }
+        return total.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
     }
 
     $scope.DeleteOrder = function (OrderID, ProductID, Amount) {
@@ -50,11 +68,27 @@
     $scope.GetOrderFromMember = function () {
         $http.get("api/Orders/OrderFromMember").then(function (data) {
             $scope.OrderFromMember = data.data.OrderFromMember;
-            //if ($scope.OrderFromMember.Address == null){
-            //    $scope.OrderFromMember.Address = "";
-            //}
-            console.log(data.data);
         });
+    }
+
+    $scope.SentProduct = function () {
+        $http.get("api/Orders/SentProduct/" + Number($stateParams.id)).then(function (data) {
+            swal({
+                title: 'ดําเนินการเรียบร้อย',
+                text: "สินค้าได้ทำการจัดส่งเรียบร้อยแล้ว",
+                type: 'success',
+                showCancelButton: false,
+                allowOutsideClick: false,
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'ตกลง'
+            }).then(function () {
+                window.location = "#/order";
+            })
+        });
+    }
+
+    $scope.PageDetailOrder = function (MemberID) {
+        window.location = "#/detailorder/" + MemberID;
     }
 }
 ])

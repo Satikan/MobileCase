@@ -16,7 +16,7 @@
                         <th scope="col" class="center">จำนวนสินค้า</th>
                         <th scope="col" class="right">ราคาสินค้า</th>
                         <th scope="col" width="150px" class="right">รวม</th>
-                        <th scope="col" width="80px" class="center">ลบ</th>
+                        <th scope="col" width="80px" class="center" ng-hide="ListOrders.StatusID == 2">ลบ</th>
                     </tr>
                     <tr ng-repeat="ListOrders in ListOrder">
                         <td class="center">{{$index + 1}}</td>
@@ -24,17 +24,10 @@
                         <td>{{ListOrders.ProductName}}</td>
                         <td class="center">
                             {{ListOrders.Amount}}
-                            @*<button type="button" class="btn btn-danger btn-xs">
-                                    <i class="fa fa-minus" aria-hidden="true"></i>
-                                </button>
-                                <input type="text" value="1" style="text-align:center;width:50px">
-                                <button type="button" class="btn btn-success btn-xs">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                </button>*@
                         </td>
                         <td align="right">{{ListOrders.ProductPrice}}</td>
                         <td align="right">{{ListOrders.Amount * ListOrders.ProductPrice}}</td>
-                        <td class="center"><button type="button" class="btn btn-danger btn-xs" ng-click="DeleteOrder(ListOrders.OrderID, ListOrders.ProductID, ListOrders.Amount)"><span class="icon flaticon-recycle59"></span></button></td>
+                        <td class="center"><button type="button" ng-hide="ListOrders.StatusID == 2" class="btn btn-danger btn-xs" ng-click="DeleteOrder(ListOrders.OrderID, ListOrders.ProductID, ListOrders.Amount)"><span class="icon flaticon-recycle59"></span></button></td>
                     </tr>
                     <tr>
                         <td align="right" colspan="5"><b>รวมทั้งหมด</b></td>

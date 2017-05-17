@@ -22,6 +22,13 @@ namespace MobileCase.Controllers
             return repository.ListMembers();
         }
 
+        [HttpGet]
+        [ActionName("ViewMembers")]
+        public DataSet GetViewMembers(int id)
+        {
+            return repository.ViewMembers(id);
+        }
+
         [HttpPost]
         [ActionName("login")]
         public DataTable PostLogin(Members item)
@@ -34,6 +41,27 @@ namespace MobileCase.Controllers
         public string PostRegister(Members item)
         {
             return repository.Register(item);
+        }
+
+        [HttpPost]
+        [ActionName("UpdateMember")]
+        public string PostUpdateMember(Members item)
+        {
+            return repository.UpdateMember(item);
+        }
+
+        [HttpGet]
+        [ActionName("DeletedMember")]
+        public string GetDeletedMember(int id)
+        {
+            return repository.DeletedMember(id);
+        }
+
+        [HttpPost]
+        [ActionName("UpdatePassword")]
+        public string PostUpdatePassword(Members item)
+        {
+            return repository.UpdatePassword(item);
         }
 
         [HttpGet]

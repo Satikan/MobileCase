@@ -230,7 +230,7 @@ h4 {
 }
 h5 {
 	margin: 0;
-	padding: 0 0 .8em;
+	/*padding: 0 0 .8em;*/
 	font: 1.384em "Sintony", sans-serif;
 	text-transform: uppercase;
 	color: #2b2b2b
@@ -4722,7 +4722,7 @@ footer .footer-navbar .arrow .icon:after, .footer-navbar .arrow .icon:before {
 }
 footer .footer-navbar .menu.menu-icon .icon, .menu.menu-icon .icon {
 	display: inline-block;
-	width: 14px;
+	width: 25px;
 	margin-right: 8px;
 	margin-left: -22px;
 	text-align: center;

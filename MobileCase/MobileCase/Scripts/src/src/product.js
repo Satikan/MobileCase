@@ -12,7 +12,7 @@
     }
 
     $scope.GetDetailProduct = function () {
-        $http.get("api/Products/ViewProduct/" + $stateParams.id).then(function (data) {
+        $http.get("api/Products/ViewProduct/" + Number($stateParams.id)).then(function (data) {
             $scope.ProductByID = data.data.ProductByID[0];
             console.log($scope.ProductByID);
         });

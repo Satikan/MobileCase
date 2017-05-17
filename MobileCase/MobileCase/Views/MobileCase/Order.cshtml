@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-12">
                 <div class="subtitle">
-                    <div><span style="line-height:26px;">รายการสั่งซื้อ</span></div>
+                    <div><span style="line-height:26px;">ข้อมูลการสั่งซื้อ</span></div>
                 </div>
                 <table class="table table-bordered">
                     <tr>
@@ -19,7 +19,7 @@
                         <td>{{OrderFromMembers.FullName}}</td>
                         <td>{{OrderFromMembers.Mobile}}</td>
                         <td>{{OrderFromMembers.Address}} ตำบล/แขวง{{OrderFromMembers.District}} อำเภอ/เขต{{OrderFromMembers.City}} จังหวัด{{OrderFromMembers.ProvinceName}} {{OrderFromMembers.ZipCode}}</td>
-                        <td class="center"><button type="button" class="btn btn-primary btn-xs" onclick="parent.location='#/detailorder'"><span class="icon flaticon-shopping2"></span></button></td>
+                        <td class="center"><button type="button" class="btn btn-primary btn-xs" ng-click="PageDetailOrder(OrderFromMembers.MemberID)"><span class="icon flaticon-shopping2"></span></button></td>
                     </tr>
                 </table>
             </div>
