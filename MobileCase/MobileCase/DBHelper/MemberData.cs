@@ -11,6 +11,8 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Script.Serialization;
 using MobileCase.DBHelper;
@@ -24,6 +26,8 @@ namespace MobileCase.DBHelper
         DataSet ViewMembers(int id);
         DataTable Login(string username, string password);
         string Register(Members item);
+        int ForgotPassword(Members item);
+        string ResetPassword(Members item);
         string UpdateMember(Members item);
         string UpdatePassword(Members item);
         string DeletedMember(int id);
@@ -42,7 +46,7 @@ namespace MobileCase.DBHelper
             string strSQL = "\r\n SELECT m.*, r.RoleName, p.ProvinceName FROM  member m "
                 + "\r\n LEFT JOIN role r ON m.RoleID=r.RoleID "
                 + "\r\n INNER JOIN provinces p ON p.ProvinceID = m.Province "
-                + "\r\n WHERE m.Deleted=0 AND r.Deleted=0 AND p.LangID = 2 "
+                + "\r\n WHERE m.Deleted=0 AND m.RoleID=3 AND r.Deleted=0 AND p.LangID = 2 "
                 + "\r\n ORDER BY m.FirstName AND m.LastName;";
             DataTable dt = DBHelper.List(strSQL, objConn);
             dt.TableName = "Member";
@@ -109,14 +113,85 @@ namespace MobileCase.DBHelper
             try
             {
                 string strSQL = "";
-                DataTable dt = DBHelper.List("\r\n Select CASE WHEN Max(MemberID) IS NULL THEN 1 ELSE Max(MemberID)+1 END AS MaxID   From  member ", objConn);
+                DataTable dt = DBHelper.List("\r\n Select CASE WHEN Max(MemberID) IS NULL THEN 1 ELSE Max(MemberID)+1 END AS MaxID From member ", objConn);
                 int MaxID = Convert.ToInt32(dt.Rows[0]["MaxID"].ToString());
+                string MemberLink = Utilitys.Utilitys.HashPassword(dt.Rows[0]["MaxID"].ToString());
                 string Password = Utilitys.Utilitys.HashPassword(item.Password);
 
-                strSQL = "\r\n INSERT INTO member (MemberID,RoleID,UserName,Password,FirstName,LastName,Address,District,City " +
-                                       "\r\n ,Province,ZipCode,Mobile,Email)VALUES(" + MaxID + "," + item.MemberRoleID + ",'" + item.UserName + "','" + Password +
+                strSQL = "\r\n INSERT INTO member (MemberID,MemberLink,RoleID,UserName,Password,FirstName,LastName,Address,District,City " +
+                                       "\r\n ,Province,ZipCode,Mobile,Email)VALUES(" + MaxID + ",'" + MemberLink + "'," + item.MemberRoleID + ",'" + item.UserName + "','" + Password +
                                        "','" + item.FirstName + "','" + item.LastName + "','" + item.Address + "','" + item.District + "','" + item.City +
                                        "'," + item.Province + ",'" + item.ZipCode + "','" + item.Mobile + "','" + item.Email + "');";
+
+                DBHelper.Execute(strSQL, objConn);
+                errMsg = "Success!!";
+            }
+            catch (Exception e)
+            {
+                errMsg = e.Message;
+            }
+            objConn.Close();
+
+            return errMsg;
+        }
+
+        public int ForgotPassword(Members item)
+        {
+
+            MySqlConnection objConn = DBHelper.ConnectDb(ref errMsg);
+            int statusId = 0;
+
+            try
+            {
+                string strSQL = "";
+                strSQL = "\r\n SELECT * FROM member WHERE Email = '" + item.Email + "';";
+                DataTable dtCheckEmail = DBHelper.List(strSQL, objConn);
+                if (dtCheckEmail.Rows.Count > 0)
+                {
+                    string MemberLink = dtCheckEmail.Rows[0]["MemberLink"].ToString();
+
+                    var mail = new MailMessage("CaseiphoneCheaps@gmail.com", item.Email);
+
+                    string body = "กดที่ลิ้งค์นี้ : http://localhost:12345/#/resetpassword/" + MemberLink + "";
+                    mail.Subject = "ลืมรหัสผ่าน";
+                    mail.Body = body;
+                    mail.IsBodyHtml = false;
+                    var smtp = new SmtpClient();
+                    smtp.Host = "smtp.gmail.com";
+                    smtp.EnableSsl = true;
+                    smtp.UseDefaultCredentials = false;
+                    smtp.Credentials = new NetworkCredential("CaseiphoneCheaps@gmail.com", "caseiphoneaef");
+                    smtp.Port = 587;
+                    smtp.Send(mail);
+
+                    statusId = 1;
+                }
+                else
+                {
+                    statusId = 0;
+                }
+                errMsg = "Success!!";
+            }
+            catch (Exception e)
+            {
+                errMsg = e.Message;
+            }
+            objConn.Close();
+
+            return statusId;
+        }
+
+        public string ResetPassword(Members item)
+        {
+
+            MySqlConnection objConn = DBHelper.ConnectDb(ref errMsg);
+
+            try
+            {
+                string Password = Utilitys.Utilitys.HashPassword(item.Password);
+                string strSQL = "\r\n UPDATE member SET " +
+                    "\r\n Password='" + Password + "'" +
+                    "\r\n WHERE MemberLink='" + item.MemberLink + "';";
 
                 DBHelper.Execute(strSQL, objConn);
                 errMsg = "Success!!";

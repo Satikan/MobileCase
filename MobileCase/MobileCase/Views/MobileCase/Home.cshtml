@@ -10,7 +10,7 @@
         <div class="container">
             <div class="row">
                 <div class="text-center">
-                    <button class="button btn-default" style="margin-right: 5px;" ng-repeat="ProductGroups in ProductGroup" ng-click="selectProductGroup(ProductGroups.ProductGroupID)">
+                    <button class="button btn-default" style="margin-right: 5px;" ng-class="{'btn-info': ProductGroups.ProductGroupID == states.activeItem}" ng-repeat="ProductGroups in ProductGroup" ng-click="selectProductGroup(ProductGroups.ProductGroupID); states.activeItem=ProductGroups.ProductGroupID">
                         {{ProductGroups.ProductGroupName}}
                     </button>
                 </div>

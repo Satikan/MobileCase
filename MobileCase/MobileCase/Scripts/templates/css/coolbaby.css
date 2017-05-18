@@ -847,19 +847,24 @@ ul.sitemap.styled-list.circle ul ul li:before {
 	box-shadow: inset 0 1px 2px rgba(0,0,0,0.2)
 }
 /*buttons*/
-
 .btn {
-	/*padding: 3px 12px*/
+	padding: 3px 12px
 }
 .btn-group.open .dropdown-toggle, .btn.active, .btn:active {
 	-webkit-box-shadow: none;
 	box-shadow: none;
 	background-color: transparent
 }
-.btn:focus {
-	outline: none;
-	outline-offset: 0
-}
+    .btn:focus {
+        outline: none;
+	    outline-offset: 0
+    }
+    .btn.active, .btn:active {
+        background-image: none;
+        outline: 0;
+        -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+        box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125)
+    }
 .btn-default, .btn-cool, .filters-by-category li a {
 	background-color: #fff;
 	color: #000;
@@ -886,10 +891,6 @@ ul.sitemap.styled-list.circle ul ul li:before {
 	border-color: #c69c6d;
 	background-color: #c69c6d;
 	color: #fff !important
-}
-.btn-default:hover {
-	background-color: #fff;
-	text-decoration: none
 }
 .btn-cool:hover, .products-land .item .btn-cool:hover, .products-land .item .filters-by-category li a:hover, .filters-by-category li .products-land .item a:hover, .products-list .banner .btn-cool:hover, .products-list .banner .filters-by-category li a:hover, .filters-by-category li .products-list .banner a:hover, .products-land .item:hover .btn-cool:hover, .products-land .item:hover .filters-by-category li a:hover, .filters-by-category li .products-land .item:hover a:hover, .products-land .item:hover .invert .btn-cool:hover, .products-land .item:hover .invert .filters-by-category li a:hover, .filters-by-category li .products-land .item:hover .invert a:hover, .products-list .banner:hover .btn-cool:hover, .products-list .banner:hover .filters-by-category li a:hover, .filters-by-category li .products-list .banner:hover a:hover, .products-list .banner:hover .invert .btn-cool:hover, .products-list .banner:hover .invert .filters-by-category li a:hover, .filters-by-category li .products-list .banner:hover .invert a:hover, .filters-by-category li a:hover, .filters-by-category li a.selected {
 	border-color: #242424;
@@ -1982,7 +1983,7 @@ body.off-canvas-menu-open.notouch #outer-canvas {
 #outer-canvas:before {
 	background-color: #fff;
 	content: " ";
-	height: 100%;
+	/*height: 100%;*/
 	left: -100%;
 	position: absolute;
 	top: 0;

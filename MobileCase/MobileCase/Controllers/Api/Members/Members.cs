@@ -44,6 +44,20 @@ namespace MobileCase.Controllers
         }
 
         [HttpPost]
+        [ActionName("ForgotPassword")]
+        public int PostForgotPassword(Members item)
+        {
+            return repository.ForgotPassword(item);
+        }
+
+        [HttpPost]
+        [ActionName("ResetPassword")]
+        public string PostResetPassword(Members item)
+        {
+            return repository.ResetPassword(item);
+        }
+
+        [HttpPost]
         [ActionName("UpdateMember")]
         public string PostUpdateMember(Members item)
         {

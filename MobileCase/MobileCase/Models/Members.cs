@@ -10,11 +10,11 @@ namespace MobileCase.Models
     {
         public int MemberID { get; set; }
         public int MemberRoleID { get; set; }
+        public string MemberLink { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-
         public string Address { get; set; }
         public string District { get; set; }
         public string City { get; set; }

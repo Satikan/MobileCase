@@ -20,6 +20,16 @@ app.config(function ($stateProvider, $urlRouterProvider, $qProvider, $locationPr
             templateUrl: '/MobileCase/Register',
             controller: 'RegisterController'
         })
+        .state('/forgotpassword', {
+            url: '/forgotpassword',
+            templateUrl: '/MobileCase/ForgotPassword',
+            controller: 'LoginController'
+        })
+        .state('/resetpassword/:id', {
+            url: '/resetpassword/:id',
+            templateUrl: '/MobileCase/ResetPassword',
+            controller: 'LoginController'
+        })
         .state('/productgroup', {
             url: '/productgroup',
             templateUrl: '/MobileCase/ProductGroup',

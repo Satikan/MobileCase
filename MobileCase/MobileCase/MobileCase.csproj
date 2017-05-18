@@ -929,6 +929,8 @@
     <Content Include="Views\MobileCase\EditMember.cshtml" />
     <Content Include="Views\MobileCase\EditProfile.cshtml" />
     <Content Include="Views\MobileCase\ChangePassword.cshtml" />
+    <Content Include="Views\MobileCase\ForgotPassword.cshtml" />
+    <Content Include="Views\MobileCase\ResetPassword.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

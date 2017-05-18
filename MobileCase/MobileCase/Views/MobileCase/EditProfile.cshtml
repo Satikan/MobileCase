@@ -21,10 +21,10 @@
                                 <input type="text" class="form-control" id="lastname" name="lastname" ng-model="MemberByID.LastName" placeholder="นามสกุล" required>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" ng-class="{'has-error': FormEditMember.email.$invalid}">
                             <label for="email" class="col-sm-3 control-label">อีเมลล์</label>
                             <div class="col-sm-8">
-                                <input type="email" class="form-control" id="email" name="email" ng-model="MemberByID.Email" placeholder="อีเมลล์">
+                                <input type="email" class="form-control" id="email" name="email" ng-model="MemberByID.Email" placeholder="อีเมลล์" required>
                             </div>
                         </div>
                         <div class="form-group" ng-class="{'has-error': FormEditMember.mobile.$invalid}">
