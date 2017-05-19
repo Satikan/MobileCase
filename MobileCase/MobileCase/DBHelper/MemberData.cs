@@ -152,7 +152,7 @@ namespace MobileCase.DBHelper
 
                     var mail = new MailMessage("CaseiphoneCheaps@gmail.com", item.Email);
 
-                    string body = "กดที่ลิ้งค์นี้ : http://localhost:12345/#/resetpassword/" + MemberLink + "";
+                    string body = "กดที่ลิ้งค์นี้ : "+ System.Configuration.ConfigurationManager.AppSettings["UrlServer"] + "/#/resetpassword/" + MemberLink + "";
                     mail.Subject = "ลืมรหัสผ่าน";
                     mail.Body = body;
                     mail.IsBodyHtml = false;
