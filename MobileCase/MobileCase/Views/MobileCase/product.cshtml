@@ -11,29 +11,44 @@
                     เพิ่มสินค้า
                 </button>
                 <div class="divider divider-sm"></div>
-                <table class="table table-bordered">
-                    <tr>
-                        <th scope="col" width="80px" class="center">ลำดับที่</th>
-                        <th scope="col" class="center">รหัสสินค้า</th>
-                        <th scope="col" class="center">ประเภทสินค้า</th>
-                        <th scope="col" width="400px" class="center">ชื่อสินค้า</th>
-                        <th scope="col" class="center">จำนวนสินค้า</th>
-                        <th scope="col" class="center">ราคาสินค้า</th>
-                        <th scope="col" width="80px" class="center">แก้ไข</th>
-                        <th scope="col" width="80px" class="center">ลบ</th>
-                    </tr>
-                    <tr ng-repeat="Products in Product">
-                        <td class="center">{{$index + 1}}</td>
-                        <td>{{Products.ProductCode}}</td>
-                        <td>{{Products.ProductGroupName}}</td>
-                        <td>{{Products.ProductName}}</td>
-                        <td class="center">{{Products.ProductQuantity}}</td>
-                        <td class="center">{{Products.ProductPrice}}</td>
-                        <td class="center"><button type="button" class="btn btn-warning btn-xs" ng-click="PageEditProduct(Products.ProductID)"><span class="icon flaticon-pencil43"></span></button></td>
-                        <td class="center"><button type="button" class="btn btn-danger btn-xs" ng-click="DeleteProduct(Products.ProductID)"><span class="icon flaticon-recycle59"></span></button></td>
-                    </tr>
-                </table>
+                <div class="scrollbar">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th scope="col" width="80px" class="center">ลำดับที่</th>
+                            <th scope="col" class="center">รหัสสินค้า</th>
+                            <th scope="col" class="center">ประเภทสินค้า</th>
+                            <th scope="col" width="400px" class="center">ชื่อสินค้า</th>
+                            <th scope="col" class="center">จำนวนสินค้า</th>
+                            <th scope="col" class="center">ราคาสินค้า</th>
+                            <th scope="col" width="80px" class="center">แก้ไข</th>
+                            <th scope="col" width="80px" class="center">ลบ</th>
+                        </tr>
+                        <tr ng-repeat="Products in Product">
+                            <td class="center">{{$index + 1}}</td>
+                            <td>{{Products.ProductCode}}</td>
+                            <td>{{Products.ProductGroupName}}</td>
+                            <td>{{Products.ProductName}}</td>
+                            <td class="center">{{Products.ProductQuantity}}</td>
+                            <td class="center">{{Products.ProductPrice}}</td>
+                            <td class="center"><button type="button" class="btn btn-warning btn-xs" ng-click="PageEditProduct(Products.ProductID)"><span class="icon flaticon-pencil43"></span></button></td>
+                            <td class="center"><button type="button" class="btn btn-danger btn-xs" ng-click="DeleteProduct(Products.ProductID)"><span class="icon flaticon-recycle59"></span></button></td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
 </section>
+
+<style>
+    .scrollbar {
+        float: left;
+        height: 450px;
+        width: 100%;
+        background: #ffffff;
+        /*overflow: scroll;*/
+        overflow-x: hidden;
+        overflow-y: visible;
+        margin-bottom: 25px;
+    }
+</style>

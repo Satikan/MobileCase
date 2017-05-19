@@ -156,7 +156,7 @@ namespace MobileCase.DBHelper
                 {
                     var httpPostedFile = HttpContext.Current.Request.Files["file"];
                     bool folderExists = Directory.Exists(HttpContext.Current.Server.MapPath("~/ImageProduct/"));
-                    string newnamefile = "Product" + String.Format("{0:00000}", MaxID) + Path.GetExtension(httpPostedFile.FileName);
+                    string newnamefile = "Product" + String.Format("{0:00000}", MaxID) + "_" + DateTime.Now.ToString("yyyyMMddHHmm") + Path.GetExtension(httpPostedFile.FileName);
 
                     if (!folderExists)
                     {
@@ -248,7 +248,7 @@ namespace MobileCase.DBHelper
                 {
                     var httpPostedFile = HttpContext.Current.Request.Files["file"];
                     bool folderExists = Directory.Exists(HttpContext.Current.Server.MapPath("~/ImageProduct/"));
-                    string newnamefile = "Product" + String.Format("{0:00000}", item.ProductID) + Path.GetExtension(httpPostedFile.FileName);
+                    string newnamefile = "Product" + String.Format("{0:00000}", item.ProductID) + "_" + DateTime.Now.ToString("yyyyMMddHHmm") + Path.GetExtension(httpPostedFile.FileName);
 
                     if (!folderExists)
                     {
