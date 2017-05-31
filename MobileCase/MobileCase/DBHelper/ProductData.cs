@@ -55,13 +55,6 @@ namespace MobileCase.DBHelper
 
         public static Image ScaleImage(Image image, int maxWidth, int maxHeight)
         {
-            //var ratioX = (double)maxWidth / image.Width;
-            //var ratioY = (double)maxHeight / image.Height;
-            //var ratio = Math.Min(ratioX, ratioY);
-
-            //var newWidth = (int)(image.Width * ratio);
-            //var newHeight = (int)(image.Height * ratio);
-
             var newImage = new Bitmap(maxWidth, maxHeight);
 
             using (var graphics = Graphics.FromImage(newImage))
@@ -283,6 +276,7 @@ namespace MobileCase.DBHelper
                 item.ProductPrice = HttpContext.Current.Request.Unvalidated.Form["ProductPrice"] == null ? 0 : Convert.ToInt16(HttpContext.Current.Request.Unvalidated.Form["ProductPrice"]);
                 item.ProductName = HttpContext.Current.Request.Unvalidated.Form["ProductName"] == null ? item.ProductName : HttpContext.Current.Request.Unvalidated.Form["ProductName"];
                 item.ProductQuantity = HttpContext.Current.Request.Unvalidated.Form["ProductQuantity"] == null ? 0 : Convert.ToInt16(HttpContext.Current.Request.Unvalidated.Form["ProductQuantity"]);
+                item.ProductPicture = HttpContext.Current.Request.Unvalidated.Form["ProductPicture"] == null ? item.ProductPicture : HttpContext.Current.Request.Unvalidated.Form["ProductPicture"];
 
                 CultureInfo invC = System.Globalization.CultureInfo.InvariantCulture;
                 string pathImage = "ImageProduct/";
@@ -318,7 +312,7 @@ namespace MobileCase.DBHelper
                 }
                 else
                 {
-                    pathImage += "no_image_product.png";
+                    pathImage += item.ProductPicture;
                 }
 
                 string strSQL = "\r\n UPDATE product SET " +

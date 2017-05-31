@@ -49,33 +49,69 @@
     }
 
     $scope.EditProduct = function () {
-        Upload.upload({
-            url: 'api/Products/UpdateProduct',
-            data: {
-                ProductID: $scope.ProductByID.ProductID,
-                ProductGroupID: $scope.ProductByID.ProductGroupID,
-                ProductCode: $scope.ProductByID.ProductCode,
-                ProductName: $scope.ProductByID.ProductName,
-                ProductPrice: $scope.ProductByID.ProductPrice,
-                ProductQuantity: $scope.ProductByID.ProductQuantity,
-                file: $scope.picFile,
-            }
-        }).then(function (resp) {
-            swal({
-                title: 'ดําเนินการเรียบร้อย',
-                text: "ข้อมูลของคุณได้ทำการบันทึกเรียบร้อยแล้ว",
-                type: 'success',
-                showCancelButton: false,
-                allowOutsideClick: false,
-                confirmButtonColor: '#3085d6',
-                confirmButtonText: 'ตกลง'
-            }).then(function () {
-                window.location = "#/product";
-            })
-        }, function (resp) {
-        }, function (evt) {
-            var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-        });
+
+        var values = $scope.ProductByID.ProductPicture.split("/");
+        var valueProductPicture = values[1];
+
+        if ($scope.picFile == undefined) {
+            console.log(valueProductPicture)
+            Upload.upload({
+                url: 'api/Products/UpdateProduct',
+                data: {
+                    ProductID: $scope.ProductByID.ProductID,
+                    ProductGroupID: $scope.ProductByID.ProductGroupID,
+                    ProductCode: $scope.ProductByID.ProductCode,
+                    ProductName: $scope.ProductByID.ProductName,
+                    ProductPrice: $scope.ProductByID.ProductPrice,
+                    ProductQuantity: $scope.ProductByID.ProductQuantity,
+                    ProductPicture: valueProductPicture
+                }
+            }).then(function (resp) {
+                swal({
+                    title: 'ดําเนินการเรียบร้อย',
+                    text: "ข้อมูลของคุณได้ทำการบันทึกเรียบร้อยแล้ว",
+                    type: 'success',
+                    showCancelButton: false,
+                    allowOutsideClick: false,
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'ตกลง'
+                }).then(function () {
+                    window.location = "#/product";
+                })
+            }, function (resp) {
+            }, function (evt) {
+                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+            });
+        }
+        else {
+            Upload.upload({
+                url: 'api/Products/UpdateProduct',
+                data: {
+                    ProductID: $scope.ProductByID.ProductID,
+                    ProductGroupID: $scope.ProductByID.ProductGroupID,
+                    ProductCode: $scope.ProductByID.ProductCode,
+                    ProductName: $scope.ProductByID.ProductName,
+                    ProductPrice: $scope.ProductByID.ProductPrice,
+                    ProductQuantity: $scope.ProductByID.ProductQuantity,
+                    file: $scope.picFile,
+                }
+            }).then(function (resp) {
+                swal({
+                    title: 'ดําเนินการเรียบร้อย',
+                    text: "ข้อมูลของคุณได้ทำการบันทึกเรียบร้อยแล้ว",
+                    type: 'success',
+                    showCancelButton: false,
+                    allowOutsideClick: false,
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'ตกลง'
+                }).then(function () {
+                    window.location = "#/product";
+                })
+            }, function (resp) {
+            }, function (evt) {
+                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+            });
+        }
     }
 
     $scope.DeleteProduct = function (ProductID) {
