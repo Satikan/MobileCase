@@ -111,9 +111,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="ImageProduct\no_image_product.png" />
-    <Content Include="ImageProduct\Product00001.jpg" />
-    <Content Include="ImageProduct\Product00002.jpg" />
-    <Content Include="ImageProduct\Product00003.jpg" />
     <Content Include="Scripts\angular-lib\angular-animate.min.js" />
     <Content Include="Scripts\angular-lib\angular-message-format.min.js" />
     <Content Include="Scripts\angular-lib\angular-messages.min.js" />
@@ -122,6 +119,7 @@
     <Content Include="Scripts\angular-lib\angular-sanitize.min.js" />
     <Content Include="Scripts\angular-lib\angular-touch.min.js" />
     <Content Include="Scripts\angular-lib\angular.min.js" />
+    <Content Include="Scripts\angular-lib\angular-mocks.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\component\sha1\sha1.js" />
@@ -132,11 +130,9 @@
     <Content Include="Scripts\component\thbank-font\css\thbanklogos-colors.css" />
     <Content Include="Scripts\component\thbank-font\css\thbanklogos.css" />
     <Content Include="Scripts\component\thbank-font\css\thbanklogos.min.css" />
-    <None Include="Scripts\jquery-3.1.1.intellisense.js" />
-    <Content Include="Scripts\jquery-3.1.1.js" />
-    <Content Include="Scripts\jquery-3.1.1.min.js" />
-    <Content Include="Scripts\jquery-3.1.1.slim.js" />
-    <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\src\src\login.js" />
     <Content Include="Scripts\src\src\main.js" />
     <Content Include="Scripts\src\src\member.js" />
@@ -345,6 +341,7 @@
     <Content Include="Scripts\templates\images\products\productpage-img3-zoom.jpg" />
     <Content Include="Scripts\templates\images\products\productpage-img3.jpg" />
     <Content Include="Scripts\templates\images\sliders\case-mobile7.png" />
+    <Content Include="Scripts\templates\images\sliders\MobileCase.JPG" />
     <Content Include="Scripts\templates\images\sliders\slide1.png" />
     <Content Include="Scripts\templates\images\sliders\slide2.jpg" />
     <Content Include="Scripts\templates\js\bootstrap-select.js" />
@@ -440,7 +437,9 @@
     <Content Include="Scripts\templates\rs-plugin\js\jquery.themepunch.revolution.js" />
     <Content Include="Scripts\templates\rs-plugin\js\jquery.themepunch.revolution.min.js" />
     <Content Include="Scripts\templates\rs-plugin\Top Theme Studio.png" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\MobileCase\Home.cshtml" />
     <Content Include="Scripts\templates\css\Top Theme Studio.url" />
     <Content Include="Scripts\templates\fonts\flaticon\flaticon.eot" />
@@ -502,8 +501,7 @@
     <Content Include="Views\MobileCase\ChangePassword.cshtml" />
     <Content Include="Views\MobileCase\ForgotPassword.cshtml" />
     <Content Include="Views\MobileCase\ResetPassword.cshtml" />
-    <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.1.1.min.map" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

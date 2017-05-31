@@ -7,102 +7,102 @@ app.config(function ($stateProvider, $urlRouterProvider, $qProvider, $locationPr
     $stateProvider
         .state('/', {
             url: "/",
-            templateUrl: '/MobileCase/home',
+            templateUrl: '\MobileCase/home',
             controller: 'ProductController'
         })
         .state('/login', {
             url: '/login',
-            templateUrl: '/MobileCase/Login',
+            templateUrl: '\MobileCase/Login',
             controller: 'LoginController'
         })
         .state('/register', {
             url: '/register',
-            templateUrl: '/MobileCase/Register',
+            templateUrl: '\MobileCase/Register',
             controller: 'RegisterController'
         })
         .state('/forgotpassword', {
             url: '/forgotpassword',
-            templateUrl: '/MobileCase/ForgotPassword',
+            templateUrl: '\MobileCase/ForgotPassword',
             controller: 'LoginController'
         })
         .state('/resetpassword/:id', {
             url: '/resetpassword/:id',
-            templateUrl: '/MobileCase/ResetPassword',
+            templateUrl: '\MobileCase/ResetPassword',
             controller: 'LoginController'
         })
         .state('/productgroup', {
             url: '/productgroup',
-            templateUrl: '/MobileCase/ProductGroup',
+            templateUrl: '\MobileCase/ProductGroup',
             controller: 'ProductGroupController'
         })
         .state('/addproductgroup', {
             url: '/addproductgroup',
-            templateUrl: '/MobileCase/AddProductGroup',
+            templateUrl: '\MobileCase/AddProductGroup',
             controller: 'ProductGroupController'
         })
         .state('/editproductgroup/:id', {
             url: '/editproductgroup/:id',
-            templateUrl: '/MobileCase/EditProductGroup',
+            templateUrl: '\MobileCase/EditProductGroup',
             controller: 'ProductGroupController'
         })
         .state('/product', {
             url: '/product',
-            templateUrl: '/MobileCase/Product',
+            templateUrl: '\MobileCase/Product',
             controller: 'ProductController'
         })
         .state('/addproduct', {
             url: '/addproduct',
-            templateUrl: '/MobileCase/AddProduct',
+            templateUrl: '\MobileCase/AddProduct',
             controller: 'ProductController'
         })
         .state('/editproduct/:id', {
             url: '/editproduct/:id',
-            templateUrl: '/MobileCase/EditProduct',
+            templateUrl: '\MobileCase/EditProduct',
             controller: 'ProductController'
         })
         .state('/detailproduct/:id', {
             url: '/detailproduct/:id',
-            templateUrl: '/MobileCase/DetailProduct',
+            templateUrl: '\MobileCase/DetailProduct',
             controller: 'ProductController'
         })
         .state('/orderlist', {
             url: '/orderlist',
-            templateUrl: '/MobileCase/OrderList',
+            templateUrl: '\MobileCase/OrderList',
             controller: 'OrderController'
         })
         .state('/order', {
             url: '/order',
-            templateUrl: '/MobileCase/Order',
+            templateUrl: '\MobileCase/Order',
             controller: 'OrderController'
         })
         .state('/detailorder/:id', {
             url: '/detailorder/:id',
-            templateUrl: '/MobileCase/DetailOrder',
+            templateUrl: '\MobileCase/DetailOrder',
             controller: 'OrderController'
         })
         .state('/member', {
             url: '/member',
-            templateUrl: '/MobileCase/Member',
+            templateUrl: '\MobileCase/Member',
             controller: 'MemberController'
         })
         .state('/editmember/:id', {
             url: '/editmember/:id',
-            templateUrl: '/MobileCase/EditMember',
+            templateUrl: '\MobileCase/EditMember',
             controller: 'MemberController'
         })
         .state('/editprofile', {
             url: '/editprofile',
-            templateUrl: '/MobileCase/EditProfile',
+            templateUrl: '\MobileCase/EditProfile',
             controller: 'MemberController'
         })
         .state('/editpassword', {
             url: '/editpassword',
-            templateUrl: '/MobileCase/ChangePassword',
+            templateUrl: '\MobileCase/ChangePassword',
             controller: 'MemberController'
         })
         .state('/contact', {
             url: '/contact',
-            templateUrl: '/MobileCase/Contact',
+            templateUrl: '\MobileCase/Contact',
             controller: 'ContactController'
         })
 });

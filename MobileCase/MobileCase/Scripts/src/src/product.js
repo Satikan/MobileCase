@@ -1,4 +1,5 @@
-﻿app.controller('ProductController', ['$scope', '$http', '$stateParams', 'Upload', function ($scope, $http, $stateParams, Upload) {
+﻿app.controller('ProductController', ['$scope', '$rootScope', '$http', '$stateParams', 'Upload', '$state',
+    function ($scope, $rootScope, $http, $stateParams, Upload, $state) {
     $scope.quantity = 1;
 
     $http.get("api/Products/ListProductGroup").then(function (data) {
@@ -14,7 +15,6 @@
     $scope.GetDetailProduct = function () {
         $http.get("api/Products/ViewProduct/" + Number($stateParams.id)).then(function (data) {
             $scope.ProductByID = data.data.ProductByID[0];
-            console.log($scope.ProductByID);
         });
     }
 
@@ -116,12 +116,12 @@
         var saveorder = {
             "ProductID": $scope.ProductByID.ProductID,
             "ProductGroupID": $scope.ProductByID.ProductGroupID,
-            "ProductQuantity": ($scope.ProductByID.ProductQuantity - $scope.quantity),
+            //"ProductQuantity": ($scope.ProductByID.ProductQuantity - $scope.quantity),
             "MemberID": Number(localStorage.getItem("MemberID")),
             "Amount": $scope.quantity,
             "StatusID": 1
         }
-        console.log(saveorder);
+
         $http.post("api/Orders/InsertOrder", saveorder).then(function (data) {
             swal({
                 title: 'ดําเนินการเรียบร้อย',
@@ -132,6 +132,10 @@
                 confirmButtonColor: '#3085d6',
                 confirmButtonText: 'ตกลง'
             }).then(function () {
+                $http.get("api/Orders/ListOrder/" + Number(localStorage.getItem('MemberID'))).then(function (data) {
+                    $rootScope.NumberOrder = data.data.ListOrder.length;
+                    $state.transitionTo($state.current, $stateParams, { reload: true, inherit: false, notify: true });
+                });
                 window.location = "#/";
             })
         });

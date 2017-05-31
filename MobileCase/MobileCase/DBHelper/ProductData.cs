@@ -36,6 +36,40 @@ namespace MobileCase.DBHelper
     {
         string errMsg = "";
 
+        //public static Image ScaleImage(Image image, int maxWidth, int maxHeight)
+        //{
+        //    var ratioX = (double)maxWidth / image.Width;
+        //    var ratioY = (double)maxHeight / image.Height;
+        //    var ratio = Math.Min(ratioX, ratioY);
+
+        //    var newWidth = (int)(image.Width * ratio);
+        //    var newHeight = (int)(image.Height * ratio);
+
+        //    var newImage = new Bitmap(newWidth, newHeight);
+
+        //    using (var graphics = Graphics.FromImage(newImage))
+        //        graphics.DrawImage(image, 0, 0, newWidth, newHeight);
+
+        //    return newImage;
+        //}
+
+        public static Image ScaleImage(Image image, int maxWidth, int maxHeight)
+        {
+            //var ratioX = (double)maxWidth / image.Width;
+            //var ratioY = (double)maxHeight / image.Height;
+            //var ratio = Math.Min(ratioX, ratioY);
+
+            //var newWidth = (int)(image.Width * ratio);
+            //var newHeight = (int)(image.Height * ratio);
+
+            var newImage = new Bitmap(maxWidth, maxHeight);
+
+            using (var graphics = Graphics.FromImage(newImage))
+                graphics.DrawImage(image, 0, 0, maxWidth, maxHeight);
+
+            return newImage;
+        }
+
         public string InsertProductGroup(ProductsGroup item)
         {
             MySqlConnection objConn = DBHelper.ConnectDb(ref errMsg);
@@ -156,17 +190,25 @@ namespace MobileCase.DBHelper
                 {
                     var httpPostedFile = HttpContext.Current.Request.Files["file"];
                     bool folderExists = Directory.Exists(HttpContext.Current.Server.MapPath("~/ImageProduct/"));
-                    string newnamefile = "Product" + String.Format("{0:00000}", MaxID) + "_" + DateTime.Now.ToString("yyyyMMddHHmm") + Path.GetExtension(httpPostedFile.FileName);
+                    string namefile = "Product" + String.Format("{0:00000}", MaxID) + "_" + DateTime.Now.ToString("yyyyMMddHHmm") + Path.GetExtension(httpPostedFile.FileName);
+                    string newnamefile = "Product" + String.Format("{0:00000}", MaxID) + "_" + DateTime.Now.ToString("yyyyMMddHHmm") + "_n" + Path.GetExtension(httpPostedFile.FileName);
 
                     if (!folderExists)
                     {
                         Directory.CreateDirectory(HttpContext.Current.Server.MapPath("~/ImageProduct/"));
                     }
-                    var fileSavePath = Path.Combine(HttpContext.Current.Server.MapPath("~/ImageProduct/"), newnamefile);
+                    var fileSavePath = Path.Combine(HttpContext.Current.Server.MapPath("~/ImageProduct/"), namefile);
                     httpPostedFile.SaveAs(fileSavePath);
 
                     if (File.Exists(fileSavePath))
                     {
+                        using (var image = Image.FromFile(fileSavePath))
+                        using (var newImage = ScaleImage(image, 945, 1000))
+                        {
+                            var newImagePath = Path.Combine(HttpContext.Current.Server.MapPath("~/ImageProduct/"), newnamefile);
+
+                            newImage.Save(newImagePath, ImageFormat.Png);
+                        }
                         pathImage += newnamefile;
                     }
                     else
@@ -248,17 +290,25 @@ namespace MobileCase.DBHelper
                 {
                     var httpPostedFile = HttpContext.Current.Request.Files["file"];
                     bool folderExists = Directory.Exists(HttpContext.Current.Server.MapPath("~/ImageProduct/"));
-                    string newnamefile = "Product" + String.Format("{0:00000}", item.ProductID) + "_" + DateTime.Now.ToString("yyyyMMddHHmm") + Path.GetExtension(httpPostedFile.FileName);
+                    string namefile = "Product" + String.Format("{0:00000}", item.ProductID) + "_" + DateTime.Now.ToString("yyyyMMddHHmm") + Path.GetExtension(httpPostedFile.FileName);
+                    string newnamefile = "Product" + String.Format("{0:00000}", item.ProductID) + "_" + DateTime.Now.ToString("yyyyMMddHHmm") + "_n" + Path.GetExtension(httpPostedFile.FileName);
 
                     if (!folderExists)
                     {
                         Directory.CreateDirectory(HttpContext.Current.Server.MapPath("~/ImageProduct/"));
                     }
-                    var fileSavePath = Path.Combine(HttpContext.Current.Server.MapPath("~/ImageProduct/"), newnamefile);
+                    var fileSavePath = Path.Combine(HttpContext.Current.Server.MapPath("~/ImageProduct/"), namefile);
                     httpPostedFile.SaveAs(fileSavePath);
 
                     if (File.Exists(fileSavePath))
                     {
+                        using (var image = Image.FromFile(fileSavePath))
+                        using (var newImage = ScaleImage(image, 945, 1000))
+                        {
+                            var newImagePath = Path.Combine(HttpContext.Current.Server.MapPath("~/ImageProduct/"), newnamefile);
+
+                            newImage.Save(newImagePath, ImageFormat.Png);
+                        }
                         pathImage += newnamefile;
                     }
                     else
@@ -312,5 +362,6 @@ namespace MobileCase.DBHelper
             objConn.Close();
             return errMsg;
         }
+        
     }
 }

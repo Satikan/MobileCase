@@ -48,6 +48,34 @@
         </div>
     </div>
 
+    <!-- Off Canvas Menu -->
+    <div class="hidden">
+        <nav id="off-canvas-menu">
+            <span class="icon icon-xl flaticon-delete30" id="off-canvas-menu-close"></span>
+            <ul class="expander-list">
+                <li>
+                    <span class="name"><a href="" ng-click="gotoindex()">หน้าหลัก</a></span>
+                </li>
+                <li ng-show="permission == 1 || permission == 2">
+                    <span class="name"><span class="expander">-</span>ข้อมูลสินค้า</span> <ul>
+                        <li><span class="name"><a href="" ng-click="gotoproductgroup()">ข้อมูลประเภทสินค้า</a></span></li>
+                        <li><span class="name"><a href="" ng-click="gotoproduct()">ข้อมูลสินค้า</a></span></li>
+                    </ul>
+                </li>
+                <li ng-show="permission == 1 || permission == 2">
+                    <span class="name"><a href="" ng-click="gotoorder()">ข้อมูลการสั่งซื้อ</a></span>
+                </li>
+                <li ng-show="permission == 1 || permission == 2">
+                    <span class="name"><a href="" ng-click="gotomember()">ข้อมูลสมาชิก</a></span>
+                </li>
+                <li>
+                    <span class="name"><a href="" ng-click="gotocontact()">รายละเอียดการชำระเงิน</a></span>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <!-- //end Off Canvas Menu -->
+
     <div id="outer">
         <div id="outer-canvas">
             <!-- Navbar -->
@@ -59,7 +87,7 @@
                             <div class="col-sm-2 col-md-2 hidden-xs">
                                 @*<div class="title upper"><i class="icon flaticon-news"></i>ข่าวสาร</div>*@
                             </div>
-                            <div class="col-xs-8 col-sm-8 col-md-8 col-xs-push-1 col-sm-push-0">
+                            <div class="col-xs-7 col-sm-8 col-md-8 col-xs-push-1 col-sm-push-0">
                                 <div id="newsCarousel" class="slick-style1">
                                     <div class="item upper">
                                         <div class="marquee">
@@ -68,59 +96,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xs-2 col-sm-2 col-md-2 top-link pull-right" ng-show="$root.permission == 1 || $root.permission == 3">
-                                @*<div class="btn-outer btn-shopping-cart">
-                                    <a href="#drop-shopcart" class="btn btn-xs btn-default open-cart"
-                                       data-toggle="dropdown">
-                                        <span class="icon icon-md flaticon-shopping66"></span><span class="badge">3</span>
-                                    </a>
-                                    <div class="hidden">
-                                        <div id="drop-shopcart" class="shoppingcart-box">
-                                            <div class="title">รายการการสั่งซื้อ</div>
-                                            <div class=" hidden" id="liTemplate">
-                                                <div class="item  animate-delay fadeInRight">
-                                                    <div class="image"></div>
-                                                    <div class="description"> <span class="product-name"></span><strong class="price"></strong></div>
-                                                    <div class="buttons">
-                                                        <a href="#" class="icon icon-sm flaticon-write13"></a> <a href="#" class="icon icon-sm flaticon-recycle59 remove-from-cart"></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="list  animate-delay-outer">
-                                                <div class="item  animate-delay fadeInRight">
-                                                    <div class="image">
-                                                        <a href="product.html" class="preview-image">
-                                                            <img src="~/Scripts/templates/images/products/product-03.jpg" alt="">
-                                                        </a>
-                                                    </div>
-                                                    <div class="description">
-                                                        <a href="#">Mauris et ligula quis</a> <strong class="price">1 x $44.95</strong>
-                                                    </div>
-                                                    <div class="buttons">
-                                                        <a href="#" class="icon icon-sm flaticon-write13"></a> <a href="#" class="icon icon-sm flaticon-recycle59 remove-from-cart"></a>
-                                                    </div>
-                                                </div>
-                                                <div class="item animate-delay fadeInRight">
-                                                    <div class="image">
-                                                        <a href="product.html" class="preview-image">
-                                                            <img src="~/Scripts/templates/images/products/product-05.jpg" alt="">
-                                                        </a>
-                                                    </div>
-                                                    <div class="description">
-                                                        <a href="#">Mauris et ligula quis</a> <strong class="price">1 x $44.95</strong>
-                                                    </div>
-                                                    <div class="buttons">
-                                                        <a href="#" class="icon icon-sm flaticon-write13"></a> <a href="#" class="icon icon-sm flaticon-recycle59 remove-from-cart"></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="total">Total: <strong>$44.95</strong></div>
-                                            <div class="empty">Shopping cart is empty</div>
-                                            <a href="checkout.html" class="btn btn-cool">Proceed to Checkout</a>
-                                            <div class="view-link"><a href="shopping-cart.html">View shopping cart </a></div>
-                                        </div>
+                            <div class="col-xs-3 col-sm-2 col-md-2 top-link pull-right" ng-show="$root.permission == 1 || $root.permission == 3">
+                                <div class="btn-outer btn-shopping-cart" ng-init="GetListOrder()">
+                                        <a href="#/orderlist" class="btn btn-xs btn-default"
+                                           ng-hide="$root.NumberOrder == 0" ng-click="GetListOrder()">
+                                            <span class="icon icon-md flaticon-shopping66"></span><span class="badge">{{$root.NumberOrder}}</span>
+                                        </a>
                                     </div>
-                                </div>*@
                             </div>
                         </div>
                     </div>
@@ -155,13 +137,13 @@
                                         <div class="clearfix visible-xs"></div>
                                         <!-- Secondary menu -->
                                         @*<div class="top-link pull-right compact-visible">
-                                            <div class="btn-outer btn-shopping-cart" ng-show="permission == 1 || permission == 3">
-                                                <a href="#drop-shopcart" class="btn btn-xs btn-default open-cart"
-                                                   data-toggle="dropdown">
-                                                    <span class="icon icon-md flaticon-shopping66"></span><span class="badge">2</span>
-                                                </a>
-                                            </div>
-                                        </div>*@
+                                                <div class="btn-outer btn-shopping-cart" ng-show="permission == 1 || permission == 3">
+                                                    <a href="#drop-shopcart" class="btn btn-xs btn-default open-cart"
+                                                       data-toggle="dropdown">
+                                                        <span class="icon icon-md flaticon-shopping66"></span><span class="badge">2</span>
+                                                    </a>
+                                                </div>
+                                            </div>*@
                                     </div>
                                 </div>
                                 <div class="navbar-secondary-menu col-sm-7 col-md-4 compact-hidden">
@@ -228,7 +210,7 @@
             <ui-view autoscroll="false"></ui-view>
 
             <!-- Footer -->
-            <footer style="padding-top: 0px;">
+            @*<footer style="padding-top: 0px;">
                 <div id="footer-collapsed">
                     <div class="footer-navbar">
                         <div class="container">
@@ -248,7 +230,7 @@
                     </div>
                 </div>
             </footer>
-            <div id="outer-overlay"></div>
+            <div id="outer-overlay"></div>*@
             <!-- //end Footer -->
         </div>
     </div>
@@ -284,6 +266,7 @@
     <script src="~/Scripts/templates/js/jquery.isotope.min.js"></script>
     <script src="~/Scripts/templates/js/jquery.plugin.min.js"></script>
     <script src="~/Scripts/templates/js/jquery.countdown.min.js"></script>
+    <script src="~/Scripts/templates/js/cloudzoom.js"></script> 
     <script src="~/Scripts/templates/js/coolbaby.js"></script>
     <script src="~/Scripts/component/sha1/sha1.js"></script>
     <script src="~/Scripts/component/sweetAlert/sweetalert2.min.js"></script>

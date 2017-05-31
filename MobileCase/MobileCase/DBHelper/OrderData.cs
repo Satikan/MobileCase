@@ -61,16 +61,16 @@ namespace MobileCase.DBHelper
                             strSQL = "\r\n UPDATE orderproduct set Amount=" + (Convert.ToInt32(dtOrder.Rows[i]["Amount"].ToString()) + item.Amount) + ";";
                         }
                         DBHelper.Execute(strSQL, objConn);
-                        strSQL = "\r\n UPDATE product SET ProductQuantity=" + item.ProductQuantity + " WHERE ProductID=" + item.ProductID + ";";
-                        DBHelper.Execute(strSQL, objConn);
+                        //strSQL = "\r\n UPDATE product SET ProductQuantity=" + item.ProductQuantity + " WHERE ProductID=" + item.ProductID + ";";
+                        //DBHelper.Execute(strSQL, objConn);
                     }
                     else
                     {
                         strSQL = "\r\n INSERT INTO orderproduct(orderID, ProductID, ProductGroupID, MemberID, Amount, StatusID)";
                         strSQL += "\r\n value(" + MaxID + "," + item.ProductID + "," + item.ProductGroupID + "," + item.MemberID + "," + item.Amount + "," + item.StatusID + ");";
                         DBHelper.Execute(strSQL, objConn);
-                        strSQL = "\r\n UPDATE product SET ProductQuantity=" + item.ProductQuantity + " WHERE ProductID=" + item.ProductID + ";";
-                        DBHelper.Execute(strSQL, objConn);
+                        //strSQL = "\r\n UPDATE product SET ProductQuantity=" + item.ProductQuantity + " WHERE ProductID=" + item.ProductID + ";";
+                        //DBHelper.Execute(strSQL, objConn);
                     }
                 }
                 else {
@@ -84,16 +84,16 @@ namespace MobileCase.DBHelper
                             strSQL = "\r\n UPDATE orderproduct set Amount=" + (Convert.ToInt32(dtOrder.Rows[i]["Amount"].ToString()) + item.Amount) + ";";
                         }
                         DBHelper.Execute(strSQL, objConn);
-                        strSQL = "\r\n UPDATE product SET ProductQuantity=" + item.ProductQuantity + " WHERE ProductID=" + item.ProductID + ";";
-                        DBHelper.Execute(strSQL, objConn);
+                        //strSQL = "\r\n UPDATE product SET ProductQuantity=" + item.ProductQuantity + " WHERE ProductID=" + item.ProductID + ";";
+                        //DBHelper.Execute(strSQL, objConn);
                     }
                     else
                     {
                         strSQL = "\r\n INSERT INTO orderproduct(orderID, ProductID, ProductGroupID, MemberID, Amount, StatusID)";
                         strSQL += "\r\n value(" + MaxID + "," + item.ProductID + "," + item.ProductGroupID + "," + item.MemberID + "," + item.Amount + "," + item.StatusID + ");";
                         DBHelper.Execute(strSQL, objConn);
-                        strSQL = "\r\n UPDATE product SET ProductQuantity=" + item.ProductQuantity + " WHERE ProductID=" + item.ProductID + ";";
-                        DBHelper.Execute(strSQL, objConn);
+                        //strSQL = "\r\n UPDATE product SET ProductQuantity=" + item.ProductQuantity + " WHERE ProductID=" + item.ProductID + ";";
+                        //DBHelper.Execute(strSQL, objConn);
                     }
                 }
                 
@@ -112,7 +112,7 @@ namespace MobileCase.DBHelper
 
             MySqlConnection objConn = DBHelper.ConnectDb(ref errMsg);
             DataSet ds = new DataSet();
-            string strSQL = "\r\n SELECT op.OrderID, p.ProductID, p.ProductCode, p.ProductName, p.ProductPrice, op.Amount, s.StatusID, s.StatusName, m.MemberID, CONCAT(m.FirstName, ' ', m.LastName) AS FullName FROM orderproduct op "
+            string strSQL = "\r\n SELECT op.OrderID, p.ProductID, p.ProductCode, p.ProductName, p.ProductPrice, p.ProductPicture, op.Amount, s.StatusID, s.StatusName, m.MemberID, CONCAT(m.FirstName, ' ', m.LastName) AS FullName FROM orderproduct op "
                 + "\r\n INNER JOIN member m ON op.MemberID = m.MemberID "
                 + "\r\n INNER JOIN product p ON op.ProductID = p.ProductID "
                 + "\r\n INNER JOIN productgroup pg ON op.ProductGroupID = pg.ProductGroupID "

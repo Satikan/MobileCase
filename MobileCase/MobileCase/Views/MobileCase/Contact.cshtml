@@ -10,31 +10,47 @@
                     <div class="rect">
                         <h5>ติดต่อเรา</h5>
                         <div class="divider-sm"></div>
-                        <ul class="menu menu-icon">
-                            <li><span class="icon"><strong>Line</strong></span> : &nbsp;{{line}}</li>
-                            <li><span class="icon flaticon-facebook12"></span><a ng-href="https://{{facebook}}"> : &nbsp;{{facebook}}</a></li>
-                            <li><span class="icon flaticon-instagram"></span> : &nbsp;{{instagram}}</li>
-                            <li><span class="icon flaticon-phone16"></span> : &nbsp;{{mobile}}</li>
-                        </ul>
-                        </div>
+                        @*<ul class="menu menu-icon">
+                                <li><span class="icon"><strong>Line</strong></span> : &nbsp;{{line}}</li>
+                                <li><span class="icon flaticon-facebook12"></span><a ng-href="https://{{facebook}}"> : &nbsp;{{facebook}}</a></li>
+                                <li><span class="icon flaticon-instagram"></span> : &nbsp;{{instagram}}</li>
+                                <li><span class="icon flaticon-phone16"></span> : &nbsp;{{mobile}}</li>
+                            </ul>*@
+                        <table border="0">
+                            <tr>
+                                <td class="center"><span class="icon"><strong>Line</strong></span></td>
+                                <td> &nbsp;&nbsp;: &nbsp;{{line}}</td>
+                            </tr>
+                            <tr>
+                                <td class="center"><span class="icon flaticon-facebook12"></span></td>
+                                <td><a ng-href="https://{{facebook}}"> &nbsp;&nbsp;: &nbsp;{{facebook}}</a></td>
+                            </tr>
+                            <tr>
+                                <td class="center"><span class="icon flaticon-instagram"></span></td>
+                                <td> &nbsp;&nbsp;: &nbsp;{{instagram}}</td>
+                            </tr>
+                            <tr>
+                                <td class="center"><span class="icon flaticon-phone16"></span></td>
+                                <td> &nbsp;&nbsp;: &nbsp;{{mobile}}</td>
+                            </tr>
+                        </table>
                     </div>
+                </div>
                 <div class="col-md-5">
                     <div class="rect">
                         <h5>ช่องทางชำระเงิน</h5>
                         <div class="divider-sm"></div>
                         <center>
-                            <ul class="menu menu-icon">
-                                <li><span class="icon thbanks thbanks-kbank" style="color:white;" aria-hidden="true"></span>744-2-80141-4</li>
-                                <li><span class="icon thbanks thbanks-scb" style="color:white;" aria-hidden="true"></span><label>405-3-37754-9</label></li>
-                                <li><span class="icon thbanks thbanks-bbl" style="color:white;" aria-hidden="true"></span><label>928-0-25258-7</label></li>
-                                <li><span class="icon thbanks thbanks-tmb" style="color:white;" aria-hidden="true"></span><label>022-2-60527-1</label></li>
-                                <li><span class="icon thbanks thbanks-bay" style="color:white;" aria-hidden="true"></span><label>499-1-66209-5</label></li>
-                                <li><span class="icon thbanks thbanks-ktb" style="color:white;" aria-hidden="true"></span><label>570-0-22357-0</label></li>
-                                <li><span class="icon thbanks thbanks-gsb" style="color:white;" aria-hidden="true"></span><label>0200-9755092-3</label></li>
-                            </ul>
+                            <span class="thbanks thbanks-kbank" aria-hidden="true"></span><label style="padding-left:1em">744-2-80141-4</label><br />
+                            <span class="thbanks thbanks-scb" aria-hidden="true"></span><label style="padding-left:1em">405-3-37754-9</label><br />
+                            <span class="thbanks thbanks-bbl" aria-hidden="true"></span><label style="padding-left:1em">928-0-25258-7</label><br />
+                            <span class="thbanks thbanks-tmb" aria-hidden="true"></span><label style="padding-left:1em">022-2-60527-1</label><br />
+                            <span class="thbanks thbanks-bay" aria-hidden="true"></span><label style="padding-left:1em">499-1-66209-5</label><br />
+                            <span class="thbanks thbanks-ktb" aria-hidden="true"></span><label style="padding-left:1em">570-0-22357-0</label><br />
+                            <span class="thbanks thbanks-gsb" aria-hidden="true"></span><label style="padding-left:1em">0200-9755092-3</label>
                         </center>
-                            <center><h6><strong>ชื่อบัญชี : นางสาวอธิชา นวลปาน</strong></h6></center>
-</div>
+                        <center><h6><strong>ชื่อบัญชี : นางสาวอธิชา นวลปาน</strong></h6></center>
+                    </div>
                 </div>
                 <div class="col-md-3">
                     <div class="rect">
@@ -47,25 +63,15 @@
                                 ตัดยอด 21.00 น. คืนก่อนส่ง
                             </h6>
                         </center>
-</div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    @*<div class="row">
-        <div class="col-sm-4 col-md-4 col-lg-4"></div>
-        <div class="col-sm-4 col-md-4 col-lg-4">
-            <div class="col-md-2"></div>
-            <div class="col-md-10">
-                <ul class="menu menu-icon">
-                    <li><span class="icon"><strong>Line</strong></span> : &nbsp;{{line}}</li>
-                    <li><span class="icon flaticon-facebook12"></span><a ng-href="https://{{facebook}}"> : &nbsp;{{facebook}}</a></li>
-                    <li><span class="icon flaticon-instagram"></span> : &nbsp;{{instagram}}</li>
-                    <li><span class="icon flaticon-phone16"></span> : &nbsp;{{mobile}}</li>
-                </ul>
-            </div>
-        </div>
-        <div class="col-sm-4 col-md-4 col-lg-4"></div>
-    </div>*@
 </section>
-<!-- //end Page Content --> 
+<!-- //end Page Content -->
+<style>
+    .borderless td, .borderless th {
+        border: none;
+    }
+</style>

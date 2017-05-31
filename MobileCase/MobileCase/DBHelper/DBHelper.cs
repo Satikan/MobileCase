@@ -13,6 +13,9 @@ namespace MobileCase.DBHelper
         private static string szDbUser = "root";
         private static string szDbPassword = "root";
 
+        //private static string szDbUser = "caseiphone";
+        //private static string szDbPassword = "c@se_iph0ne";
+
         public static MySqlConnection ConnectDb(ref string errMsg)
         {
             // string connStrFmt = "Data Source={0}; Initial Catalog={1};User ID={2}; Password={3}";

@@ -1,4 +1,44 @@
 ﻿<!--Page Content-->
+@*<section class="content" ng-init="GetListOrder()">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="subtitle">
+                        <div><span style="line-height:26px;">รายการสั่งซื้อ</span></div>
+                    </div>
+                    <h6 class="right" style="margin-top: 15px;"><strong>สถานะ :</strong> {{StatusOrder}}</h6>
+                    <div class="divider-sm"></div>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th scope="col" width="70px" class="center">ลำดับที่</th>
+                            <th scope="col" class="center">รหัสสินค้า</th>
+                            <th scope="col" width="400px" class="center">ชื่อสินค้า</th>
+                            <th scope="col" class="center">จำนวนสินค้า</th>
+                            <th scope="col" class="right">ราคาสินค้า</th>
+                            <th scope="col" width="150px" class="right">รวม</th>
+                            <th scope="col" width="80px" class="center" ng-hide="ListOrders.StatusID == 2">ลบ</th>
+                        </tr>
+                        <tr ng-repeat="ListOrders in ListOrder">
+                            <td class="center">{{$index + 1}}</td>
+                            <td>{{ListOrders.ProductCode}}</td>
+                            <td>{{ListOrders.ProductName}}</td>
+                            <td class="center">
+                                {{ListOrders.Amount}}
+                            </td>
+                            <td align="right">{{ListOrders.ProductPrice}}</td>
+                            <td align="right">{{ListOrders.Amount * ListOrders.ProductPrice}}</td>
+                            <td class="center"><button type="button" ng-hide="ListOrders.StatusID == 2" class="btn btn-danger btn-xs" ng-click="DeleteOrder(ListOrders.OrderID, ListOrders.ProductID, ListOrders.Amount)"><span class="icon flaticon-recycle59"></span></button></td>
+                        </tr>
+                        <tr>
+                            <td align="right" colspan="5"><b>รวมทั้งหมด</b></td>
+                            <td align="right">{{ getTotal() }}</td>
+                            <td align="left"><b>บาท</b></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>*@
 <section class="content" ng-init="GetListOrder()">
     <div class="container">
         <div class="row">
@@ -9,30 +49,17 @@
                 <h6 class="right" style="margin-top: 15px;"><strong>สถานะ :</strong> {{StatusOrder}}</h6>
                 <div class="divider-sm"></div>
                 <table class="table table-bordered">
-                    <tr>
-                        <th scope="col" width="70px" class="center">ลำดับที่</th>
-                        <th scope="col" class="center">รหัสสินค้า</th>
-                        <th scope="col" width="400px" class="center">ชื่อสินค้า</th>
-                        <th scope="col" class="center">จำนวนสินค้า</th>
-                        <th scope="col" class="right">ราคาสินค้า</th>
-                        <th scope="col" width="150px" class="right">รวม</th>
-                        <th scope="col" width="80px" class="center" ng-hide="ListOrders.StatusID == 2">ลบ</th>
-                    </tr>
                     <tr ng-repeat="ListOrders in ListOrder">
-                        <td class="center">{{$index + 1}}</td>
-                        <td>{{ListOrders.ProductCode}}</td>
-                        <td>{{ListOrders.ProductName}}</td>
-                        <td class="center">
-                            {{ListOrders.Amount}}
+                        <td width="75px" class="center"><img ng-src="~/{{ListOrders.ProductPicture}}" width="60" height="60" alt=""></td>
+                        <td><a href="#">{{ListOrders.ProductName}}<br></a> <strong class="price">{{ListOrders.Amount}} x {{ListOrders.ProductPrice}}฿</strong></td>
+                        <td width="60px" class="center">
+                            <button type="button" ng-hide="ListOrders.StatusID == 2" class="btn btn-danger btn-xs" ng-click="DeleteOrder(ListOrders.OrderID, ListOrders.ProductID, ListOrders.Amount)" style="padding-top:0px;padding-right:5px;padding-bottom:0px;padding-left:5px;">
+                                <span class="icon flaticon-recycle59"></span>
+                            </button>
                         </td>
-                        <td align="right">{{ListOrders.ProductPrice}}</td>
-                        <td align="right">{{ListOrders.Amount * ListOrders.ProductPrice}}</td>
-                        <td class="center"><button type="button" ng-hide="ListOrders.StatusID == 2" class="btn btn-danger btn-xs" ng-click="DeleteOrder(ListOrders.OrderID, ListOrders.ProductID, ListOrders.Amount)"><span class="icon flaticon-recycle59"></span></button></td>
                     </tr>
                     <tr>
-                        <td align="right" colspan="5"><b>รวมทั้งหมด</b></td>
-                        <td align="right">{{ getTotal() }}</td>
-                        <td align="left"><b>บาท</b></td>
+                        <td align="right" colspan="3"><b>รวมทั้งหมด : </b>{{ getTotal() }}</td>
                     </tr>
                 </table>
             </div>

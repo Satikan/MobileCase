@@ -6,6 +6,7 @@
                 <div class="subtitle">
                     <div><span>ข้อมูลสินค้า</span></div>
                 </div>
+                <input type="text" class="form-control pull-left" style="width:250px;" ng-model="search" placeholder="ค้นหา...">
                 <button type="button" class="btn btn-primary pull-right" onclick="parent.location='#/addproduct'">
                     <span class="icon flaticon-write13"></span>
                     เพิ่มสินค้า
@@ -23,7 +24,7 @@
                             <th scope="col" width="80px" class="center">แก้ไข</th>
                             <th scope="col" width="80px" class="center">ลบ</th>
                         </tr>
-                        <tr ng-repeat="Products in Product">
+                        <tr ng-repeat="Products in Product | filter:search">
                             <td class="center">{{$index + 1}}</td>
                             <td>{{Products.ProductCode}}</td>
                             <td>{{Products.ProductGroupName}}</td>

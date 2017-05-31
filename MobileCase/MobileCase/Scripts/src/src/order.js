@@ -1,7 +1,8 @@
-﻿app.controller('OrderController', ['$scope', '$http', '$stateParams', function ($scope, $http, $stateParams) {
+﻿app.controller('OrderController', ['$scope', '$rootScope', '$http', '$stateParams', '$state', function ($scope, $rootScope, $http, $stateParams, $state) {
     $scope.GetListOrder = function () {
         $http.get("api/Orders/ListOrder/" + Number(localStorage.getItem('MemberID'))).then(function (data) {
             $scope.ListOrder = data.data.ListOrder;
+            $rootScope.NumberOrder = data.data.ListOrder.length;
             $scope.StatusOrder = data.data.ListOrder[0].StatusName;
         });
     }
@@ -64,6 +65,19 @@
             });
         })
     }
+
+    //$scope.DeleteOrder = function (OrderID, ProductID, Amount) {
+    //    var deleteorder = {
+    //        "OrderID": OrderID,
+    //        "ProductID": ProductID,
+    //        "Amount": Amount
+    //    }
+
+    //    $http.post("api/Orders/DeletedOrder", deleteorder).then(function (data) {
+    //        $state.transitionTo($state.current, $stateParams, { reload: true, inherit: false, notify: true });
+    //        $scope.GetListOrder();
+    //    });
+    //}
 
     $scope.GetOrderFromMember = function () {
         $http.get("api/Orders/OrderFromMember").then(function (data) {
