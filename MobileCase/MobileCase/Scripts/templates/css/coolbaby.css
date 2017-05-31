@@ -418,7 +418,7 @@ label {
 
 .content {
     padding-top: 35px;
-    padding-bottom: 20px
+    /*padding-bottom: 20px*/
 }
 /*Dropdowns*/
 
@@ -4275,7 +4275,7 @@ table.table-total {
 
 .images-gallery {
     overflow: hidden;
-    margin-bottom: 45px
+    margin-bottom: 5px
 }
 
     .images-gallery .images-nospace .image-thumbnail {

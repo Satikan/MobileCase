@@ -46,9 +46,9 @@
                 <div class="subtitle">
                     <div><span style="line-height:26px;">รายการสั่งซื้อ</span></div>
                 </div>
-                <h6 class="right" style="margin-top: 15px;"><strong>สถานะ :</strong> {{StatusOrder}}</h6>
+                <h6 class="right" style="margin-top: 15px;" ng-hide="$root.NumberOrder == 0"><strong>สถานะ :</strong> {{StatusOrder}}</h6>
                 <div class="divider-sm"></div>
-                <table class="table table-bordered">
+                <table class="table table-bordered" ng-hide="$root.NumberOrder == 0">
                     <tr ng-repeat="ListOrders in ListOrder">
                         <td width="75px" class="center"><img ng-src="~/{{ListOrders.ProductPicture}}" width="60" height="60" alt=""></td>
                         <td><a href="#">{{ListOrders.ProductName}}<br></a> <strong class="price">{{ListOrders.Amount}} x {{ListOrders.ProductPrice}}฿</strong></td>

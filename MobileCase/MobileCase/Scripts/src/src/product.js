@@ -1,5 +1,6 @@
 ﻿app.controller('ProductController', ['$scope', '$rootScope', '$http', '$stateParams', 'Upload', '$state',
     function ($scope, $rootScope, $http, $stateParams, Upload, $state) {
+    $rootScope.permission = localStorage.getItem('Permission');
     $scope.quantity = 1;
 
     $http.get("api/Products/ListProductGroup").then(function (data) {

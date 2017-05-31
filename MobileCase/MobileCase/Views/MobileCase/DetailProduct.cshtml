@@ -1,14 +1,14 @@
-﻿<section class="content" ng-init="GetDetailProduct()">
+﻿<section class="content" ng-init="GetDetailProduct()" style="padding-bottom: 20px">
     <div class="container">
         <div class="product-view row">
             <div class="col-sm-6 col-md-6 col-lg-6">
-                <center><img class="cloudzoom" src="~/{{ProductByID.ProductPicture}}" width="100%" alt="" /></center>
+                <center><img src="~/{{ProductByID.ProductPicture}}" width="100%" alt="" /></center>
             </div>
             <div class="clearfix visible-xs"></div>
             <div class="col-sm-6 col-md-6 col-lg-6">
                 <br />
                 <h2><strong>{{ProductByID.ProductName}}</strong></h2>
-                <h3><strong>ราคา :</strong> {{ProductByID.ProductPrice}} บาท</h3>
+                <h3 ng-show="permission == 1 || permission == 2 || permission == 3"><strong>ราคา :</strong> {{ProductByID.ProductPrice}} บาท</h3>
                 <p><span><strong>รหัสสินค้า : </strong></span> <span>{{ProductByID.ProductCode}}</span></p>
                 <p><span><strong>ใช้งานกับรุ่น : </strong></span> <span>{{ProductByID.ProductGroupName}}</span></p>
                 <p><span><strong>จำนวนคงเหลือ : </strong></span> <span>{{ProductByID.ProductQuantity}} ชิ้น</span></p>
