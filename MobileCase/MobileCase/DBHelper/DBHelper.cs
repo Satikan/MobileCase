@@ -10,11 +10,11 @@ namespace MobileCase.DBHelper
 {
     public class DBHelper
     {
-        //private static string szDbUser = "root";
-        //private static string szDbPassword = "root";
+        private static string szDbUser = "root";
+        private static string szDbPassword = "root";
 
-        private static string szDbUser = "caseiphone";
-        private static string szDbPassword = "c@se_iph0ne";
+        //private static string szDbUser = "caseiphone";
+        //private static string szDbPassword = "c@se_iph0ne";
 
         public static MySqlConnection ConnectDb(ref string errMsg)
         {

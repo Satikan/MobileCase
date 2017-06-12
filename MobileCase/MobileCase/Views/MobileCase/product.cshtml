@@ -24,7 +24,7 @@
                             <th scope="col" width="80px" class="center">แก้ไข</th>
                             <th scope="col" width="80px" class="center">ลบ</th>
                         </tr>
-                        <tr ng-repeat="Products in Product | filter:search">
+                        <tr ng-repeat="Products in Product | filter : search || undefined && search:true">
                             <td class="center">{{$index + 1}}</td>
                             <td>{{Products.ProductCode}}</td>
                             <td>{{Products.ProductGroupName}}</td>

@@ -1,36 +1,4 @@
 ﻿
-@*<img src="~/Scripts/templates/images/sliders/MobileCase.jpg" style="width:100%;" alt="">*@
-
-<!--Gallery-->
-@*<div class="container" ng-init="GetProduct()">
-    <section class="content">
-        <div class="subtitle">
-            <div><span>Product</span></div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="text-center">
-                    <button class="button btn-default" style="margin-right: 5px;" ng-class="{'btn-info': ProductGroups.ProductGroupID == states.activeItem}" ng-repeat="ProductGroups in ProductGroup" ng-click="selectProductGroup(ProductGroups.ProductGroupID); states.activeItem=ProductGroups.ProductGroupID">
-                        {{ProductGroups.ProductGroupName}}
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div class="blog-posts">
-            <div class="blog-post category1" ng-repeat="Products in Product | filter:{ ProductGroupID: filterByProductGroupID }">
-                <a href="#/detailproduct/{{Products.ProductID}}">
-                    <img ng-src="~/{{Products.ProductPicture}}" width="250" height="200" alt=""> 
-                    <center>
-                        <h4>{{Products.ProductName}}</h4>
-                        <h6>{{Products.ProductGroupName}}</h6>
-                        <h6>จำนวนคงเหลือ : {{Products.ProductQuantity}} ชิ้น</h6>
-                        <h6>ราคา : {{Products.ProductPrice}} บาท</h6>
-                    </center>
-                </a>
-            </div>
-        </div>
-    </section>
-</div>*@
 <!--Gallery-->
 <section class="content" ng-init="GetProduct()">
     @*<div class="container">
@@ -50,8 +18,8 @@
     <div class="images-gallery five-columns">
         <div class="images-nospace">
             <div class="image-thumbnail" ng-repeat="Products in Product | filter:{ ProductGroupID: filterByProductGroupID }">
-                <a href="#/detailproduct/{{Products.ProductID}}" class="gallery-group">
-                    <img ng-src="~/{{Products.ProductPicture}}" alt="">
+                <a href="#/detailproduct/{{Products.ProductID}}" ng-show="Products.ProductGroupID == filterByProductGroupID" class="gallery-group">
+                    <img ng-src="~/{{Products.ProductPicture}}" onerror="this.src = '\ImageProduct/no_image_product.png'" alt="">
                 </a>
             </div>
         </div>

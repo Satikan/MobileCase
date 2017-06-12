@@ -196,7 +196,7 @@ namespace MobileCase.DBHelper
                     if (File.Exists(fileSavePath))
                     {
                         using (var image = Image.FromFile(fileSavePath))
-                        using (var newImage = ScaleImage(image, 945, 1000))
+                        using (var newImage = ScaleImage(image, 250, 250))
                         {
                             var newImagePath = Path.Combine(HttpContext.Current.Server.MapPath("~/ImageProduct/"), newnamefile);
 
@@ -297,7 +297,7 @@ namespace MobileCase.DBHelper
                     if (File.Exists(fileSavePath))
                     {
                         using (var image = Image.FromFile(fileSavePath))
-                        using (var newImage = ScaleImage(image, 945, 1000))
+                        using (var newImage = ScaleImage(image, 250, 250))
                         {
                             var newImagePath = Path.Combine(HttpContext.Current.Server.MapPath("~/ImageProduct/"), newnamefile);
 
