@@ -3,7 +3,7 @@
         <div class="product-view row">
             <div class="col-sm-1 col-md-1 col-lg-1"></div>
             <div class="col-sm-4 col-md-4 col-lg-4">
-                <center><img src="~/{{ProductByID.ProductPicture}}" width="100%" alt="" /></center>
+                <center><img src="~/{{ProductByID.ProductPicture}}" width="100%" alt="" onerror="this.src = '\ImageProduct/no_image_product.png'"/></center>
             </div>
             <div class="col-sm-1 col-md-1 col-lg-1"></div>
             <div class="clearfix visible-xs"></div>
@@ -12,23 +12,28 @@
                 <h2><strong>{{ProductByID.ProductName}}</strong></h2>
                 <h3 ng-show="permission == 1 || permission == 2 || permission == 3"><strong>ราคา :</strong> {{ProductByID.ProductPrice}} บาท</h3>
                 <p><span><strong>รหัสสินค้า : </strong></span> <span>{{ProductByID.ProductCode}}</span></p>
-                <p><span><strong>ใช้งานกับรุ่น : </strong></span> <span>{{ProductByID.ProductGroupName}}</span></p>
-                <p><span><strong>จำนวนคงเหลือ : </strong></span> <span>{{ProductByID.ProductQuantity}} ชิ้น</span></p>
-                <div class="divider divider-sm"></div>
-                <div class="line-divider"></div>
-                <div class="divider divider-sm"></div>
-                <form ng-show="permission == 1 || permission == 3" name="FormSaveOrder" ng-submit="SaveOrder()">
+                <form ng-show="permission == 1 || permission == 2 || permission == 3" name="FormSaveOrder" ng-submit="SaveOrder()">
                     <div class="form-inputs">
-                        <label><strong>จำนวน : </strong></label>&nbsp;&nbsp;
-                        <button type="button" class="btn btn-danger btn-xs" ng-click="quantity = quantity - 1" ng-disabled="quantity == 1">
-                            <i class="fa fa-minus" aria-hidden="true"></i>
-                        </button>
-                        <input type="number" class="form-control input-quantity" min="1" max="{{ProductByID.ProductQuantity}}" ng-model="quantity">
-                        <button type="button" class="btn btn-success btn-xs" ng-click="quantity = quantity + 1" ng-disabled="quantity == ProductByID.ProductQuantity">
-                            <i class="fa fa-plus" aria-hidden="true"></i>
-                        </button>
-                        <div class="divider divider-sm"></div>
-                        <button class="btn btn-cool btn-lg" type="submit" style="width:150px;" ng-disabled="ProductByID.ProductQuantity == 0 || FormSaveOrder.$invalid"><i class="icon flaticon-shopping66"></i>  สั่งซื้อ</button>
+                        <div ng-show="ViewMangeProductGroups.ProductQuantity != 0" ng-repeat="ViewMangeProductGroups in ViewMangeProductGroup">
+                            <p><span><strong>ใช้งานกับรุ่น : </strong></span> <span>{{ViewMangeProductGroups.ProductGroupName}}</span></p>
+                            <p><span><strong>จำนวนคงเหลือ : </strong></span> <span>{{ViewMangeProductGroups.ProductQuantity}} ชิ้น</span></p>
+                            <label ng-hide="permission == 2"><strong>จำนวน : </strong></label>&nbsp;&nbsp;
+                            <button type="button" class="btn btn-danger btn-xs" ng-hide="permission == 2" ng-click="ViewMangeProductGroups.Amount = ViewMangeProductGroups.Amount - 1" ng-disabled="ViewMangeProductGroups.Amount == 0">
+                                <i class="fa fa-minus" aria-hidden="true"></i>
+                            </button>
+                            <input type="number" class="form-control input-quantity" min="0" max="{{ProductByID.ProductQuantity}}" ng-hide="permission == 2" ng-model="ViewMangeProductGroups.Amount">
+                            <button type="button" class="btn btn-success btn-xs" ng-hide="permission == 2" ng-click="ViewMangeProductGroups.Amount = ViewMangeProductGroups.Amount + 1" ng-disabled="ViewMangeProductGroups.Amount == ViewMangeProductGroups.ProductQuantity">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                            </button>
+                            <div class="divider divider-sm"></div>
+                            <div class="line-divider"></div>
+                            <div class="divider divider-sm"></div>
+                        </div>
+                        @*<div class="divider divider-sm"></div>
+                        <div class="line-divider"></div>
+                        <div class="divider divider-sm"></div>*@
+                        @*<div class="divider divider-sm"></div>*@
+                        <button class="btn btn-cool btn-lg" type="submit" style="width:150px;" ng-hide="permission == 2" ng-disabled="ProductByID.ProductQuantity == 0 || FormSaveOrder.$invalid"><i class="icon flaticon-shopping66"></i>  สั่งซื้อ</button>
                     </div>
                 </form>
             </div>

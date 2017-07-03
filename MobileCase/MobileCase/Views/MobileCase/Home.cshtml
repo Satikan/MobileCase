@@ -6,7 +6,7 @@
             <div><span>Product</span></div>
         </div>
     </div>*@
-    <div class="container">
+    @*<div class="container">
         <div class="row">
             <div class="text-center">
                 <button class="button btn-default" style="margin-right: 5px;" ng-class="{'btn-info': ProductGroups.ProductGroupID == states.activeItem}" ng-repeat="ProductGroups in ProductGroup" ng-click="selectProductGroup(ProductGroups.ProductGroupID); states.activeItem=ProductGroups.ProductGroupID">
@@ -14,11 +14,11 @@
                 </button>
             </div>
         </div>
-    </div><br />
+    </div><br />*@
     <div class="images-gallery five-columns">
         <div class="images-nospace">
             <div class="image-thumbnail" ng-repeat="Products in Product | filter:{ ProductGroupID: filterByProductGroupID }">
-                <a href="#/detailproduct/{{Products.ProductID}}" ng-show="Products.ProductGroupID == filterByProductGroupID" class="gallery-group">
+                <a href="#/detailproduct/{{Products.ProductID}}" class="gallery-group">
                     <img ng-src="~/{{Products.ProductPicture}}" onerror="this.src = '\ImageProduct/no_image_product.png'" alt="">
                 </a>
             </div>

@@ -10,17 +10,14 @@ namespace MobileCase.DBHelper
 {
     public class DBHelper
     {
-        private static string szDbUser = "root";
-        private static string szDbPassword = "root";
+        //private static string szDbUser = "root";
+        //private static string szDbPassword = "root";
 
-        //private static string szDbUser = "caseiphone";
-        //private static string szDbPassword = "c@se_iph0ne";
+        private static string szDbUser = "caseiphone";
+        private static string szDbPassword = "c@se_iph0ne";
 
         public static MySqlConnection ConnectDb(ref string errMsg)
         {
-            // string connStrFmt = "Data Source={0}; Initial Catalog={1};User ID={2}; Password={3}";
-            //    string connString = string.Format(connStrFmt, ConfigurationManager.AppSettings["DBServer"], ConfigurationManager.AppSettings["DBName"], szDbUser, szDbPassword);
-
             string connString = "Server=" + ConfigurationManager.AppSettings["DBServer"] + ";DATABASE=" + ConfigurationManager.AppSettings["DBName"] + ";Uid="+ szDbUser + ";PASSWORD="+ szDbPassword + ";Port=" + ConfigurationManager.AppSettings["Port"] + ";Connect Timeout=60000;default command timeout=60000;AllowUserVariables=True;";
             try
             {

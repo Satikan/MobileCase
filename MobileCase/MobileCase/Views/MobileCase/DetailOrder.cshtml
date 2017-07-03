@@ -21,7 +21,8 @@
                         <tr>
                             <th scope="col" width="70px" class="center">ลำดับที่</th>
                             <th scope="col" class="center">รหัสสินค้า</th>
-                            <th scope="col" width="400px" class="center">ชื่อสินค้า</th>
+                            <th scope="col" class="center">ชื่อสินค้า</th>
+                            <th scope="col" class="center">ชื่อประเภทสินค้า</th>
                             <th scope="col" class="center">จำนวนสินค้า</th>
                             <th scope="col" class="right">ราคาสินค้า</th>
                             <th scope="col" width="150px" class="right">รวม</th>
@@ -30,12 +31,13 @@
                             <td class="center">{{$index + 1}}</td>
                             <td>{{ListOrderByMembers.ProductCode}}</td>
                             <td>{{ListOrderByMembers.ProductName}}</td>
+                            <td>{{ListOrderByMembers.ProductGroupName}}</td>
                             <td class="center">{{ListOrderByMembers.Amount}}</td>
                             <td align="right">{{ListOrderByMembers.ProductPrice}}</td>
                             <td align="right">{{ListOrderByMembers.Amount * ListOrderByMembers.ProductPrice}}</td>
                         </tr>
                         <tr>
-                            <td align="right" colspan="5"><b>รวมทั้งหมด</b></td>
+                            <td align="right" colspan="6"><b>รวมทั้งหมด</b></td>
                             <td align="right">{{ getTotalOrderByMember() }} บาท</td>
                         </tr>
                     </table>

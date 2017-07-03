@@ -1,7 +1,7 @@
 ﻿app.controller('ProductController', ['$scope', '$rootScope', '$http', '$stateParams', 'Upload', '$state',
     function ($scope, $rootScope, $http, $stateParams, Upload, $state) {
     $rootScope.permission = localStorage.getItem('Permission');
-    $scope.quantity = 1;
+    //$scope.quantity = 1;
 
     $http.get("api/Products/ListProductGroup").then(function (data) {
         $scope.ProductGroup = data.data.ProductGroup;
@@ -17,17 +17,63 @@
         $http.get("api/Products/ViewProduct/" + Number($stateParams.id)).then(function (data) {
             $scope.ProductByID = data.data.ProductByID[0];
         });
+
+        $http.get("api/Products/ViewManageProductGroup/" + Number($stateParams.id)).then(function (data) {
+            $scope.ViewMangeProductGroup = [];
+            for (var i = 0; i < data.data.MangeProductGroup.length; i++){
+                var pushData = data.data.MangeProductGroup[i];
+                pushData.Amount = 0;
+                pushData.MemberID = Number(localStorage.getItem("MemberID"));
+                pushData.StatusID = 1;
+                $scope.ViewMangeProductGroup.push(pushData);
+            }
+        });
+    }
+
+    $scope.GetMangeProductGroup = function () {
+        $http.get("api/Products/ViewManageProductGroup/" + Number($stateParams.id)).then(function (data) {
+            $scope.MangeProductGroup = data.data.MangeProductGroup;
+        });
+    }
+
+    $scope.GetDetailManageProductGroup = function () {
+        $http.get("api/Products/ViewDetailManageProductGroup/" + Number($stateParams.id) + "?ProductGroupID=" + Number($stateParams.productgroupid)).then(function (data) {
+            $scope.DetailManageProductGroup = data.data.DetailManageProductGroup[0];
+        });
+    }
+
+    $scope.EditManageProductGroup = function () {
+
+        var editmanageproductgroup = {
+            "ProductID": $scope.DetailManageProductGroup.ProductID,
+            "ProductGroupID": $scope.DetailManageProductGroup.ProductGroupID,
+            "ProductQuantity": $scope.DetailManageProductGroup.ProductQuantity
+        } 
+
+        $http.post("api/Products/InsertProductGroupAccess", editmanageproductgroup).then(function (data) {
+            swal({
+                title: 'ดําเนินการเรียบร้อย',
+                text: "ข้อมูลของคุณได้ทำการบันทึกเรียบร้อยแล้ว",
+                type: 'success',
+                showCancelButton: false,
+                allowOutsideClick: false,
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'ตกลง'
+            }).then(function () {
+                window.location = "#/manageproductgroup/" + $scope.DetailManageProductGroup.ProductID;
+            })
+        });
     }
 
     $scope.AddProduct = function () {
         Upload.upload({
             url: 'api/Products/InsertProduct',
             data: {
-                ProductGroupID: $scope.productgroup,
+                //ProductGroupID: $scope.productgroup,
                 ProductCode: $scope.productcode,
                 ProductName: $scope.productname,
                 ProductPrice: $scope.productprice,
-                ProductQuantity: $scope.productquantity,
+                //ProductQuantity: $scope.productquantity,
                 file: $scope.picFile,
             }
         }).then(function (resp) {
@@ -42,7 +88,6 @@
             }).then(function () {
                 window.location = "#/product";
             })
-        }, function (resp) {
         }, function (evt) {
             var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
         });
@@ -54,16 +99,15 @@
         var valueProductPicture = values[1];
 
         if ($scope.picFile == undefined) {
-            console.log(valueProductPicture)
             Upload.upload({
                 url: 'api/Products/UpdateProduct',
                 data: {
                     ProductID: $scope.ProductByID.ProductID,
-                    ProductGroupID: $scope.ProductByID.ProductGroupID,
+                    //ProductGroupID: $scope.ProductByID.ProductGroupID,
                     ProductCode: $scope.ProductByID.ProductCode,
                     ProductName: $scope.ProductByID.ProductName,
                     ProductPrice: $scope.ProductByID.ProductPrice,
-                    ProductQuantity: $scope.ProductByID.ProductQuantity,
+                    //ProductQuantity: $scope.ProductByID.ProductQuantity,
                     ProductPicture: valueProductPicture
                 }
             }).then(function (resp) {
@@ -78,7 +122,6 @@
                 }).then(function () {
                     window.location = "#/product";
                 })
-            }, function (resp) {
             }, function (evt) {
                 var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
             });
@@ -88,11 +131,11 @@
                 url: 'api/Products/UpdateProduct',
                 data: {
                     ProductID: $scope.ProductByID.ProductID,
-                    ProductGroupID: $scope.ProductByID.ProductGroupID,
+                    //ProductGroupID: $scope.ProductByID.ProductGroupID,
                     ProductCode: $scope.ProductByID.ProductCode,
                     ProductName: $scope.ProductByID.ProductName,
                     ProductPrice: $scope.ProductByID.ProductPrice,
-                    ProductQuantity: $scope.ProductByID.ProductQuantity,
+                    //ProductQuantity: $scope.ProductByID.ProductQuantity,
                     file: $scope.picFile,
                 }
             }).then(function (resp) {
@@ -145,21 +188,21 @@
         window.location = "#/editproduct/" + ProductID;
     }
 
+    $scope.PageManageProductGroup = function (ProductID) {
+        window.location = "#/manageproductgroup/" + ProductID;
+    }
+
+    $scope.PageEditManageProductGroup = function (ProductID, ProductGroupID) {
+        window.location = "#/editmanageproductgroup/" + ProductID + "/" + ProductGroupID;
+    }
+
     $scope.selectProductGroup = function (value) {
         $scope.filterByProductGroupID = value;
     }
 
     $scope.SaveOrder = function () {
-        var saveorder = {
-            "ProductID": $scope.ProductByID.ProductID,
-            "ProductGroupID": $scope.ProductByID.ProductGroupID,
-            //"ProductQuantity": ($scope.ProductByID.ProductQuantity - $scope.quantity),
-            "MemberID": Number(localStorage.getItem("MemberID")),
-            "Amount": $scope.quantity,
-            "StatusID": 1
-        }
-
-        $http.post("api/Orders/InsertOrder", saveorder).then(function (data) {
+        console.log($scope.ViewMangeProductGroup);
+        $http.post("api/Orders/InsertOrder", $scope.ViewMangeProductGroup).then(function (data) {
             swal({
                 title: 'ดําเนินการเรียบร้อย',
                 text: "ข้อมูลของคุณได้ทำการบันทึกเรียบร้อยแล้ว",

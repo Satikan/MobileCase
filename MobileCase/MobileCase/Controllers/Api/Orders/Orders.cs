@@ -17,7 +17,7 @@ namespace MobileCase.Controllers
 
         [HttpPost]
         [ActionName("InsertOrder")]
-        public string PostInsertOrder(Orders item)
+        public string PostInsertOrder(List<Orders> item)
         {
             return repository.InsertOrder(item);
         }

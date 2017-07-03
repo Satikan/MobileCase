@@ -64,6 +64,20 @@ namespace MobileCase.Controllers
             return repository.ViewProduct(id);
         }
 
+        [HttpGet]
+        [ActionName("ViewManageProductGroup")]
+        public DataSet GetViewManageProductGroup(int id)
+        {
+            return repository.ViewManageProductGroup(id);
+        }
+
+        [HttpGet]
+        [ActionName("ViewDetailManageProductGroup")]
+        public DataSet GetViewDetailManageProductGroup(int id, int ProductGroupID)
+        {
+            return repository.ViewDetailManageProductGroup(id, ProductGroupID);
+        }
+
         [HttpPost]
         [ActionName("InsertProduct")]
         public string PostInsertProduct()
@@ -76,6 +90,13 @@ namespace MobileCase.Controllers
         public string PostUpdateProduct()
         {
             return repository.UpdateProduct();
+        }
+
+        [HttpPost]
+        [ActionName("InsertProductGroupAccess")]
+        public string PostInsertProductGroupAccess(Products item)
+        {
+            return repository.InsertProductGroupAccess(item);
         }
 
         [HttpGet]

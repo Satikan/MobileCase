@@ -28,30 +28,16 @@ namespace MobileCase.DBHelper
         string InsertProduct();
         DataSet ListProduct();
         DataSet ViewProduct(int id);
+        DataSet ViewManageProductGroup(int id);
+        DataSet ViewDetailManageProductGroup(int id, int ProductGroupID);
         string UpdateProduct();
+        string InsertProductGroupAccess(Products item);
         string DeletedProduct(int id);
     }
 
     public class ProductData : IProductData
     {
         string errMsg = "";
-
-        //public static Image ScaleImage(Image image, int maxWidth, int maxHeight)
-        //{
-        //    var ratioX = (double)maxWidth / image.Width;
-        //    var ratioY = (double)maxHeight / image.Height;
-        //    var ratio = Math.Min(ratioX, ratioY);
-
-        //    var newWidth = (int)(image.Width * ratio);
-        //    var newHeight = (int)(image.Height * ratio);
-
-        //    var newImage = new Bitmap(newWidth, newHeight);
-
-        //    using (var graphics = Graphics.FromImage(newImage))
-        //        graphics.DrawImage(image, 0, 0, newWidth, newHeight);
-
-        //    return newImage;
-        //}
 
         public static Image ScaleImage(Image image, int maxWidth, int maxHeight)
         {
@@ -167,11 +153,11 @@ namespace MobileCase.DBHelper
             try
             {
                 Products item = new Products();
-                item.ProductGroupID = HttpContext.Current.Request.Unvalidated.Form["ProductGroupID"] == null ? 0 : Convert.ToInt16(HttpContext.Current.Request.Unvalidated.Form["ProductGroupID"]);
+                //item.ProductGroupID = HttpContext.Current.Request.Unvalidated.Form["ProductGroupID"] == null ? 0 : Convert.ToInt16(HttpContext.Current.Request.Unvalidated.Form["ProductGroupID"]);
                 item.ProductCode = HttpContext.Current.Request.Unvalidated.Form["ProductCode"] == null ? item.ProductCode : HttpContext.Current.Request.Unvalidated.Form["ProductCode"];
                 item.ProductPrice = HttpContext.Current.Request.Unvalidated.Form["ProductPrice"] == null ? 0 : Convert.ToInt16(HttpContext.Current.Request.Unvalidated.Form["ProductPrice"]);
                 item.ProductName = HttpContext.Current.Request.Unvalidated.Form["ProductName"] == null ? item.ProductName : HttpContext.Current.Request.Unvalidated.Form["ProductName"];
-                item.ProductQuantity = HttpContext.Current.Request.Unvalidated.Form["ProductQuantity"] == null ? 0 : Convert.ToInt16(HttpContext.Current.Request.Unvalidated.Form["ProductQuantity"]);
+                //item.ProductQuantity = HttpContext.Current.Request.Unvalidated.Form["ProductQuantity"] == null ? 0 : Convert.ToInt16(HttpContext.Current.Request.Unvalidated.Form["ProductQuantity"]);
 
                 CultureInfo invC = System.Globalization.CultureInfo.InvariantCulture;
                 string strSQL = "";
@@ -184,7 +170,7 @@ namespace MobileCase.DBHelper
                     var httpPostedFile = HttpContext.Current.Request.Files["file"];
                     bool folderExists = Directory.Exists(HttpContext.Current.Server.MapPath("~/ImageProduct/"));
                     string namefile = "Product" + String.Format("{0:00000}", MaxID) + "_" + DateTime.Now.ToString("yyyyMMddHHmm") + Path.GetExtension(httpPostedFile.FileName);
-                    string newnamefile = "Product" + String.Format("{0:00000}", MaxID) + "_" + DateTime.Now.ToString("yyyyMMddHHmm") + "_n" + Path.GetExtension(httpPostedFile.FileName);
+                    //string newnamefile = "Product" + String.Format("{0:00000}", MaxID) + "_" + DateTime.Now.ToString("yyyyMMddHHmm") + "_n" + Path.GetExtension(httpPostedFile.FileName);
 
                     if (!folderExists)
                     {
@@ -192,38 +178,55 @@ namespace MobileCase.DBHelper
                     }
                     var fileSavePath = Path.Combine(HttpContext.Current.Server.MapPath("~/ImageProduct/"), namefile);
                     httpPostedFile.SaveAs(fileSavePath);
+                    pathImage += namefile;
 
-                    if (File.Exists(fileSavePath))
-                    {
-                        using (var image = Image.FromFile(fileSavePath))
-                        using (var newImage = ScaleImage(image, 250, 250))
-                        {
-                            var newImagePath = Path.Combine(HttpContext.Current.Server.MapPath("~/ImageProduct/"), newnamefile);
+                    //if (File.Exists(fileSavePath))
+                    //{
+                    //    using (var image = Image.FromFile(fileSavePath))
+                    //    //using (var newImage = ScaleImage(image, 250, 250))
+                    //    {
+                    //        var newImagePath = Path.Combine(HttpContext.Current.Server.MapPath("~/ImageProduct/"), newnamefile);
 
-                            newImage.Save(newImagePath, ImageFormat.Png);
-                        }
-                        pathImage += newnamefile;
-                    }
-                    else
-                    {
-                        pathImage += "no_image_product.png";
-                    }
+                    //        image.Save(newImagePath, ImageFormat.Png);
+                    //    }
+                    //    pathImage += newnamefile;
+                    //}
+                    //else
+                    //{
+                    //    pathImage += "no_image_product.png";
+                    //}
                 }
                 else
                 {
                     pathImage += "no_image_product.png";
                 }
 
-                strSQL = "\r\n INSERT INTO product (ProductID,ProductGroupID,ProductCode,ProductPrice,ProductName,ProductQuantity,ProductPicture)VALUES("
-                         + MaxID + "," + item.ProductGroupID + ",'" + item.ProductCode + "'," + item.ProductPrice + ",'" + item.ProductName + "'," + item.ProductQuantity + ",'" + pathImage + "');";
-
+                strSQL = "\r\n INSERT INTO product (ProductID,ProductCode,ProductPrice,ProductName,ProductPicture)VALUES("
+                         + MaxID + ",'" + item.ProductCode + "'," + item.ProductPrice + ",'" + item.ProductName + "','" + pathImage + "');";
                 DBHelper.Execute(strSQL, objConn);
+
+                DataTable dtProductAccess = DBHelper.List("\r\n SELECT CASE WHEN MAX(ProductGroupAccessID) IS NULL THEN 1 ELSE MAX(ProductGroupAccessID)+1 END AS MaxID FROM productgroupaccess", objConn);
+                int MaxProductAccessID = Convert.ToInt32(dtProductAccess.Rows[0]["MaxID"].ToString());
+
+                strSQL = "\r\n SELECT * FROM productgroup;";
+                DataTable dtProductGroup = DBHelper.List(strSQL, objConn);
+
+                if (dtProductGroup.Rows.Count > 0) {
+                    for (int i = 0; i < dtProductGroup.Rows.Count; i++)
+                    {
+                        strSQL = "\r\n INSERT INTO productgroupaccess (ProductGroupAccessID,ProductID,ProductGroupID,ProductQuantity)VALUES("
+                         + (MaxProductAccessID + i) + "," + MaxID + "," + dtProductGroup.Rows[i]["ProductGroupID"] + ",0);";
+                        DBHelper.Execute(strSQL, objConn);
+                    }
+                }
+
                 errMsg = "Success!!";
             }
             catch (Exception e)
             {
                 errMsg = e.Message;
             }
+
             objConn.Close();
             return errMsg;
         }
@@ -233,9 +236,8 @@ namespace MobileCase.DBHelper
 
             MySqlConnection objConn = DBHelper.ConnectDb(ref errMsg);
             DataSet ds = new DataSet();
-            string strSQL = "\r\n SELECT p.ProductID,p.ProductCode,p.ProductName,p.ProductPrice,p.ProductQuantity,p.ProductPicture,pg.ProductGroupID,pg.ProductGroupName FROM product p "
-                + "\r\n INNER JOIN productgroup pg ON p.ProductGroupID = pg.ProductGroupID "
-                + "\r\n WHERE p.Deleted=0 AND pg.Deleted=0;";
+            string strSQL = "\r\n SELECT ProductID,ProductCode,ProductName,ProductPrice,ProductPicture FROM product "
+                + "\r\n WHERE Deleted=0;";
             DataTable dt = DBHelper.List(strSQL, objConn);
             dt.TableName = "Product";
             ds.Tables.Add(dt);
@@ -248,15 +250,52 @@ namespace MobileCase.DBHelper
         {
             MySqlConnection objConn = DBHelper.ConnectDb(ref errMsg);
             DataSet ds = new DataSet();
-            string strSQL = "\r\n SELECT p.ProductID,p.ProductGroupID,p.ProductCode,p.ProductName,p.ProductPrice,p.ProductPicture,p.ProductQuantity,pg.ProductGroupName FROM product p ";
-            strSQL += "INNER JOIN productgroup pg ON p.ProductGroupID = pg.ProductGroupID ";
-            strSQL += "WHERE p.Deleted = 0 ";
+            string strSQL = "\r\n SELECT ProductID,ProductCode,ProductName,ProductPrice,ProductPicture FROM product ";
+            strSQL += "WHERE Deleted = 0 ";
             if (id > 0)
             {
-                strSQL += "\r\n AND p.ProductID = " + id;
+                strSQL += "\r\n AND ProductID = " + id;
             }
             DataTable dt = DBHelper.List(strSQL, objConn);
             dt.TableName = "ProductByID";
+            ds.Tables.Add(dt);
+            objConn.Close();
+
+            return ds;
+        }
+
+        public DataSet ViewManageProductGroup(int id)
+        {
+            MySqlConnection objConn = DBHelper.ConnectDb(ref errMsg);
+            DataSet ds = new DataSet();
+            string strSQL = "\r\n SELECT p.ProductID,p.ProductName,pg.ProductGroupID,pg.ProductGroupName,p.ProductPrice,pga.ProductQuantity FROM productgroupaccess pga "
+                + "\r\n INNER JOIN product p ON p.ProductID = pga.ProductID "
+                + "\r\n INNER JOIN productgroup pg ON pg.ProductGroupID = pga.ProductGroupID ";
+            if (id > 0)
+            {
+                strSQL += "\r\n WHERE pga.ProductID = " + id;
+            }
+            DataTable dt = DBHelper.List(strSQL, objConn);
+            dt.TableName = "MangeProductGroup";
+            ds.Tables.Add(dt);
+            objConn.Close();
+
+            return ds;
+        }
+
+        public DataSet ViewDetailManageProductGroup(int id, int ProductGroupID)
+        {
+            MySqlConnection objConn = DBHelper.ConnectDb(ref errMsg);
+            DataSet ds = new DataSet();
+            string strSQL = "\r\n SELECT p.ProductID,p.ProductName,pg.ProductGroupID,pg.ProductGroupName,p.ProductPrice,pga.ProductQuantity FROM productgroupaccess pga "
+                + "\r\n INNER JOIN product p ON p.ProductID = pga.ProductID "
+                + "\r\n INNER JOIN productgroup pg ON pg.ProductGroupID = pga.ProductGroupID ";
+            if (id > 0)
+            {
+                strSQL += "\r\n WHERE pga.ProductID = " + id + " AND pga.ProductGroupID = " + ProductGroupID + ";";
+            }
+            DataTable dt = DBHelper.List(strSQL, objConn);
+            dt.TableName = "DetailManageProductGroup";
             ds.Tables.Add(dt);
             objConn.Close();
 
@@ -271,11 +310,11 @@ namespace MobileCase.DBHelper
             {
                 Products item = new Products();
                 item.ProductID = HttpContext.Current.Request.Unvalidated.Form["ProductID"] == null ? 0 : Convert.ToInt16(HttpContext.Current.Request.Unvalidated.Form["ProductID"]);
-                item.ProductGroupID = HttpContext.Current.Request.Unvalidated.Form["ProductGroupID"] == null ? 0 : Convert.ToInt16(HttpContext.Current.Request.Unvalidated.Form["ProductGroupID"]);
+                //item.ProductGroupID = HttpContext.Current.Request.Unvalidated.Form["ProductGroupID"] == null ? 0 : Convert.ToInt16(HttpContext.Current.Request.Unvalidated.Form["ProductGroupID"]);
                 item.ProductCode = HttpContext.Current.Request.Unvalidated.Form["ProductCode"] == null ? item.ProductCode : HttpContext.Current.Request.Unvalidated.Form["ProductCode"];
                 item.ProductPrice = HttpContext.Current.Request.Unvalidated.Form["ProductPrice"] == null ? 0 : Convert.ToInt16(HttpContext.Current.Request.Unvalidated.Form["ProductPrice"]);
                 item.ProductName = HttpContext.Current.Request.Unvalidated.Form["ProductName"] == null ? item.ProductName : HttpContext.Current.Request.Unvalidated.Form["ProductName"];
-                item.ProductQuantity = HttpContext.Current.Request.Unvalidated.Form["ProductQuantity"] == null ? 0 : Convert.ToInt16(HttpContext.Current.Request.Unvalidated.Form["ProductQuantity"]);
+                //item.ProductQuantity = HttpContext.Current.Request.Unvalidated.Form["ProductQuantity"] == null ? 0 : Convert.ToInt16(HttpContext.Current.Request.Unvalidated.Form["ProductQuantity"]);
                 item.ProductPicture = HttpContext.Current.Request.Unvalidated.Form["ProductPicture"] == null ? item.ProductPicture : HttpContext.Current.Request.Unvalidated.Form["ProductPicture"];
 
                 CultureInfo invC = System.Globalization.CultureInfo.InvariantCulture;
@@ -285,7 +324,7 @@ namespace MobileCase.DBHelper
                     var httpPostedFile = HttpContext.Current.Request.Files["file"];
                     bool folderExists = Directory.Exists(HttpContext.Current.Server.MapPath("~/ImageProduct/"));
                     string namefile = "Product" + String.Format("{0:00000}", item.ProductID) + "_" + DateTime.Now.ToString("yyyyMMddHHmm") + Path.GetExtension(httpPostedFile.FileName);
-                    string newnamefile = "Product" + String.Format("{0:00000}", item.ProductID) + "_" + DateTime.Now.ToString("yyyyMMddHHmm") + "_n" + Path.GetExtension(httpPostedFile.FileName);
+                    //string newnamefile = "Product" + String.Format("{0:00000}", item.ProductID) + "_" + DateTime.Now.ToString("yyyyMMddHHmm") + "_n" + Path.GetExtension(httpPostedFile.FileName);
 
                     if (!folderExists)
                     {
@@ -293,22 +332,23 @@ namespace MobileCase.DBHelper
                     }
                     var fileSavePath = Path.Combine(HttpContext.Current.Server.MapPath("~/ImageProduct/"), namefile);
                     httpPostedFile.SaveAs(fileSavePath);
+                    pathImage += namefile;
 
-                    if (File.Exists(fileSavePath))
-                    {
-                        using (var image = Image.FromFile(fileSavePath))
-                        using (var newImage = ScaleImage(image, 250, 250))
-                        {
-                            var newImagePath = Path.Combine(HttpContext.Current.Server.MapPath("~/ImageProduct/"), newnamefile);
+                    //if (File.Exists(fileSavePath))
+                    //{
+                    //    using (var image = Image.FromFile(fileSavePath))
+                    //    using (var newImage = ScaleImage(image, 250, 250))
+                    //    {
+                    //        var newImagePath = Path.Combine(HttpContext.Current.Server.MapPath("~/ImageProduct/"), newnamefile);
 
-                            newImage.Save(newImagePath, ImageFormat.Png);
-                        }
-                        pathImage += newnamefile;
-                    }
-                    else
-                    {
-                        pathImage += "no_image_product.png";
-                    }
+                    //        newImage.Save(newImagePath, ImageFormat.Png);
+                    //    }
+                    //    pathImage += newnamefile;
+                    //}
+                    //else
+                    //{
+                    //    pathImage += "no_image_product.png";
+                    //}
                 }
                 else
                 {
@@ -316,12 +356,10 @@ namespace MobileCase.DBHelper
                 }
 
                 string strSQL = "\r\n UPDATE product SET " +
-                          "\r\n ProductGroupID=" + item.ProductGroupID +
-                          "\r\n ,ProductCode='" + item.ProductCode + "'" +
+                          "\r\n ProductCode='" + item.ProductCode + "'" +
                           "\r\n ,ProductPrice=" + item.ProductPrice +
                           "\r\n ,ProductName='" + item.ProductName + "'" +
                           "\r\n ,ProductPicture='" + pathImage + "'" +
-                          "\r\n ,ProductQuantity=" + item.ProductQuantity +
                           "\r\n WHERE ProductID = " + item.ProductID + ";";
 
                 DBHelper.Execute(strSQL, objConn);
@@ -335,6 +373,29 @@ namespace MobileCase.DBHelper
             return errMsg;
         }
 
+        public string InsertProductGroupAccess(Products item)
+        {
+
+            MySqlConnection objConn = DBHelper.ConnectDb(ref errMsg);
+
+            try
+            {
+                string strSQL = "\r\n UPDATE productgroupaccess SET " +
+                    "\r\n ProductQuantity=" + item.ProductQuantity + 
+                    "\r\n WHERE ProductGroupID=" + item.ProductGroupID + " AND ProductID=" + item.ProductID + ";";
+
+                DBHelper.Execute(strSQL, objConn);
+                errMsg = "Success!!";
+            }
+            catch (Exception e)
+            {
+                errMsg = e.Message;
+            }
+
+            objConn.Close();
+            return errMsg;
+        }
+
         public string DeletedProduct(int id)
         {
             MySqlConnection objConn = DBHelper.ConnectDb(ref errMsg);
@@ -344,8 +405,12 @@ namespace MobileCase.DBHelper
                 string strSQL = "\r\n UPDATE product SET " +
                     "\r\n Deleted=1 " +
                     "\r\n WHERE ProductID=" + id + ";";
-
                 DBHelper.Execute(strSQL, objConn);
+
+                string strSQL1 = "\r\n DELETE FROM productgroupaccess " +
+                    "\r\n WHERE ProductID=" + id + ";";
+                DBHelper.Execute(strSQL1, objConn);
+
                 errMsg = "Success!!";
             }
             catch (Exception e)

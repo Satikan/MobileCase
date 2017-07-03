@@ -45,6 +45,16 @@ app.config(function ($stateProvider, $urlRouterProvider, $qProvider, $locationPr
             templateUrl: '\MobileCase/EditProductGroup',
             controller: 'ProductGroupController'
         })
+        .state('/manageproductgroup/:id', {
+            url: '/manageproductgroup/:id',
+            templateUrl: '\MobileCase/ManageProductGroup',
+            controller: 'ProductController'
+        })
+        .state('/editmanageproductgroup/:id/:productgroupid', {
+            url: '/editmanageproductgroup/:id/:productgroupid',
+            templateUrl: '\MobileCase/EditManageProductGroup',
+            controller: 'ProductController'
+        })
         .state('/product', {
             url: '/product',
             templateUrl: '\MobileCase/Product',

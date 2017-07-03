@@ -66,19 +66,6 @@
         })
     }
 
-    //$scope.DeleteOrder = function (OrderID, ProductID, Amount) {
-    //    var deleteorder = {
-    //        "OrderID": OrderID,
-    //        "ProductID": ProductID,
-    //        "Amount": Amount
-    //    }
-
-    //    $http.post("api/Orders/DeletedOrder", deleteorder).then(function (data) {
-    //        $state.transitionTo($state.current, $stateParams, { reload: true, inherit: false, notify: true });
-    //        $scope.GetListOrder();
-    //    });
-    //}
-
     $scope.GetOrderFromMember = function () {
         $http.get("api/Orders/OrderFromMember").then(function (data) {
             $scope.OrderFromMember = data.data.OrderFromMember;

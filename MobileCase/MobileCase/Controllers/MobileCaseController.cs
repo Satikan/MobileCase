@@ -59,6 +59,16 @@ namespace MobileCase.Controllers
             return View();
         }
 
+        public ActionResult ManageProductGroup()
+        {
+            return View();
+        }
+
+        public ActionResult EditManageProductGroup()
+        {
+            return View();
+        }
+
         public ActionResult Product()
         {
             return View();

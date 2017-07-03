@@ -1,0 +1,44 @@
+﻿<!--Page Content-->
+<section class="content" ng-init="GetDetailManageProductGroup()">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2 col-md-2 col-lg-2"></div>
+            <div class="col-sm-8 col-md-8 col-lg-8">
+                <div class="rect-nohover rect-equal-height">
+                    <center><h2>แก้ไขสินค้า</h2></center>
+                    <div class="divider-sm"></div>
+                    <form class="form-horizontal" name="FormEditManageProductGroup" ng-submit="EditManageProductGroup()">
+                        <div class="form-group">
+                            <label for="ProductCode" class="col-sm-3 control-label">ชื่อสินค้า : </label>
+                            <div class="col-sm-8">
+                                <label class="control-label">{{DetailManageProductGroup.ProductName}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="ProductName" class="col-sm-3 control-label">ชื่อประเภทสินค้า : </label>
+                            <div class="col-sm-8">
+                                <label class="control-label">{{DetailManageProductGroup.ProductGroupName}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error': FormEditManageProductGroup.ProductQuantity.$invalid}">
+                            <label for="ProductPrice" class="col-sm-3 control-label">จำนวนสินค้า : </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="ProductQuantity" name="ProductQuantity" ng-model="DetailManageProductGroup.ProductQuantity" placeholder="จำนวนสินค้า" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-3 col-sm-9">
+                                <button type="submit" class="btn btn-success" style="height:35px;" ng-disabled="FormEditManageProductGroup.$invalid">บันทึก</button>
+                                <button type="button" class="btn btn-danger" style="height:35px;" ng-click="GetMangeProductGroup()">ยกเลิก</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-sm-2 col-md-2 col-lg-2"></div>
+            <div class="divider divider-lg"></div>
+        </div>
+    </div>
+</section>
+
+<!-- //end Page Content --> 

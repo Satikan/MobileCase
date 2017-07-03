@@ -20,7 +20,7 @@ namespace MobileCase.DBHelper
 {
     interface IOrderData
     {
-        string InsertOrder(Orders item);
+        string InsertOrder(List<Orders> item);
         DataSet ListOrder(int id);
         string DeletedOrder(Orders item);
         DataSet OrderFromMember();
@@ -31,73 +31,85 @@ namespace MobileCase.DBHelper
     {
         string errMsg = "";
 
-        public string InsertOrder(Orders item)
+        public string InsertOrder(List<Orders> item)
         {
             MySqlConnection objConn = DBHelper.ConnectDb(ref errMsg);
             int i = 0;
+            int j = 0;
+            int k= 0;
+            int h = 0;
             string strSQL = "";
 
             try
             {
-                DataTable dt = DBHelper.List("\r\n SELECT CASE WHEN MAX(OrderID) IS NULL THEN 1 ELSE MAX(OrderID)+1 END AS MaxID FROM orderproduct ", objConn);
-                int MaxID = Convert.ToInt32(dt.Rows[0]["MaxID"].ToString());
-                strSQL = "\r\n SELECT * FROM orderproduct WHERE StatusID = 2 AND Deleted = 0 AND MemberID = "+ item.MemberID + ";";
-                DataTable dtCheckStatus = DBHelper.List(strSQL, objConn);
-                if (dtCheckStatus.Rows.Count > 0)
-                {
-                    for (i = 0; i < dtCheckStatus.Rows.Count; i++)
-                    {
-                        strSQL = "\r\n UPDATE orderproduct set Deleted = 1;";
-                    }
-                    DBHelper.Execute(strSQL, objConn);
-
-                    strSQL = "\r\n SELECT * FROM orderproduct WHERE Deleted = 0 AND ProductID = " + item.ProductID + " AND MemberID = "+ item.MemberID + ";";
-                    DataTable dtOrder = DBHelper.List(strSQL, objConn);
-
-                    if (dtOrder.Rows.Count > 0)
-                    {
-                        for (i = 0; i < dtOrder.Rows.Count; i++)
+                if (item.Count > 0) {
+                    for (i = 0; i < item.Count; i++) {
+                        DataTable dt = DBHelper.List("\r\n SELECT CASE WHEN MAX(OrderID) IS NULL THEN 1 ELSE MAX(OrderID)+1 END AS MaxID FROM orderproduct ", objConn);
+                        int MaxID = Convert.ToInt32(dt.Rows[0]["MaxID"].ToString());
+                        strSQL = "\r\n SELECT * FROM orderproduct WHERE StatusID = 2 AND Deleted = 0 AND MemberID = " + item[i].MemberID + ";";
+                        DataTable dtCheckStatus = DBHelper.List(strSQL, objConn);
+                        if (dtCheckStatus.Rows.Count > 0)
                         {
-                            strSQL = "\r\n UPDATE orderproduct set Amount=" + (Convert.ToInt32(dtOrder.Rows[i]["Amount"].ToString()) + item.Amount) + ";";
+                            for (j = 0; j < dtCheckStatus.Rows.Count; j++)
+                            {
+                                strSQL = "\r\n UPDATE orderproduct set Deleted = 1;";
+                            }
+                            DBHelper.Execute(strSQL, objConn);
+
+                            strSQL = "\r\n SELECT * FROM orderproduct WHERE Deleted = 0 AND ProductID = " + item[i].ProductID + " AND ProductGroupID = " + item[i].ProductGroupID + " AND MemberID = " + item[i].MemberID + ";";
+                            DataTable dtOrder = DBHelper.List(strSQL, objConn);
+
+                            if (dtOrder.Rows.Count > 0)
+                            {
+                                for (k = 0; k < dtOrder.Rows.Count; k++)
+                                {
+                                    strSQL = "\r\n UPDATE orderproduct set Amount=" + (Convert.ToInt32(dtOrder.Rows[k]["Amount"].ToString()) + item[i].Amount) +
+                                             "\r\n WHERE Deleted = 0 AND ProductID = " + item[i].ProductID + " AND ProductGroupID = " + item[i].ProductGroupID + " AND MemberID = " + item[i].MemberID + ";";
+                                }
+                                DBHelper.Execute(strSQL, objConn);
+                                //strSQL = "\r\n UPDATE product SET ProductQuantity=" + item.ProductQuantity + " WHERE ProductID=" + item.ProductID + ";";
+                                //DBHelper.Execute(strSQL, objConn);
+                            }
+                            else
+                            {
+                                strSQL = "\r\n INSERT INTO orderproduct(orderID, ProductID, ProductGroupID, MemberID, Amount, StatusID)";
+                                strSQL += "\r\n value(" + MaxID + "," + item[i].ProductID + "," + item[i].ProductGroupID + "," + item[i].MemberID + "," + item[i].Amount + "," + item[i].StatusID + ");";
+                                DBHelper.Execute(strSQL, objConn);
+                                //strSQL = "\r\n UPDATE product SET ProductQuantity=" + item.ProductQuantity + " WHERE ProductID=" + item.ProductID + ";";
+                                //DBHelper.Execute(strSQL, objConn);
+                            }
                         }
-                        DBHelper.Execute(strSQL, objConn);
-                        //strSQL = "\r\n UPDATE product SET ProductQuantity=" + item.ProductQuantity + " WHERE ProductID=" + item.ProductID + ";";
-                        //DBHelper.Execute(strSQL, objConn);
-                    }
-                    else
-                    {
-                        strSQL = "\r\n INSERT INTO orderproduct(orderID, ProductID, ProductGroupID, MemberID, Amount, StatusID)";
-                        strSQL += "\r\n value(" + MaxID + "," + item.ProductID + "," + item.ProductGroupID + "," + item.MemberID + "," + item.Amount + "," + item.StatusID + ");";
-                        DBHelper.Execute(strSQL, objConn);
-                        //strSQL = "\r\n UPDATE product SET ProductQuantity=" + item.ProductQuantity + " WHERE ProductID=" + item.ProductID + ";";
-                        //DBHelper.Execute(strSQL, objConn);
+                        else
+                        {
+                            strSQL = "\r\n SELECT * FROM orderproduct WHERE Deleted = 0 AND ProductID = " + item[i].ProductID + " AND ProductGroupID = " + item[i].ProductGroupID + " AND MemberID = " + item[i].MemberID + ";";
+                            DataTable dtOrder = DBHelper.List(strSQL, objConn);
+
+                            if (dtOrder.Rows.Count > 0)
+                            {
+                                for (h = 0; h < dtOrder.Rows.Count; h++)
+                                {
+                                    strSQL = "\r\n UPDATE orderproduct set Amount=" + (Convert.ToInt32(dtOrder.Rows[h]["Amount"].ToString()) + item[i].Amount) +
+                                             "\r\n WHERE Deleted = 0 AND ProductID = " + item[i].ProductID + " AND ProductGroupID = " + item[i].ProductGroupID + " AND MemberID = " + item[i].MemberID + ";";
+                                }
+                                DBHelper.Execute(strSQL, objConn);
+                                //strSQL = "\r\n UPDATE product SET ProductQuantity=" + item.ProductQuantity + " WHERE ProductID=" + item.ProductID + ";";
+                                //DBHelper.Execute(strSQL, objConn);
+                            }
+                            else
+                            {
+                                if (item[i].Amount != 0) {
+                                    strSQL = "\r\n INSERT INTO orderproduct(orderID, ProductID, ProductGroupID, MemberID, Amount, StatusID)";
+                                    strSQL += "\r\n value(" + MaxID + "," + item[i].ProductID + "," + item[i].ProductGroupID + "," + item[i].MemberID + "," + item[i].Amount + "," + item[i].StatusID + ");";
+                                    DBHelper.Execute(strSQL, objConn);
+                                }
+                                //strSQL = "\r\n UPDATE product SET ProductQuantity=" + item.ProductQuantity + " WHERE ProductID=" + item.ProductID + ";";
+                                //DBHelper.Execute(strSQL, objConn);
+                            }
+                        }
+
+                        errMsg = "Success!!";
                     }
                 }
-                else {
-                    strSQL = "\r\n SELECT * FROM orderproduct WHERE Deleted = 0 AND ProductID = " + item.ProductID + " AND MemberID = " + item.MemberID + ";";
-                    DataTable dtOrder = DBHelper.List(strSQL, objConn);
-
-                    if (dtOrder.Rows.Count > 0)
-                    {
-                        for (i = 0; i < dtOrder.Rows.Count; i++)
-                        {
-                            strSQL = "\r\n UPDATE orderproduct set Amount=" + (Convert.ToInt32(dtOrder.Rows[i]["Amount"].ToString()) + item.Amount) + ";";
-                        }
-                        DBHelper.Execute(strSQL, objConn);
-                        //strSQL = "\r\n UPDATE product SET ProductQuantity=" + item.ProductQuantity + " WHERE ProductID=" + item.ProductID + ";";
-                        //DBHelper.Execute(strSQL, objConn);
-                    }
-                    else
-                    {
-                        strSQL = "\r\n INSERT INTO orderproduct(orderID, ProductID, ProductGroupID, MemberID, Amount, StatusID)";
-                        strSQL += "\r\n value(" + MaxID + "," + item.ProductID + "," + item.ProductGroupID + "," + item.MemberID + "," + item.Amount + "," + item.StatusID + ");";
-                        DBHelper.Execute(strSQL, objConn);
-                        //strSQL = "\r\n UPDATE product SET ProductQuantity=" + item.ProductQuantity + " WHERE ProductID=" + item.ProductID + ";";
-                        //DBHelper.Execute(strSQL, objConn);
-                    }
-                }
-                
-                errMsg = "Success!!";
             }
             catch (Exception e)
             {
@@ -112,7 +124,7 @@ namespace MobileCase.DBHelper
 
             MySqlConnection objConn = DBHelper.ConnectDb(ref errMsg);
             DataSet ds = new DataSet();
-            string strSQL = "\r\n SELECT op.OrderID, p.ProductID, p.ProductCode, p.ProductName, p.ProductPrice, p.ProductPicture, op.Amount, s.StatusID, s.StatusName, m.MemberID, CONCAT(m.FirstName, ' ', m.LastName) AS FullName FROM orderproduct op "
+            string strSQL = "\r\n SELECT op.OrderID, p.ProductID, p.ProductCode, p.ProductName, pg.ProductGroupName, p.ProductPrice, p.ProductPicture, op.Amount, s.StatusID, s.StatusName, m.MemberID, CONCAT(m.FirstName, ' ', m.LastName) AS FullName FROM orderproduct op "
                 + "\r\n INNER JOIN member m ON op.MemberID = m.MemberID "
                 + "\r\n INNER JOIN product p ON op.ProductID = p.ProductID "
                 + "\r\n INNER JOIN productgroup pg ON op.ProductGroupID = pg.ProductGroupID "
