@@ -1261,7 +1261,7 @@ ul.sitemap.styled-list.circle ul ul li:before {
     background: #fff;
     top: 0;
     margin-bottom: 0;
-    z-index: 9990;
+    /*z-index: 9990;*/
     border: 0 !important
 }
 
@@ -1435,7 +1435,7 @@ ul.sitemap.styled-list.circle ul ul li:before {
 
 .navbar-secondary-menu {
     position: relative;
-    z-index: 1200;
+    /*z-index: 1200;*/
     height: 20px;
     padding-top: 12px;
     text-align: right
@@ -1524,7 +1524,7 @@ ul.sitemap.styled-list.circle ul ul li:before {
 
 #newsLine {
     position: relative;
-    z-index: 9989;
+    /*z-index: 9989;*/
     background: #f5f5f5;
     border-bottom: 1px dotted #c7c7c7;
     line-height: 1.455em;
@@ -2034,7 +2034,7 @@ ul.row-list {
     }
 /*compact menu*/
 
-.navbar-compact {
+/*.navbar-compact {
     top: -60px;
     position: fixed;
     background: none
@@ -2100,7 +2100,7 @@ ul.row-list {
     background: rgba(255,255,255,0.95);
     -webkit-box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     box-shadow: 0 2px 4px rgba(0,0,0,0.1)
-}
+}*/
 
 @media (max-width: 767px) {
     .navbar-compact .expand-nav.compact-hidden, .navbar-compact .expand-nav.compact-hidden.hidden-xs {

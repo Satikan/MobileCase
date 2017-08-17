@@ -10,29 +10,65 @@
                     <i class="fa fa-arrow-left" aria-hidden="true"></i>
                     ย้อนกลับ
                 </button>
+                <button type="submit" class="btn btn-success pull-right" style="height:35px;" ng-disabled="FormManageProductGroup.$invalid" ng-click="EditManageProductGroup()">บันทึก</button>
                 <div class="divider divider-sm"></div>
-                <div class="scrollbar">
-                    <table class="table table-bordered">
-                        <tr>
-                            <th scope="col" width="80px" class="center">ลำดับที่</th>
-                            <th scope="col" class="center">ชื่อสินค้า</th>
-                            <th scope="col" width="400px" class="center">ชื่อกลุ่มสินค้า</th>
-                            <th scope="col" class="center">จำนวนสินค้า</th>
-                            <th scope="col" width="80px" class="center">แก้ไข</th>
-                        </tr>
-                        <tr ng-repeat="MangeProductGroups in MangeProductGroup">
-                            <td class="center">{{$index + 1}}</td>
-                            <td>{{MangeProductGroups.ProductName}}</td>
-                            <td>{{MangeProductGroups.ProductGroupName}}</td>
-                            <td>{{MangeProductGroups.ProductQuantity}}</td>
-                            <td class="center"><button type="button" class="btn btn-warning btn-xs" ng-click="PageEditManageProductGroup(MangeProductGroups.ProductID, MangeProductGroups.ProductGroupID)"><span class="icon flaticon-pencil43"></span></button></td>
-                        </tr>
-                    </table>
-                </div>
+                <ng-form name="FormManageProductGroup">
+                    <div class="scrollbar">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th scope="col" width="80px" class="center">ลำดับที่</th>
+                                <th scope="col" class="center">ชื่อสินค้า</th>
+                                <th scope="col" width="400px" class="center">ชื่อกลุ่มสินค้า</th>
+                                <th scope="col" class="center">จำนวนสินค้า</th>
+                            </tr>
+                            <tr ng-repeat="MangeProductGroups in MangeProductGroup">
+                                <td class="center">{{$index + 1}}</td>
+                                <td>{{MangeProductGroups.ProductName}}</td>
+                                <td>{{MangeProductGroups.ProductGroupName}}</td>
+                                <td><input type="number" class="form-control" id="ProductQuantity" name="ProductQuantity" ng-model="MangeProductGroups.ProductQuantity" required></td>
+                            </tr>
+                        </table>
+                    </div>
+                </ng-form>
             </div>
         </div>
     </div>
 </section>
+
+@*<section class="content" ng-init="GetMangeProductGroup()">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="subtitle">
+                        <div><span>กำหนดกลุ่มสินค้า</span></div>
+                    </div>
+                    <button class="btn btn-danger" style="height:35px;" onclick="parent.location='#/product'">
+                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                        ย้อนกลับ
+                    </button>
+                    <div class="divider divider-sm"></div>
+                    <div class="scrollbar">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th scope="col" width="80px" class="center">ลำดับที่</th>
+                                <th scope="col" class="center">ชื่อสินค้า</th>
+                                <th scope="col" width="400px" class="center">ชื่อกลุ่มสินค้า</th>
+                                <th scope="col" class="center">จำนวนสินค้า</th>
+                                <th scope="col" width="80px" class="center">แก้ไข</th>
+                            </tr>
+                            <tr ng-repeat="MangeProductGroups in MangeProductGroup">
+                                <td class="center">{{$index + 1}}</td>
+                                <td>{{MangeProductGroups.ProductName}}</td>
+                                <td>{{MangeProductGroups.ProductGroupName}}</td>
+                                <td>{{MangeProductGroups.ProductQuantity}}</td>
+                                <td class="center"><button type="button" class="btn btn-warning btn-xs" ng-click="PageEditManageProductGroup(MangeProductGroups.ProductID, MangeProductGroups.ProductGroupID)"><span class="icon flaticon-pencil43"></span></button></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>*@
 
 <style>
     .scrollbar {

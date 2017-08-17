@@ -1,4 +1,4 @@
-﻿var app = angular.module('mobilecase', ['ngAnimate', 'ngResource', 'ngSanitize', 'ngTouch', 'ui.router', 'ngFileUpload']);
+﻿var app = angular.module('mobilecase', ['ngAnimate', 'ngResource', 'ngSanitize', 'ngTouch', 'ui.router', 'ngFileUpload', 'ui.bootstrap']);
 
 app.config(function ($stateProvider, $urlRouterProvider, $qProvider, $locationProvider) {
     $urlRouterProvider.otherwise("/");
@@ -8,7 +8,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $qProvider, $locationPr
         .state('/', {
             url: "/",
             templateUrl: '\MobileCase/home',
-            controller: 'ProductController'
+            //controller: 'ProductController'
         })
         .state('/login', {
             url: '/login',

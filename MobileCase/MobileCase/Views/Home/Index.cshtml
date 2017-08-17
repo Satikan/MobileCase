@@ -2,9 +2,6 @@
 <html lang="en" ng-app="mobilecase">
 <head>
     <meta charset="utf-8">
-    <!--[if IE]>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -84,9 +81,7 @@
                 <div id="newsLine">
                     <div class="container">
                         <div class="row">
-                            <div class="col-sm-2 col-md-2 hidden-xs">
-                                @*<div class="title upper"><i class="icon flaticon-news"></i>ข่าวสาร</div>*@
-                            </div>
+                            <div class="col-sm-2 col-md-2 hidden-xs"></div>
                             <div class="col-xs-7 col-sm-8 col-md-8 col-xs-push-1 col-sm-push-0">
                                 <div id="newsCarousel" class="slick-style1">
                                     <div class="item upper">
@@ -135,15 +130,6 @@
                                         </div>
                                         <!-- //end Logo -->
                                         <div class="clearfix visible-xs"></div>
-                                        <!-- Secondary menu -->
-                                        @*<div class="top-link pull-right compact-visible">
-                                                <div class="btn-outer btn-shopping-cart" ng-show="permission == 1 || permission == 3">
-                                                    <a href="#drop-shopcart" class="btn btn-xs btn-default open-cart"
-                                                       data-toggle="dropdown">
-                                                        <span class="icon icon-md flaticon-shopping66"></span><span class="badge">2</span>
-                                                    </a>
-                                                </div>
-                                            </div>*@
                                     </div>
                                 </div>
                                 <div class="navbar-secondary-menu col-sm-7 col-md-4 compact-hidden">
@@ -200,48 +186,17 @@
                     </div>
                 </section>
 
-                <!-- Navbar height -->
                 <div class="navbar-height"></div>
-                <!-- Navbar height -->
 
             </header>
             <!-- //end Navbar -->
 
             <ui-view autoscroll="false"></ui-view>
-
-            <!-- Footer -->
-            @*<footer style="padding-top: 0px;">
-                <div id="footer-collapsed">
-                    <div class="footer-navbar">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-8 copyright">© 2014 <a href="#">Coolbaby</a>. All Rights Reserved.</div>
-                                <div class="col-md-4">
-                                    <ul class="payment-list pull-right">
-                                        <li><img src="~/Scripts/templates/images/icon-payment-01.png" width="36" height="22" alt=""></li>
-                                        <li><img src="~/Scripts/templates/images/icon-payment-02.png" width="36" height="22" alt=""></li>
-                                        <li><img src="~/Scripts/templates/images/icon-payment-03.png" width="36" height="22" alt=""></li>
-                                        <li><img src="~/Scripts/templates/images/icon-payment-04.png" width="36" height="22" alt=""></li>
-                                        <li><img src="~/Scripts/templates/images/icon-payment-05.png" width="36" height="22" alt=""></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </footer>
-            <div id="outer-overlay"></div>*@
-            <!-- //end Footer -->
         </div>
     </div>
 
-    <!--[if lt IE 9]>
-        <script src="js/html5shiv.js"></script>
-        <script src="js/respond.min.js"></script>
-        <![endif]-->
     <script src="~/Scripts/templates/js/prototype.js"></script>
     <script src="~/Scripts/templates/js/jquery-1.10.2.min.js"></script>
-    @*<script src="~/Scripts/jquery-3.1.1.min.js"></script>*@
 
     <script src="~/Scripts/angular-lib/angular.min.js"></script>
     <script src="~/Scripts/angular-lib/angular-animate.min.js"></script>
@@ -251,6 +206,7 @@
     <script src="~/Scripts/component/ui-route/ui-router.min.js"></script>
     <script src="~/Scripts/component/ng-file-upload/ng-file-upload-shim.min.js"></script>
     <script src="~/Scripts/component/ng-file-upload/ng-file-upload.min.js"></script>
+    <script src="~/Scripts/component/ui-bootstrap/ui-bootstrap-tpls-2.5.0.min.js"></script>
 
     <script src="~/Scripts/templates/js/modernizr.custom.02163.js"></script>
     <script src="~/Scripts/templates/js/jquery.finger.min.js"></script>

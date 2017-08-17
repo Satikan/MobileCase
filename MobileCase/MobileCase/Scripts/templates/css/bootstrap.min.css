@@ -4210,10 +4210,10 @@ transition:transform .3s ease-out
 	transform:translate(0, 0)
 }
 .modal-dialog {
-	position:relative;
-	z-index:1050;
-	width:auto;
-	margin:10px
+    position: relative;
+    z-index: 1050;
+    width: auto;
+    margin: 10px;
 }
 .modal-content {
 	position:relative;

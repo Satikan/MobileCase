@@ -31,7 +31,7 @@ namespace MobileCase.DBHelper
         DataSet ViewManageProductGroup(int id);
         DataSet ViewDetailManageProductGroup(int id, int ProductGroupID);
         string UpdateProduct();
-        string InsertProductGroupAccess(Products item);
+        string InsertProductGroupAccess(List<Products> item);
         string DeletedProduct(int id);
     }
 
@@ -373,18 +373,26 @@ namespace MobileCase.DBHelper
             return errMsg;
         }
 
-        public string InsertProductGroupAccess(Products item)
+        public string InsertProductGroupAccess(List<Products> item)
         {
-
+            string strSQL = null;
+            int i = 0;
             MySqlConnection objConn = DBHelper.ConnectDb(ref errMsg);
 
             try
             {
-                string strSQL = "\r\n UPDATE productgroupaccess SET " +
-                    "\r\n ProductQuantity=" + item.ProductQuantity + 
-                    "\r\n WHERE ProductGroupID=" + item.ProductGroupID + " AND ProductID=" + item.ProductID + ";";
+                if (item.Count > 0)
+                {
+                    for (i = 0; i < item.Count; i++)
+                    {
+                        strSQL = "\r\n UPDATE productgroupaccess SET " +
+                                        "\r\n ProductQuantity=" + item[i].ProductQuantity +
+                                        "\r\n WHERE ProductGroupID=" + item[i].ProductGroupID + " AND ProductID=" + item[i].ProductID + ";";
 
-                DBHelper.Execute(strSQL, objConn);
+                        DBHelper.Execute(strSQL, objConn);
+                    }
+                }
+                
                 errMsg = "Success!!";
             }
             catch (Exception e)

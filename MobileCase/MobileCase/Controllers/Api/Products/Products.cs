@@ -94,7 +94,7 @@ namespace MobileCase.Controllers
 
         [HttpPost]
         [ActionName("InsertProductGroupAccess")]
-        public string PostInsertProductGroupAccess(Products item)
+        public string PostInsertProductGroupAccess(List<Products> item)
         {
             return repository.InsertProductGroupAccess(item);
         }

@@ -1,24 +1,10 @@
 ﻿
 <!--Gallery-->
-<section class="content" ng-init="GetProduct()">
-    @*<div class="container">
-        <div class="subtitle">
-            <div><span>Product</span></div>
-        </div>
-    </div>*@
-    @*<div class="container">
-        <div class="row">
-            <div class="text-center">
-                <button class="button btn-default" style="margin-right: 5px;" ng-class="{'btn-info': ProductGroups.ProductGroupID == states.activeItem}" ng-repeat="ProductGroups in ProductGroup" ng-click="selectProductGroup(ProductGroups.ProductGroupID); states.activeItem=ProductGroups.ProductGroupID">
-                    {{ProductGroups.ProductGroupName}}
-                </button>
-            </div>
-        </div>
-    </div><br />*@
+<section class="content" ng-controller="ProductController as $ctrl" ng-init="GetProduct()">
     <div class="images-gallery five-columns">
         <div class="images-nospace">
             <div class="image-thumbnail" ng-repeat="Products in Product | filter:{ ProductGroupID: filterByProductGroupID }">
-                <a href="#/detailproduct/{{Products.ProductID}}" class="gallery-group">
+                <a ng-click="$ctrl.open(Products.ProductID)" class="gallery-group">
                     <img ng-src="~/{{Products.ProductPicture}}" onerror="this.src = '\ImageProduct/no_image_product.png'" alt="">
                 </a>
             </div>
@@ -26,3 +12,45 @@
     </div>
 </section>
 <!-- //end Gallery--> 
+<div ng-controller="ProductController as $ctrl" class="modal-demo">
+    <script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-body" id="modal-body">
+            <div class="product-view row">
+                <div class="col-sm-1 col-md-1 col-lg-1"></div>
+                <div class="col-sm-4 col-md-4 col-lg-4">
+                    <center><img ng-src="{{ProductByID.ProductPicture}}" width="75%" alt="" onerror="this.src = '\ImageProduct/no_image_product.png'" /></center>
+                </div>
+                <div class="col-sm-1 col-md-1 col-lg-1"></div>
+                <div class="clearfix visible-xs"></div>
+                <div class="col-sm-6 col-md-6 col-lg-6">
+                    <br />
+                    <h2><strong>{{ProductByID.ProductName}}</strong></h2>
+                    <h3 ng-show="permission == 1 || permission == 2 || permission == 3"><strong>ราคา :</strong> {{ProductByID.ProductPrice}} บาท</h3>
+                    <p><span><strong>รหัสสินค้า : </strong></span> <span>{{ProductByID.ProductCode}}</span></p>
+                    <ng-form ng-show="permission == 1 || permission == 2 || permission == 3" name="FormSaveOrder">
+                        <div class="form-inputs">
+                            <div ng-show="ViewMangeProductGroups.ProductQuantity != 0" ng-repeat="ViewMangeProductGroups in ViewMangeProductGroup">
+                                <p><span><strong>ใช้งานกับรุ่น : </strong></span> <span>{{ViewMangeProductGroups.ProductGroupName}}</span></p>
+                                <p><span><strong>จำนวนคงเหลือ : </strong></span> <span>{{ViewMangeProductGroups.ProductQuantity}} ชิ้น</span></p>
+                                <label ng-hide="permission == 2"><strong>จำนวน : </strong></label>&nbsp;&nbsp;
+                                <button type="button" class="btn btn-danger btn-xs" ng-hide="permission == 2" ng-click="ViewMangeProductGroups.Amount = ViewMangeProductGroups.Amount - 1" ng-disabled="ViewMangeProductGroups.Amount == 0">
+                                    <i class="fa fa-minus" aria-hidden="true"></i>
+                                </button>
+                                <input type="number" class="form-control input-quantity" min="0" max="{{ProductByID.ProductQuantity}}" ng-hide="permission == 2" ng-model="ViewMangeProductGroups.Amount">
+                                <button type="button" class="btn btn-success btn-xs" ng-hide="permission == 2" ng-click="ViewMangeProductGroups.Amount = ViewMangeProductGroups.Amount + 1" ng-disabled="ViewMangeProductGroups.Amount == ViewMangeProductGroups.ProductQuantity">
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                </button>
+                                <div class="divider divider-sm"></div>
+                                <div class="line-divider"></div>
+                                <div class="divider divider-sm"></div>
+                            </div>
+                            <button class="btn btn-success" type="submit" style="width:100px;height:33px;" ng-click="SaveOrder()" ng-hide="permission == 2" ng-disabled="ProductByID.ProductQuantity == 0 || FormSaveOrder.$invalid"><i class="icon flaticon-shopping66"></i>  สั่งซื้อ</button>
+                            <button type="button" class="btn btn-danger" ng-click="$ctrl.cancel()" style="height:33px;"><i class="fa fa-close" aria-hidden="true"></i> ยกเลิก</button>
+                        </div>
+                    </ng-form>
+                    <button type="button" class="btn btn-danger" ng-hide="permission == 1 || permission == 2 || permission == 3" ng-click="$ctrl.cancel()" style="height:33px;"><i class="fa fa-close" aria-hidden="true"></i> ยกเลิก</button>
+                </div>
+            </div>
+        </div>
+    </script>
+</div>
