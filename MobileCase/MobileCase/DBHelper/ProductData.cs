@@ -275,6 +275,7 @@ namespace MobileCase.DBHelper
             {
                 strSQL += "\r\n WHERE pga.ProductID = " + id;
             }
+            strSQL += "\r\n ORDER BY pg.ProductGroupID";
             DataTable dt = DBHelper.List(strSQL, objConn);
             dt.TableName = "MangeProductGroup";
             ds.Tables.Add(dt);
