@@ -1,9 +1,14 @@
 ﻿
 <!--Gallery-->
 <section class="content" ng-controller="ProductController as $ctrl" ng-init="GetProduct()">
+    <div class="row">
+        <div class="col-lg-12">
+            <input type="text" class="form-control pull-right" style="width: 200px;" ng-model="search" placeholder="ค้นหา...">
+        </div>
+    </div>
     <div class="images-gallery five-columns">
         <div class="images-nospace">
-            <div class="image-thumbnail" ng-repeat="Products in Product | filter:{ ProductGroupID: filterByProductGroupID }">
+            <div class="image-thumbnail" ng-repeat="Products in Product | filter:{ ProductGroupID: filterByProductGroupID } | filter: search">
                 <a ng-click="$ctrl.open(Products.ProductID)" class="gallery-group">
                     <img ng-src="~/{{Products.ProductPicture}}" onerror="this.src = '\ImageProduct/no_image_product.png'" alt="">
                 </a>
